@@ -30,13 +30,14 @@ export default function Navbar() {
           : "bg-transparent border-b border-transparent mt-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Maximum boundary frame scaled to 89rem with tightened padding to pull content out towards corners */}
+      <div className="max-w-[89rem] mx-auto px-6 lg:px-4 xl:px-6">
 
         {/* Desktop Navbar */}
         <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center h-20">
 
-          {/* Left Menu */}
-          <nav className="flex justify-end gap-20">
+          {/* Left Menu - Anchored toward left side edge layout with slightly narrowed corner gap */}
+          <nav className="flex justify-start gap-12 xl:gap-14">
             {leftLinks.map((item) => (
               <a
                 key={item}
@@ -56,8 +57,8 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Center Logo */}
-          <div className="flex justify-center px-52">
+          {/* Center Logo - Standard Symmetric Safety Gap Margins */}
+          <div className="flex justify-center px-12 xl:px-24">
             <a href="/">
               <Image
                 src="/logo.png"
@@ -74,8 +75,8 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Right Menu */}
-          <nav className="flex justify-start gap-20">
+          {/* Right Menu - Anchored toward right side edge layout with slightly narrowed corner gap */}
+          <nav className="flex justify-end gap-12 xl:gap-14">
             {rightLinks.map((item) => (
               <a
                 key={item}
