@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import services from "@/data/services";
 
 export default function Services() {
@@ -31,7 +32,13 @@ export default function Services() {
       <div className="max-w-[96vw] mx-auto px-3 md:px-5 relative z-10">
         
         {/* Left-Aligned Premium Header Section Matched with Color Theme (Ring Structure / Geometric block removed) */}
-        <div className="text-left mb-16 border-l-4 border-purple-600 pl-4 md:pl-6">
+        <motion.div 
+          className="text-left mb-16 border-l-4 border-purple-600 pl-4 md:pl-6 overflow-hidden"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+        >
           <div>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase text-slate-900 leading-none">
               Our Services
@@ -40,13 +47,19 @@ export default function Services() {
               Precision Systems & Custom Engineering
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Dynamic Interactive Rows Layout */}
         <div className="flex flex-col gap-4">
           
           {/* Row 1 (Items 1-3) */}
-          <div className="flex flex-col lg:flex-row gap-3 w-full h-[300px] lg:h-[380px]">
+          <motion.div 
+            className="flex flex-col lg:flex-row gap-3 w-full h-[300px] lg:h-[380px]"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+          >
             {row1Services.map((service, idx) => {
               const isExpanded = activeRow1 === idx;
               return (
@@ -82,10 +95,16 @@ export default function Services() {
                 </div>
               );
             })}
-          </div>
+          </motion.div>
 
           {/* Row 2 (Items 4-6) */}
-          <div className="flex flex-col lg:flex-row gap-3 w-full h-[300px] lg:h-[380px]">
+          <motion.div 
+            className="flex flex-col lg:flex-row gap-3 w-full h-[300px] lg:h-[380px]"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.15, duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+          >
             {row2Services.map((service, idx) => {
               const realIndex = idx + 3;
               const isExpanded = activeRow2 === realIndex;
@@ -122,7 +141,7 @@ export default function Services() {
                 </div>
               );
             })}
-          </div>
+          </motion.div>
 
         </div>
 

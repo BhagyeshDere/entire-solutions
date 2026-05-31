@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function About() {
   return (
     <section
@@ -21,7 +25,13 @@ export default function About() {
       <div className="max-w-[96vw] mx-auto px-4 md:px-8 text-center">
         
         {/* Brand New Structural Badge: Unique Mechanical Crosshair Framing (Replaced Tube Structure) */}
-        <div className="inline-block relative px-6 py-2 select-none mix-blend-merge">
+        <motion.div 
+          className="inline-block relative px-6 py-2 select-none mix-blend-merge"
+          initial={{ opacity: 0, y: -15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
           {/* Technical Corner Bracket Elements */}
           <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-purple-600/60" />
           <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-purple-600/60" />
@@ -34,25 +44,52 @@ export default function About() {
               About Entire Solutions
             </span>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Clean, Premium Centered Heading Layout */}
-        <h2 className="mt-8 text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tighter uppercase leading-[1.1]">
-          Precision Fabrication.
+        {/* Clean, Premium Centered Heading Layout with Smooth Stagger Sequence */}
+        <h2 className="mt-8 text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tighter uppercase leading-[1.1] overflow-hidden">
+          <motion.span
+            className="inline-block"
+            initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+          >
+            Precision Fabrication.
+          </motion.span>
           <br />
-          <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 bg-clip-text text-transparent">
+          <motion.span
+            className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 bg-clip-text text-transparent inline-block"
+            initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.15, duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+          >
             Reliable Solutions.
-          </span>
+          </motion.span>
         </h2>
 
         {/* Minimal Engineering Separator Accent */}
-        <div className="mt-8 mx-auto w-12 h-[3px] bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full" />
+        <motion.div 
+          className="mt-8 mx-auto h-[3px] bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ delay: 0.45, duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
+          style={{ width: 48 }}
+        />
 
         {/* Full-size centralized narrative block enriched with additional information */}
-        <div className="mt-10 w-full mx-auto">
-          <p className="text-base md:text-lg lg:text-[19px] leading-relaxed md:leading-loose text-slate-600 font-medium tracking-wide drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] text-center">
+        <div className="mt-10 w-full mx-auto overflow-hidden">
+          <motion.p 
+            className="text-base md:text-lg lg:text-[19px] leading-relaxed md:leading-loose text-slate-600 font-medium tracking-wide drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] text-center"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.4, duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
+          >
             Entire Solutions is a premier manufacturing hub and heavy-duty engineering fabrication company established in 2020, specializing in high-tolerance light and heavy fabrication, state-of-the-art fiber laser cutting, precision CNC sheet metal processing, complex bending, certified welding operations, automated powder coating systems, end-to-end industrial electrical panel box production, and bespoke turnkey engineering solutions. Driven by advanced technological machinery, an elite pool of technical professionals, and a rigid zero-compromise approach to global manufacturing quality standards, we seamlessly serve high-demand B2B sectors including renewable energy, electrical power grids, automotive assembly chains, critical infrastructure projects, and commercial plant engineering—consistently optimizing material yields to deliver exceptionally durable, cost-effective, and precisely detailed industrial assets tailored directly to client-side blueprint configurations.
-          </p>
+          </motion.p>
         </div>
 
       </div>
