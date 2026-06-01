@@ -2,9 +2,13 @@ import Hero from "@/components/home/Hero";
 
 import About from "@/components/home/About";
 
+import KeyCapabilities from "@/components/home/KeyCapabilities";
+
 import Services from "@/components/home/Services";
 
 import Facilities from "@/components/home/Facilities";
+
+import CompletedProjects from "@/components/home/CompletedProjects";
 
 import Industries from "@/components/home/Industries";
 
@@ -20,9 +24,13 @@ export default function Home() {
 
         <About />
 
+        <KeyCapabilities />
+
         <Services />
 
         <Facilities />
+
+        <CompletedProjects />
 
         <Industries />
 
