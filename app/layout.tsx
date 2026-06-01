@@ -3,6 +3,8 @@ import "./globals.css";
 
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/Footer";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
+import PageLoader from "@/components/common/PageLoader";
 
 export const metadata: Metadata = {
   title: "Entire Solutions",
@@ -17,9 +19,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <PageLoader>
+
+          <Navbar />
+
+          <main>
+            {children}
+          </main>
+
+          <Footer />
+
+          <WhatsAppButton />
+
+        </PageLoader>
       </body>
     </html>
   );

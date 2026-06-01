@@ -5,77 +5,90 @@ import { motion } from "framer-motion";
 import clients from "@/data/clients";
 
 export default function Clients() {
-  // Double the list array length dynamically to accommodate seamless infinite scrolling loops
+  // Triple the list array length dynamically to accommodate seamless infinite scrolling loops
   const duplicatedClients = [...clients, ...clients, ...clients];
 
   return (
     <section
       id="clients"
-      className="py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden"
+      className="py-24 bg-[#fafbfc] relative overflow-hidden font-sans"
     >
-      {/* Structural Tech Background Mesh Accent Lineage */}
-      <div className="absolute inset-0 opacity-[0.15] [mask-image:radial-gradient(ellipse_at_center,black_75%,transparent_100%)] pointer-events-none z-0">
+      {/* ── ADVANCED BRAND-THEMED ARCHITECTURAL BLUEPRINT GRID ── */}
+      <div className="absolute inset-0 opacity-[0.4] [mask-image:radial-gradient(ellipse_at_center,black_65%,transparent_100%)] pointer-events-none z-0">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="clients-blueprint-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(147, 51, 234, 0.1)" strokeWidth="1" />
+            <pattern id="clients-blueprint-grid" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(99, 102, 241, 0.07)" strokeWidth="1" />
+              <circle cx="50" cy="50" r="1.2" fill="rgba(162, 58, 236, 0.15)" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#clients-blueprint-grid)" />
         </svg>
       </div>
 
-      <div className="max-w-[96vw] mx-auto px-4 md:px-8 relative z-10">
+      {/* Atmospheric Soft Light Flares */}
+      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(37,179,250,0.03)_0%,transparent,70%)] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(162,58,236,0.03)_0%,transparent,70%)] pointer-events-none" />
 
-        {/* Section Heading Group */}
-        <div className="text-center mb-16">
-          <motion.span 
-            className="inline-block px-4 py-2 rounded-full bg-purple-50 text-purple-700 font-bold text-xs uppercase tracking-[0.15em] border border-purple-100 shadow-[0_2px_10px_rgba(147,51,234,0.05)]"
+      <div className="max-w-[92vw] mx-auto px-4 md:px-8 relative z-10">
+
+        {/* ── ADVANCED BRAND-THEMED HEADING CONFIGURATION ── */}
+        <div className="text-center mb-20 flex flex-col items-center">
+          <motion.div 
+            className="inline-block relative px-5 py-1.5 select-none mb-5"
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            Trusted Partnerships
-          </motion.span>
+            {/* Minimal Technical Framing Corner Brackets */}
+            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#a23aec]" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#25b3fa]" />
+            
+            <span className="text-slate-800 font-black text-xs uppercase tracking-[0.25em] bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text">
+              Strategic Networks
+            </span>
+          </motion.div>
 
           <motion.h2 
-            className="mt-5 text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-          >
-            Our Major Clients
-          </motion.h2>
-
-          <motion.p 
-            className="mt-4 max-w-3xl mx-auto text-slate-600 text-base md:text-lg font-medium leading-relaxed tracking-wide"
+            className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            We are proud to work with leading organizations across renewable
-            energy, engineering, electrical, manufacturing, and industrial sectors.
+            Our Major{" "}
+            <span className="bg-gradient-to-r from-[#a23aec] via-[#6366f1] to-[#25b3fa] bg-clip-text text-transparent">
+              Clients
+            </span>
+          </motion.h2>
+
+          <motion.p 
+            className="mt-5 max-w-2xl mx-auto text-slate-500 text-sm sm:text-base font-medium leading-relaxed tracking-wide"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            We deploy precision fabrication assets and electrical solutions alongside the world's most demanding industrial and engineering enterprises.
           </motion.p>
         </div>
 
-        {/* Continuous Automatic Slider Track Container */}
+        {/* ── HIGH-PERFORMANCE SINGLE SLIDER TICKER ── */}
         <div className="relative w-full overflow-hidden py-6 mask-horizontal-fade select-none">
           
-          {/* Subtle Linear Vignette Gradient Fades Over Infinite Track Edge Components */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-slate-50 to-transparent z-20 pointer-events-none" />
+          {/* Subtle Ambient Mask Gradients covering outer track vectors */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-[#fafbfc] to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-[#fafbfc] to-transparent z-20 pointer-events-none" />
 
           <motion.div 
             className="flex gap-6 w-max items-center"
-            animate={{ x: [0, -1920] }}
+            animate={{ x: [0, -2304] }} // Calibrated exact offsets to ensure seamless loop resets
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 35,
+                duration: 38,
                 ease: "linear",
               },
             }}
@@ -83,31 +96,35 @@ export default function Clients() {
             {duplicatedClients.map((client, idx) => (
               <motion.div
                 key={`${client.id}-${idx}`}
-                initial={{ opacity: 0, scale: 0.92 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-                className="group relative flex-shrink-0 w-64 md:w-72 bg-white/80 border border-slate-200/80 rounded-2xl p-10 flex flex-col items-center justify-center text-center transition-all duration-500 ease-out backdrop-blur-md shadow-[0_4px_24px_rgba(241,245,249,0.7)] hover:shadow-[0_24px_50px_rgba(147,51,234,0.08)] hover:border-purple-500/40 hover:scale-[1.03] origin-center overflow-hidden"
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative flex-shrink-0 w-60 sm:w-64 aspect-[16/10] bg-white border border-slate-200/75 rounded-xl flex items-center justify-center p-9 transition-all duration-500 ease-out shadow-[0_4px_20px_rgba(241,245,249,0.6)] hover:shadow-[0_24px_45px_rgba(99,102,241,0.07)] hover:border-[#6366f1]/40 hover:scale-[1.02] origin-center overflow-hidden"
               >
-                {/* Advanced Technical Blueprint Subtle Neon Ambient Glow Backing */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-indigo-500/0 to-sky-400/0 group-hover:from-purple-500/[0.02] group-hover:to-sky-400/[0.02] transition-all duration-500" />
+                {/* Brand Identity Neon Accent Inbound Flares */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(162,58,236,0.02)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* Precision Mechanical Micro Corner Bracket Accents */}
-                <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-slate-300 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-                <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-slate-300 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
+                {/* Laser Linear Calibration Guides */}
+                <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#25b3fa] to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                <div className="absolute inset-y-0 right-0 w-[2px] bg-gradient-to-b from-transparent via-[#a23aec] to-transparent transform -translate-y-full group-hover:translate-y-full transition-transform duration-1000 ease-in-out delay-75" />
 
-                {/* Micro Tech Branding Accent Overlay Frame Inside Card */}
-                <div className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-purple-500 via-indigo-500 to-sky-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-2xl" />
+                {/* Precision Micro Corner Dots */}
+                <div className="absolute top-2 left-2 w-1 h-1 bg-slate-300 rounded-full opacity-60 group-hover:bg-[#6366f1] group-hover:opacity-100 transition-colors" />
+                <div className="absolute bottom-2 right-2 w-1 h-1 bg-slate-300 rounded-full opacity-60 group-hover:bg-[#a23aec] group-hover:opacity-100 transition-colors" />
 
-                {/* Advanced Enhanced Logo Viewport Wrapper Layout with Increased Dimensions */}
-                <div className="relative h-20 w-44 flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-105">
+                {/* Unified Bottom Anchor Ribbon */}
+                <div className="absolute inset-x-0 bottom-0 h-[2.5px] bg-gradient-to-r from-[#a23aec] via-[#6366f1] to-[#25b3fa] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Optimized High-Contrast Full-Color Logo Viewport */}
+                <div className="relative w-full h-full flex items-center justify-center transition-all duration-400 ease-out group-hover:scale-105">
                   <Image
                     src={client.image}
-                    alt="Client Brand Asset"
+                    alt="Strategic Enterprise Asset"
                     fill
-                    sizes="220px"
-                    className="object-contain transition-all duration-300 pointer-events-none"
-                    priority={idx < 8}
+                    sizes="240px"
+                    className="object-contain pointer-events-none"
+                    priority={idx < 6}
                   />
                 </div>
               </motion.div>
@@ -117,11 +134,11 @@ export default function Clients() {
 
       </div>
 
-      {/* Global CSS Injector to provide safe hardware-accelerated composition bounds */}
+      {/* Global CSS Style Layer Injector to enforce hardware-accelerated composition bounds */}
       <style jsx global>{`
         .mask-horizontal-fade {
-          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
         }
       `}</style>
 
