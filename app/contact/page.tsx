@@ -2,22 +2,20 @@
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#f8fafc] py-24 px-6 relative overflow-hidden">
-      {/* Abstract Mesh Background */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -left-[10%] w-[800px] h-[800px] bg-indigo-200/40 rounded-full blur-[150px]" />
-        <div className="absolute top-[20%] -right-[10%] w-[600px] h-[600px] bg-sky-200/40 rounded-full blur-[150px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="mb-20 text-center">
-          <span className="text-indigo-600 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Let's connect</span>
-          <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter">
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-sky-500">Touch</span>
+    <main className="min-h-screen bg-[#f8fafc] relative overflow-hidden">
+      
+      {/* --- UPDATED DARK PURPLE HERO SECTION --- */}
+      <div className="bg-gradient-to-br from-[#6b21a8] to-[#4338ca] pt-32 pb-24 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <span className="text-blue-200 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Let's connect</span>
+          <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter">
+            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Touch</span>
           </h1>
         </div>
+      </div>
 
+      {/* Main Content (Untouched structure) */}
+      <div className="max-w-7xl mx-auto relative z-10 px-6 -mt-12">
         <div className="grid lg:grid-cols-12 gap-8 items-stretch">
           {/* Form Card */}
           <div className="lg:col-span-7 bg-white/70 backdrop-blur-2xl p-8 md:p-12 rounded-[2.5rem] border border-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] flex flex-col justify-between">
@@ -68,8 +66,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Corrected Map Section */}
-        <div className="mt-8 w-full h-[600px] rounded-[2.5rem] overflow-hidden border-4 border-white shadow-xl relative group">
+        {/* Map Section */}
+        <div className="mt-8 w-full h-[600px] rounded-[2.5rem] overflow-hidden border-4 border-white shadow-xl relative group mb-24">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.892016462744!2d73.86470007575292!3d18.66579046603417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c813c9e6d32f%3A0x6b77209774618e40!2sWadmukhwadi%20Rd%2C%20Bhosari%2C%20Pimpri-Chinchwad%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1717319000000!5m2!1sen!2sin"
             className="w-full h-full filter grayscale group-hover:grayscale-0 transition-all duration-700"
@@ -79,14 +77,6 @@ export default function ContactPage() {
             referrerPolicy="no-referrer-when-downgrade"
             title="Location Map"
           />
-          
-          {/* Top-Left Address Overlay */}
-          <div className="absolute top-8 left-8 z-20 bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-2xl max-w-sm border border-white/50">
-            <p className="text-indigo-600 text-xs uppercase font-bold tracking-widest mb-2">Our Office</p>
-            <p className="text-slate-900 font-medium leading-relaxed">
-              Plot No. 03, Sr.No. 101, Wadmukhwadi Road, Tapkir Nagar, Khadi Machine Road, Bhosari - 412105. Near Aapulaki Hotel.
-            </p>
-          </div>
         </div>
       </div>
     </main>
