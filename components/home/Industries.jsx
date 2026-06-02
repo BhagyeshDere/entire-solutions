@@ -11,31 +11,31 @@ export default function Industries() {
       icon: "⚡",
       title: "Renewable Energy",
       description: "Fabrication solutions for wind power fixtures, battery racks, BESS skids and renewable energy infrastructure.",
-      bgImage: "/images/industries/renewable.jpg", // Ensure file is at public/images/renewable.jpg
+      bgImage: "/images/industries/renewable1.jpg", // Ensure file is at public/images/renewable.jpg
     },
     {
       icon: "🔌",
       title: "Electrical & Power Industry",
       description: "Electrical panel boxes, transformer structures, enclosures and power distribution components.",
-      bgImage: "/images/industries/electrical.jpg",
+      bgImage: "/images/industries/electrical1.jpg",
     },
     {
       icon: "⚙️",
       title: "Automotive & Engineering",
       description: "Precision fabricated components, sheet metal parts and engineering assemblies.",
-      bgImage: "/images/industries/automotive.jpg",
+      bgImage: "/images/industries/automotive1.jpg",
     },
     {
       icon: "🏭",
       title: "Industrial Equipment",
       description: "Custom manufacturing solutions for machinery frames, skids, fixtures and heavy structures.",
-      bgImage: "/images/industries/industrial.jpg",
+      bgImage: "/images/industries/industrial1.jpg",
     },
     {
       icon: "🏗️",
       title: "Construction & Infrastructure",
       description: "Structural fabrication, support systems and industrial steel solutions for infrastructure projects.",
-      bgImage: "/images/industries/construction.jpg",
+      bgImage: "/images/industries/construction1.jpg",
     },
   ];
 
