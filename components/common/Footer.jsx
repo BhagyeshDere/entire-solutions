@@ -42,8 +42,8 @@ const Footer = () => {
           {/* MAIN LAYOUT: Left (Cards) + Right (Form) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full">
             
-            {/* LEFT SIDE: Info Cards */}
-            <div className="lg:col-span-7 flex flex-col gap-6">
+            {/* LEFT SIDE: Info Cards (Grid Layout) */}
+            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-8 rounded-[2rem] bg-[#0b0f1a]/60 border border-white/5 backdrop-blur-md">
                  <MapPin className="text-purple-400 mb-4" size={24} />
                  <p className="text-white/60 text-[11px] uppercase tracking-widest leading-relaxed">
