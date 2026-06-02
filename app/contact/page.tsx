@@ -1,3 +1,5 @@
+"use client";
+
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[#f8fafc] py-24 px-6 relative overflow-hidden">
@@ -34,7 +36,7 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* Details Column (Updated with address) */}
+          {/* Details Column */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white shadow-2xl h-full flex flex-col justify-center">
               <h3 className="text-indigo-400 uppercase tracking-widest text-xs font-bold mb-8">Contact Information</h3>
@@ -66,14 +68,15 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Map with Top-Left Address Overlay */}
+        {/* Corrected Map Section */}
         <div className="mt-8 w-full h-[600px] rounded-[2.5rem] overflow-hidden border-4 border-white shadow-xl relative group">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.822361138243!2d73.8569830752174!3d18.627725982500057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c80000000001%3A0x0!2sEntire+Solutions!5e0!3m2!1sen!2sin!4v1717300000000!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.892016462744!2d73.86470007575292!3d18.66579046603417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c813c9e6d32f%3A0x6b77209774618e40!2sWadmukhwadi%20Rd%2C%20Bhosari%2C%20Pimpri-Chinchwad%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1717319000000!5m2!1sen!2sin"
             className="w-full h-full filter grayscale group-hover:grayscale-0 transition-all duration-700"
             style={{ border: 0 }}
-            allowFullScreen=""
+            allowFullScreen
             loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
             title="Location Map"
           />
           
