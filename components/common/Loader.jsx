@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
-// Added isExiting prop to handle the transition smoothly
 export default function Loader({ isExiting = false, onComplete }) {
   const [mounted, setMounted] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -10,19 +10,16 @@ export default function Loader({ isExiting = false, onComplete }) {
   useEffect(() => {
     setMounted(true);
 
-    // Fine-tuned to 30ms for a slightly snappier, continuous countdown flow
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          
           if (onComplete) {
             setTimeout(() => onComplete(), 0);
           }
           return 100;
         }
         
-        // Steady, liquid increments that update faster without giant structural jumps
         const dynamicIncrement = prev < 30 ? 2 : prev < 70 ? 1 : prev < 90 ? 2 : 1;
         const nextProgress = Math.min(prev + dynamicIncrement, 100);
         
@@ -32,10 +29,9 @@ export default function Loader({ isExiting = false, onComplete }) {
             setTimeout(() => onComplete(), 0);
           }
         }
-        
         return nextProgress;
       });
-    }, 30); // 30ms strikes the perfect sweet spot between premium and fast
+    }, 30);
 
     return () => clearInterval(interval);
   }, [onComplete]);
@@ -52,7 +48,6 @@ export default function Loader({ isExiting = false, onComplete }) {
       {/* ── BACKGROUND ACCENTS ──────────────────────────────────────── */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(162,58,236,0.03)_0%,rgba(99,102,241,0.02)_50%,transparent_70%)] animate-[pulse_6s_infinite_ease-in-out]" />
-        
         <div className="text-[16vw] font-black tracking-tighter text-[#6366f1]/[0.012] uppercase text-center leading-none whitespace-nowrap select-none">
           Entire Solutions
         </div>
@@ -60,44 +55,32 @@ export default function Loader({ isExiting = false, onComplete }) {
 
       <div className="h-0 w-full pointer-events-none select-none" />
 
-      {/* ── PERFECTLY CENTRALIZED BIG BRAND HEADING WITH INBOUND REVEAL ── */}
-      <div className="relative z-10 my-auto self-center text-center w-full max-w-4xl px-4 flex flex-col items-center justify-center">
-        
-        {/* Row 1 Wrapper: Masks bounds for clean sliding movement */}
-        <div className="overflow-hidden py-2 w-full flex justify-center">
-          <h1 
-            style={{ 
-              transform: isExiting ? "translateY(-15px)" : undefined,
-              animationName: isExiting ? "none" : "revealUp",
-              animationDuration: "1.2s",
-              animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-              animationFillMode: "both"
-            }}
-            className="text-6xl sm:text-8xl md:text-9xl lg:text-[130px] font-black tracking-tight uppercase text-neutral-900 leading-[0.9] transition-transform duration-700 ease-out"
-          >
-            Entire
-          </h1>
+      {/* ── PERFECTLY CENTRALIZED LOGO WITH INBOUND REVEAL ── */}
+      {/* Increased max-w-xl to max-w-2xl for larger footprint */}
+      <div className="relative z-10 my-auto self-center text-center w-full max-w-2xl px-4 flex flex-col items-center justify-center">
+        <div 
+          className="overflow-hidden py-2 w-full flex justify-center"
+          style={{ 
+            transform: isExiting ? "translateY(-15px)" : undefined,
+            animationName: isExiting ? "none" : "revealUp",
+            animationDuration: "1.2s",
+            animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+            animationFillMode: "both"
+          }}
+        >
+          {/* Changed aspect ratio to [2/1] for a larger, taller appearance */}
+          <div className="relative w-full h-auto aspect-[2/1] transition-transform duration-700 ease-out">
+            <Image 
+              src="/logo.png" 
+              alt="Entire Solutions Logo" 
+              fill 
+              className="object-contain"
+              priority
+            />
+          </div>
         </div>
-
-        {/* Row 2 Wrapper: Masks bounds for clean sliding movement */}
-        <div className="overflow-hidden py-2 w-full flex justify-center">
-          <h2 
-            style={{ 
-              transform: isExiting ? "translateY(15px)" : undefined,
-              animationName: isExiting ? "none" : "revealUp",
-              animationDuration: "1.2s",
-              animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-              animationDelay: "0.15s",
-              animationFillMode: "both"
-            }}
-            className="text-6xl sm:text-8xl md:text-9xl lg:text-[130px] font-black tracking-tight uppercase leading-[0.9] bg-gradient-to-r from-[#a23aec] via-[#6366f1] to-[#25b3fa] bg-clip-text text-transparent transition-transform duration-700 ease-out"
-          >
-            Solutions
-          </h2>
-        </div>
-        
       </div>
-
+      
       {/* ── BOTTOM CORNER TIMER SEGMENT ─────────────────────────────── */}
       <div className="relative z-10 w-full flex justify-end items-end pt-4 border-t border-neutral-200/30">
         <div className="tabular-nums leading-none mb-[-12px] sm:mb-[-24px] md:mb-[-32px]">
@@ -116,7 +99,6 @@ export default function Loader({ isExiting = false, onComplete }) {
         </div>
       </div>
 
-      {/* Embedded High-Fidelity Entrance Animation Keyframes */}
       <style jsx global>{`
         @keyframes revealUp {
           from {
@@ -131,7 +113,6 @@ export default function Loader({ isExiting = false, onComplete }) {
           }
         }
       `}</style>
-
     </div>
   );
 }

@@ -1,18 +1,19 @@
 import Hero from "@/components/home/Hero";
 
 import About from "@/components/home/About";
+import Facilities from "@/components/home/Facilities";
 
-import KeyCapabilities from "@/components/home/KeyCapabilities";
+//import KeyCapabilities from "@/components/home/KeyCapabilities";
 
 import Services from "@/components/home/Services";
 
-import Facilities from "@/components/home/Facilities";
 
+import WhyChooseUs from "@/components/home/WhyChooseUs";
 import CompletedProjects from "@/components/home/CompletedProjects";
 
 import Industries from "@/components/home/Industries";
 
-import WhyChooseUs from "@/components/home/WhyChooseUs";
+
 
 import Clients from "@/components/home/Clients";
 
@@ -23,18 +24,18 @@ export default function Home() {
         <Hero />
 
         <About />
+        <Facilities />
 
-        <KeyCapabilities />
 
         <Services />
-
-        <Facilities />
+<WhyChooseUs />
+   
 
         <CompletedProjects />
 
         <Industries />
 
-        <WhyChooseUs />
+        
 
         <Clients />
       </main>
