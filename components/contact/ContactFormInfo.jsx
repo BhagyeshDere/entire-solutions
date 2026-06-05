@@ -22,7 +22,19 @@ export default function ContactFormInfo() {
                 <input type="text" placeholder="Full Name" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-[#25b3fa]/10 outline-none transition" />
                 <input type="email" placeholder="Email Address" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-[#25b3fa]/10 outline-none transition" />
               </div>
-              <input type="tel" placeholder="Phone Number" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-[#25b3fa]/10 outline-none transition" />
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <input type="tel" placeholder="Phone Number" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-[#25b3fa]/10 outline-none transition" />
+                {/* NEW SERVICE FIELD */}
+                <select className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-[#25b3fa]/10 outline-none transition text-slate-500">
+                  <option value="">Select Service</option>
+                  <option value="wind-energy">Wind Energy Solutions</option>
+                  <option value="fabrication">Industrial Fabrication</option>
+                  <option value="electrical">Electrical Panels</option>
+                  <option value="other">Other Services</option>
+                </select>
+              </div>
+
               <textarea rows={5} placeholder="Tell us about your project..." className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-[#25b3fa]/10 outline-none transition" />
               
               <button className="w-full bg-gradient-to-r from-[#a23aec] to-[#25b3fa] text-white py-6 rounded-2xl font-bold text-lg hover:scale-[1.01] active:scale-[0.98] transition-all shadow-xl shadow-[#a23aec]/20">
