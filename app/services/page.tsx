@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion"; // Import motion
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -40,21 +40,24 @@ const services = [
 export default function ServicesPage() {
   return (
     <main className="bg-[#fafbfc] overflow-x-hidden">
-      {/* HERO */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-slate-950">
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#6b21a8] via-[#4f46e5] to-[#06b6d4] opacity-30" />
+      {/* LIGHT THEME HERO */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,#f1f5f9_0%,#fff_100%)]" />
         
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 text-center px-6"
+          className="relative z-10 text-center px-6 mt-16"
         >
-          <span className="uppercase tracking-[0.3em] text-[#38bdf8] text-xs font-bold">Our Expertise</span>
-          <h1 className="mt-6 text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none tracking-tight">
-            INDUSTRIAL <br /> SERVICES
+          <span className="uppercase tracking-[0.3em] text-[#6b21a8] text-[10px] font-bold border border-[#6b21a8]/10 bg-[#6b21a8]/5 px-4 py-1.5 rounded-full">Our Expertise</span>
+          
+          {/* Heading updated to match logo gradient: Purple to Cyan */}
+          <h1 className="mt-10 text-4xl md:text-6xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#6b21a8] to-[#06b6d4] leading-none tracking-tighter whitespace-nowrap">
+            INDUSTRIAL SERVICES
           </h1>
-          <p className="mt-8 text-slate-300 max-w-3xl mx-auto text-lg leading-relaxed">
+          
+          <p className="mt-8 text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
             Precision manufacturing, fabrication, and industrial engineering solutions 
             crafted to meet the high standards of modern industry.
           </p>

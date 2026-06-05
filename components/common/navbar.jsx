@@ -10,8 +10,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // UPDATED: Removed "/about" so it now defaults to light text
-  const darkTextPages = ["/contact"];
+  // UPDATED: Now includes /services and /projects for dark text theme
+  const darkTextPages = ["/contact", "/services", "/projects"];
   const isDarkPage = darkTextPages.includes(pathname);
 
   const leftLinks = [
@@ -21,8 +21,8 @@ export default function Navbar() {
   ];
 
   const rightLinks = [
-    { name: "Products", href: "/#products" },
-    { name: "Projects", href: "/#projects" },
+    { name: "Facilities", href: "/facilities" },
+    { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -56,8 +56,8 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[89rem] mx-auto px-6 lg:px-4 xl:px-6 relative">
+        {/* Desktop Navbar */}
         <div className="hidden lg:flex items-center justify-between h-20 relative w-full">
-          
           <div className="flex items-center gap-8 xl:gap-12 z-10">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -76,9 +76,7 @@ export default function Navbar() {
                   className={`relative font-semibold text-sm uppercase tracking-wider transition-all duration-300 py-1 group ${getTextColor()}`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                    scrolled || isDarkPage ? "bg-neutral-900" : "bg-white"
-                  }`} />
+                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled || isDarkPage ? "bg-neutral-900" : "bg-white"}`} />
                 </Link>
               ))}
             </nav>
@@ -92,9 +90,7 @@ export default function Navbar() {
                 width={120}
                 height={40}
                 priority
-                className={`object-contain transition duration-500 hover:scale-105 ${
-                  scrolled || isDarkPage ? "brightness-100 contrast-100" : "brightness-0 invert"
-                }`}
+                className={`object-contain transition duration-500 hover:scale-105 ${scrolled || isDarkPage ? "brightness-100 contrast-100" : "brightness-0 invert"}`}
               />
             </Link>
           </div>
@@ -108,16 +104,14 @@ export default function Navbar() {
                   className={`relative font-semibold text-sm uppercase tracking-wider transition-all duration-300 py-1 group ${getTextColor()}`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                    scrolled || isDarkPage ? "bg-neutral-900" : "bg-white"
-                  }`} />
+                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled || isDarkPage ? "bg-neutral-900" : "bg-white"}`} />
                 </Link>
               ))}
             </nav>
           </div>
         </div>
 
-        {/* Mobile Navbar remains responsive */}
+        {/* Mobile Navbar */}
         <div className="lg:hidden flex items-center justify-between h-20 relative">
           <Link href="/" className="z-10">
             <Image
@@ -126,12 +120,9 @@ export default function Navbar() {
               width={110}
               height={38}
               priority
-              className={`object-contain transition-all duration-300 ${
-                scrolled || isDarkPage ? "brightness-100" : "brightness-0 invert"
-              }`}
+              className={`object-contain transition-all duration-300 ${scrolled || isDarkPage ? "brightness-100" : "brightness-0 invert"}`}
             />
           </Link>
-
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`w-14 h-14 flex items-center justify-center rounded-full border transition-all duration-300 focus:outline-none z-10 ${getBorderColor()}`}
@@ -147,7 +138,6 @@ export default function Navbar() {
           <div className="fixed inset-0 z-[100] flex">
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onClick={() => setIsOpen(false)} />
             <div className="relative w-[82vw] sm:w-[390px] h-screen bg-white shadow-[15px_0_50px_rgba(0,0,0,0.15)] flex flex-col justify-between p-8 sm:p-10 border-r border-neutral-200/80 transition-transform duration-300 ease-out z-10">
-              {/* ... Drawer content remains unchanged ... */}
               <div>
                 <button onClick={() => setIsOpen(false)} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-11 h-11 bg-white text-neutral-800 rounded-full flex items-center justify-center border border-neutral-200 shadow-md hover:scale-105 transition-all focus:outline-none z-20">
                     <svg className="w-4 h-4 fill-none stroke-current" strokeWidth="2.5" viewBox="0 0 24 24">
