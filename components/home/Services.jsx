@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import services from "@/data/services";
 
 export default function Services() {
-  // Removed TypeScript type parameters for native .jsx execution
   const [activeRow1, setActiveRow1] = useState(0);
   const [activeRow2, setActiveRow2] = useState(3);
 
@@ -14,10 +13,10 @@ export default function Services() {
   const row2Services = services.slice(3, 6);
 
   return (
-    <section id="services" className="py-24 bg-slate-50/75 text-slate-900 selection:bg-purple-600/10 relative overflow-hidden">
+    <section id="services" className="py-24 bg-slate-50/75 text-slate-900 relative overflow-hidden font-serif">
       
-      {/* Structural Tech Background Mesh Accent Matched to Branding Palette */}
-      <div className="absolute inset-0 opacity-[0.22] [mask-image:radial-gradient(ellipse_at_center,black_75%,transparent_100%)] pointer-events-none z-0">
+      {/* Structural Tech Background Mesh */}
+      <div className="absolute inset-0 opacity-[0.22] pointer-events-none z-0">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="services-blueprint-grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -28,36 +27,35 @@ export default function Services() {
         </svg>
       </div>
 
-      {/* Finely adjusted the padding from px-2 sm:px-4 to px-3 md:px-5 for clean edge spacing */}
-      <div className="max-w-[96vw] mx-auto px-3 md:px-5 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         
-        {/* Left-Aligned Premium Header Section Matched with Color Theme (Ring Structure / Geometric block removed) */}
+        {/* Header Section */}
         <motion.div 
-          className="text-left mb-16 border-l-4 border-purple-600 pl-4 md:pl-6 overflow-hidden"
+          className="text-left mb-16 border-l-4 border-purple-600 pl-6 md:pl-8 overflow-hidden"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
         >
           <div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase text-slate-900 leading-none">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight uppercase text-slate-900 leading-none">
               Our Services
             </h2>
-            <p className="text-xs uppercase tracking-[0.25em] font-black text-purple-600/80 mt-1.5 block">
+            <p className="text-xs uppercase tracking-[0.25em] font-bold text-purple-600/80 mt-3 block">
               Precision Systems & Custom Engineering
             </p>
           </div>
         </motion.div>
 
         {/* Dynamic Interactive Rows Layout */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           
-          {/* Row 1 (Items 1-3) */}
+          {/* Row 1 */}
           <motion.div 
-            className="flex flex-col lg:flex-row gap-3 w-full h-[300px] lg:h-[380px]"
+            className="flex flex-col lg:flex-row gap-4 w-full h-[800px] lg:h-[400px]"
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
           >
             {row1Services.map((service, idx) => {
@@ -66,30 +64,22 @@ export default function Services() {
                 <div
                   key={service.id || idx}
                   onClick={() => setActiveRow1(idx)}
-                  className={`relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ease-in-out border border-slate-200/60 shadow-md shadow-slate-200/40 hover:shadow-xl hover:shadow-slate-300/40 ${
-                    isExpanded ? "lg:flex-[2.5] flex-[3]" : "lg:flex-1 flex-1"
+                  className={`relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-700 ease-in-out border border-slate-200 shadow-lg ${
+                    isExpanded ? "lg:flex-[2] flex-[3]" : "lg:flex-1 flex-1"
                   }`}
                 >
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    sizes="(max-w-1024px) 100vw, 40vw"
-                    className="object-cover transition-all duration-700 brightness-[0.85] hover:brightness-[0.95] scale-105"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    /* Adjusted brightness for less darkness */
+                    className="object-cover transition-all duration-700 brightness-[0.95] hover:brightness-[1.05] scale-105"
                   />
-                  {/* Reduced Dark Gradient Overlay for Maximum Image Visibility */}
-                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-                    <h3 className="text-xl md:text-2xl font-bold tracking-wide text-white drop-shadow-md">
-                      {service.title}
-                    </h3>
-                    <div
-                      className={`grid transition-all duration-500 ease-in-out ${
-                        isExpanded ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0 pointer-events-none"
-                      }`}
-                    >
-                      <p className="overflow-hidden text-sm md:text-base text-slate-100 font-normal leading-relaxed max-w-xl drop-shadow-sm">
-                        {service.description}
-                      </p>
+                  <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                    <h3 className="text-2xl font-bold text-white tracking-wide">{service.title}</h3>
+                    <div className={`grid transition-all duration-500 ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-3" : "grid-rows-[0fr] opacity-0"}`}>
+                      <p className="overflow-hidden text-sm md:text-base text-slate-100 leading-relaxed">{service.description}</p>
                     </div>
                   </div>
                 </div>
@@ -97,13 +87,13 @@ export default function Services() {
             })}
           </motion.div>
 
-          {/* Row 2 (Items 4-6) */}
+          {/* Row 2 */}
           <motion.div 
-            className="flex flex-col lg:flex-row gap-3 w-full h-[300px] lg:h-[380px]"
+            className="flex flex-col lg:flex-row gap-4 w-full h-[800px] lg:h-[400px]"
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.15, duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
           >
             {row2Services.map((service, idx) => {
               const realIndex = idx + 3;
@@ -112,39 +102,29 @@ export default function Services() {
                 <div
                   key={service.id || realIndex}
                   onClick={() => setActiveRow2(realIndex)}
-                  className={`relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ease-in-out border border-slate-200/60 shadow-md shadow-slate-200/40 hover:shadow-xl hover:shadow-slate-300/40 ${
-                    isExpanded ? "lg:flex-[2.5] flex-[3]" : "lg:flex-1 flex-1"
+                  className={`relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-700 ease-in-out border border-slate-200 shadow-lg ${
+                    isExpanded ? "lg:flex-[2] flex-[3]" : "lg:flex-1 flex-1"
                   }`}
                 >
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    sizes="(max-w-1024px) 100vw, 40vw"
-                    className="object-cover transition-all duration-700 brightness-[0.85] hover:brightness-[0.95] scale-105"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    /* Adjusted brightness for less darkness */
+                    className="object-cover transition-all duration-700 brightness-[0.95] hover:brightness-[1.05] scale-105"
                   />
-                  {/* Reduced Dark Gradient Overlay for Maximum Image Visibility */}
-                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-                    <h3 className="text-xl md:text-2xl font-bold tracking-wide text-white drop-shadow-md">
-                      {service.title}
-                    </h3>
-                    <div
-                      className={`grid transition-all duration-500 ease-in-out ${
-                        isExpanded ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0 pointer-events-none"
-                      }`}
-                    >
-                      <p className="overflow-hidden text-sm md:text-base text-slate-100 font-normal leading-relaxed max-w-xl drop-shadow-sm">
-                        {service.description}
-                      </p>
+                  <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                    <h3 className="text-2xl font-bold text-white tracking-wide">{service.title}</h3>
+                    <div className={`grid transition-all duration-500 ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-3" : "grid-rows-[0fr] opacity-0"}`}>
+                      <p className="overflow-hidden text-sm md:text-base text-slate-100 leading-relaxed">{service.description}</p>
                     </div>
                   </div>
                 </div>
               );
             })}
           </motion.div>
-
         </div>
-
       </div>
     </section>
   );

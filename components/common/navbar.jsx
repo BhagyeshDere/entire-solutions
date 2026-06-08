@@ -2,171 +2,101 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
 
-  // UPDATED: Now includes /services and /projects for dark text theme
-  const darkTextPages = ["/contact", "/services", "/projects"];
-  const isDarkPage = darkTextPages.includes(pathname);
-
-  const leftLinks = [
+  const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-  ];
-
-  const rightLinks = [
-    { name: "Facilities", href: "/facilities" },
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const getTextColor = () => {
-    if (scrolled) return "text-neutral-800 hover:text-neutral-900";
-    return isDarkPage ? "text-neutral-800 hover:text-neutral-900" : "text-white hover:text-white/80";
-  };
-
-  const getBorderColor = () => {
-    if (scrolled) return "border-neutral-400 text-neutral-800 hover:bg-neutral-900/5";
-    return isDarkPage ? "border-neutral-800 text-neutral-800 hover:bg-neutral-900/5" : "border-white/30 text-white hover:bg-white/10";
-  };
-
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-        scrolled
-          ? "bg-[#e5e5e5]/90 backdrop-blur-md shadow-sm border-b border-neutral-300 mt-0"
-          : "bg-transparent border-b border-transparent mt-4"
-      }`}
-    >
-      <div className="max-w-[89rem] mx-auto px-6 lg:px-4 xl:px-6 relative">
-        {/* Desktop Navbar */}
-        <div className="hidden lg:flex items-center justify-between h-20 relative w-full">
-          <div className="flex items-center gap-8 xl:gap-12 z-10">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`w-14 h-14 flex items-center justify-center rounded-full border transition-all duration-300 focus:outline-none flex-shrink-0 ${getBorderColor()}`}
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200">
+      <div className="max-w-[89rem] mx-auto px-6 h-20 flex items-center justify-between">
+        
+        {/* LEFT: Logo Container (Size Increased) */}
+        <Link href="/" className="z-10 flex-shrink-0 w-40 md:w-48">
+          <Image
+            src="/logo.png"
+            alt="Entire Solutions"
+            width={180}
+            height={60}
+            priority
+            className="object-contain w-full h-auto"
+          />
+        </Link>
+
+        {/* CENTER: Perfectly Centered Navigation */}
+        <nav className="hidden lg:flex flex-1 justify-center items-center gap-10">
+          {navLinks.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="font-bold text-[13px] uppercase tracking-[0.1em] text-neutral-900 hover:text-fuchsia-700 transition-colors"
             >
-              <svg className="w-5 h-5 fill-none stroke-current" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-
-            <nav className="flex justify-start gap-12 xl:gap-14">
-              {leftLinks.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`relative font-semibold text-sm uppercase tracking-wider transition-all duration-300 py-1 group ${getTextColor()}`}
-                >
-                  {item.name}
-                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled || isDarkPage ? "bg-neutral-900" : "bg-white"}`} />
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-auto">
-            <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="Entire Solutions"
-                width={120}
-                height={40}
-                priority
-                className={`object-contain transition duration-500 hover:scale-105 ${scrolled || isDarkPage ? "brightness-100 contrast-100" : "brightness-0 invert"}`}
-              />
+              {item.name}
             </Link>
-          </div>
+          ))}
+        </nav>
 
-          <div className="flex items-center justify-end z-10">
-            <nav className="flex justify-end gap-12 xl:gap-14">
-              {rightLinks.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`relative font-semibold text-sm uppercase tracking-wider transition-all duration-300 py-1 group ${getTextColor()}`}
-                >
-                  {item.name}
-                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled || isDarkPage ? "bg-neutral-900" : "bg-white"}`} />
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </div>
-
-        {/* Mobile Navbar */}
-        <div className="lg:hidden flex items-center justify-between h-20 relative">
-          <Link href="/" className="z-10">
-            <Image
-              src="/logo.png"
-              alt="Entire Solutions"
-              width={110}
-              height={38}
-              priority
-              className={`object-contain transition-all duration-300 ${scrolled || isDarkPage ? "brightness-100" : "brightness-0 invert"}`}
-            />
-          </Link>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`w-14 h-14 flex items-center justify-center rounded-full border transition-all duration-300 focus:outline-none z-10 ${getBorderColor()}`}
+        {/* RIGHT: Fixed width and adjusted padding for button text visibility */}
+        <div className="hidden lg:flex items-center gap-3 min-w-[200px] justify-end">
+          <Link
+            href="/brochure.pdf"
+            download
+            target="_blank"
+            className="px-4 py-2 rounded-full border-2 border-fuchsia-600 text-fuchsia-700 text-[11px] font-bold hover:bg-fuchsia-600 hover:text-white transition-all uppercase tracking-wider whitespace-nowrap"
           >
-            <svg className="w-5 h-5 fill-none stroke-current" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+            Brochure
+          </Link>
+          <Link
+            href="/contact"
+            className="px-6 py-2 rounded-full bg-neutral-900 text-white text-[11px] font-bold hover:bg-fuchsia-700 transition-all shadow-md uppercase tracking-wider whitespace-nowrap"
+          >
+            Get Quote
+          </Link>
         </div>
 
-        {/* Mobile Drawer */}
-        {isOpen && (
-          <div className="fixed inset-0 z-[100] flex">
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onClick={() => setIsOpen(false)} />
-            <div className="relative w-[82vw] sm:w-[390px] h-screen bg-white shadow-[15px_0_50px_rgba(0,0,0,0.15)] flex flex-col justify-between p-8 sm:p-10 border-r border-neutral-200/80 transition-transform duration-300 ease-out z-10">
-              <div>
-                <button onClick={() => setIsOpen(false)} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-11 h-11 bg-white text-neutral-800 rounded-full flex items-center justify-center border border-neutral-200 shadow-md hover:scale-105 transition-all focus:outline-none z-20">
-                    <svg className="w-4 h-4 fill-none stroke-current" strokeWidth="2.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-                <div className="mb-14 pt-4">
-                  <Image src="/logo.png" alt="Entire Solutions" width={110} height={38} className="brightness-100 contrast-100 object-contain" />
-                </div>
-                <div className="flex flex-col">
-                  {[...leftLinks, ...rightLinks].map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="group font-medium text-neutral-800 hover:text-neutral-900 py-4 border-b border-neutral-100 text-2xl tracking-normal flex justify-between items-center transition-colors"
-                    >
-                      <span>{item.name}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="pt-6 border-t border-neutral-100 text-[10px] font-mono tracking-widest text-neutral-400 uppercase">
-                Entire Solutions © All Rights Reserved
-              </div>
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden p-2 text-neutral-900"
+        >
+          <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Drawer */}
+      {isOpen && (
+        <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col p-8">
+          <button onClick={() => setIsOpen(false)} className="self-end p-2 text-neutral-900">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+          <div className="flex flex-col gap-8 mt-10">
+            {navLinks.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="text-3xl font-black text-neutral-900 border-b border-neutral-100 pb-4"
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="flex flex-col gap-4 mt-4">
+              <Link href="/brochure.pdf" download className="w-full text-center py-4 rounded-xl border-2 border-fuchsia-600 text-fuchsia-700 font-bold text-lg">Download Brochure</Link>
+              <Link href="/contact" className="w-full text-center py-4 rounded-xl bg-neutral-900 text-white font-bold text-lg">Get Quote</Link>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 }

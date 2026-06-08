@@ -9,30 +9,16 @@ export default function Loader({ isExiting = false, onComplete }) {
 
   useEffect(() => {
     setMounted(true);
-
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          if (onComplete) {
-            setTimeout(() => onComplete(), 0);
-          }
+          if (onComplete) setTimeout(() => onComplete(), 500);
           return 100;
         }
-        
-        const dynamicIncrement = prev < 30 ? 2 : prev < 70 ? 1 : prev < 90 ? 2 : 1;
-        const nextProgress = Math.min(prev + dynamicIncrement, 100);
-        
-        if (nextProgress === 100) {
-          clearInterval(interval);
-          if (onComplete) {
-            setTimeout(() => onComplete(), 0);
-          }
-        }
-        return nextProgress;
+        return Math.min(prev + 1.5, 100);
       });
     }, 30);
-
     return () => clearInterval(interval);
   }, [onComplete]);
 
@@ -40,79 +26,45 @@ export default function Loader({ isExiting = false, onComplete }) {
 
   return (
     <div 
-      className={`fixed inset-0 bg-[#fbfbfc] z-[99999] flex flex-col justify-between p-8 sm:p-12 md:p-16 select-none overflow-hidden font-sans transition-all duration-500 ease-in-out ${
-        isExiting ? "opacity-0 scale-98 pointer-events-none" : "opacity-100"
+      className={`fixed inset-0 z-[99999] bg-[#fbfbfc] flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        isExiting ? "opacity-0 scale-[1.02]" : "opacity-100"
       }`}
     >
-      
-      {/* ── BACKGROUND ACCENTS ──────────────────────────────────────── */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(162,58,236,0.03)_0%,rgba(99,102,241,0.02)_50%,transparent_70%)] animate-[pulse_6s_infinite_ease-in-out]" />
-        <div className="text-[16vw] font-black tracking-tighter text-[#6366f1]/[0.012] uppercase text-center leading-none whitespace-nowrap select-none">
-          Entire Solutions
+      {/* BACKGROUND BRANDING */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
+        <div className="text-[15vw] font-black uppercase tracking-tighter text-neutral-900 select-none">
+          Entire
         </div>
       </div>
 
-      <div className="h-0 w-full pointer-events-none select-none" />
-
-      {/* ── PERFECTLY CENTRALIZED LOGO WITH INBOUND REVEAL ── */}
-      {/* Increased max-w-xl to max-w-2xl for larger footprint */}
-      <div className="relative z-10 my-auto self-center text-center w-full max-w-2xl px-4 flex flex-col items-center justify-center">
-        <div 
-          className="overflow-hidden py-2 w-full flex justify-center"
-          style={{ 
-            transform: isExiting ? "translateY(-15px)" : undefined,
-            animationName: isExiting ? "none" : "revealUp",
-            animationDuration: "1.2s",
-            animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-            animationFillMode: "both"
-          }}
-        >
-          {/* Changed aspect ratio to [2/1] for a larger, taller appearance */}
-          <div className="relative w-full h-auto aspect-[2/1] transition-transform duration-700 ease-out">
-            <Image 
-              src="/logo.png" 
-              alt="Entire Solutions Logo" 
-              fill 
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
-      </div>
-      
-      {/* ── BOTTOM CORNER TIMER SEGMENT ─────────────────────────────── */}
-      <div className="relative z-10 w-full flex justify-end items-end pt-4 border-t border-neutral-200/30">
-        <div className="tabular-nums leading-none mb-[-12px] sm:mb-[-24px] md:mb-[-32px]">
-          <span 
-            style={{ 
-              transform: isExiting ? "scale(0.95) translateY(10px)" : "scale(1) translateY(0px)",
-              filter: isExiting ? "blur(4px)" : "blur(0px)"
-            }}
-            className="text-7xl sm:text-8xl md:text-9xl lg:text-[150px] font-black bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-700 bg-clip-text text-transparent flex items-start transition-all duration-500 ease-in-out"
-          >
-            {progress}
-            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-indigo-500 ml-1 mt-2 sm:mt-4 md:mt-6">
-              %
-            </span>
-          </span>
+      {/* CENTRAL LOGO CONTAINER (Set to Extra Large Scale) */}
+      <div 
+        className="relative z-10 w-full max-w-[700px] px-8 flex justify-center mb-20"
+      >
+        <div className="relative w-full aspect-[2/1] transition-transform duration-700 hover:scale-[1.02]">
+          <Image 
+            src="/logo.png" 
+            alt="Entire Solutions Logo" 
+            fill 
+            className="object-contain"
+            priority
+          />
         </div>
       </div>
 
-      <style jsx global>{`
-        @keyframes revealUp {
-          from {
-            transform: translateY(115%);
-            filter: blur(5px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0%);
-            filter: blur(0px);
-            opacity: 1;
-          }
-        }
-      `}</style>
+      {/* UNIQUE BOTTOM LINE COUNTER */}
+      <div className="relative z-10 w-full max-w-[500px] px-8 flex flex-col items-center gap-3">
+        <div className="w-full h-[1px] bg-neutral-200 relative">
+          <div 
+            className="absolute left-0 top-0 h-full bg-indigo-600 transition-all duration-300 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        <div className="flex justify-between w-full font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+          <span>Loading Infrastructure</span>
+          <span>{Math.floor(progress)}%</span>
+        </div>
+      </div>
     </div>
   );
 }

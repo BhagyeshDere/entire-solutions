@@ -1,63 +1,61 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import clients from "@/data/clients";
 
 export default function Clients() {
   const duplicatedClients = [...clients, ...clients, ...clients];
 
   return (
-    <section id="clients" className="py-24 bg-[#f8fafc] relative overflow-hidden font-sans border-b border-slate-200">
+    <section id="clients" className="py-24 bg-white relative overflow-hidden border-t border-b border-neutral-100">
       
-      {/* Blueprint Grid */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#64748b_1px,transparent_1px),linear-gradient(to_bottom,#64748b_1px,transparent_1px)] bg-[size:64px_64px]" />
-      </div>
-
-      <div className="max-w-[90rem] mx-auto px-6 md:px-16 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center mb-20">
-          <div className="mb-6 px-4 py-1 border border-slate-200 rounded-full bg-white shadow-sm">
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-purple-600">Global Industry Partners</span>
-          </div>
-          <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">
-            Strategic <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a23aec] to-[#25b3fa]">Networks</span>
+        <div className="text-center mb-20">
+          <span className="text-purple-600 font-bold uppercase tracking-[0.3em] text-[11px]">
+            Global Industry Partners
+          </span>
+          <h2 className="mt-6 text-5xl md:text-7xl font-bold font-serif text-neutral-900 leading-tight">
+            Strategic <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-500">Networks</span>
           </h2>
         </div>
 
-        {/* Kinetic Ticker */}
-        <div className="relative w-full overflow-hidden py-10 mask-horizontal-fade">
+        {/* Kinetic Ticker - Original Color Logos in Boxes */}
+        <div className="relative w-full overflow-hidden mask-horizontal-fade">
           <motion.div 
-            className="flex gap-8 w-max"
-            animate={{ x: [0, -2304] }}
-            transition={{ repeat: Infinity, duration: 45, ease: "linear" }}
+            className="flex gap-12 w-max items-center"
+            animate={{ x: [0, -2500] }}
+            transition={{ repeat: Infinity, duration: 80, ease: "linear" }}
           >
             {duplicatedClients.map((client, idx) => (
-              <motion.div
+              <div
                 key={`${client.id}-${idx}`}
-                whileHover={{ y: -5 }}
-                className="group relative w-72 h-32 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center p-6 transition-all duration-500 hover:shadow-xl hover:border-purple-200"
+                /* Added a subtle border/box for structure */
+                className="group relative w-64 h-32 flex items-center justify-center border border-neutral-100 rounded-2xl bg-neutral-50/50 hover:border-purple-200 hover:bg-white hover:shadow-xl transition-all duration-500"
               >
-                {/* Subtle Hover Glow Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(circle_at_50%_0%,rgba(162,58,236,0.05),transparent_70%)] rounded-2xl" />
-                
-                {/* Full Color Logo Container */}
-                <div className="relative w-full h-full p-2 transition-all duration-500 opacity-90 group-hover:opacity-100 group-hover:scale-105">
+                {/* Logo remains in original color, opacity 100 */}
+                <div className="relative w-4/5 h-4/5">
                   <Image
                     src={client.image}
                     alt="Client Logo"
                     fill
                     className="object-contain"
+                    sizes="(max-width: 768px) 160px, 200px"
                   />
                 </div>
-
-                {/* Corner Technical Indicators */}
-                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-slate-400 opacity-20 group-hover:opacity-100 transition-opacity" />
-              </motion.div>
+              </div>
             ))}
           </motion.div>
+        </div>
+
+        {/* Footer Contextual Line */}
+        <div className="mt-24 text-center">
+          <p className="text-neutral-600 font-medium italic text-sm tracking-wide">
+            Maintaining excellence through long-term strategic alliances.
+          </p>
+          <div className="w-32 h-[2px] bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mt-8" />
         </div>
       </div>
 

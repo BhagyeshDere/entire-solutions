@@ -9,9 +9,9 @@ import Services from "@/components/home/Services";
 
 
 import WhyChooseUs from "@/components/home/WhyChooseUs";
-import CompletedProjects from "@/components/home/CompletedProjects";
+//import CompletedProjects from "@/components/home/CompletedProjects";
 
-import Industries from "@/components/home/Industries";
+//import Industries from "@/components/home/Industries";
 
 
 
@@ -24,19 +24,15 @@ export default function Home() {
         <Hero />
 
         <About />
-        <Facilities />
-
+     
+<Facilities/>
 
         <Services />
-<WhyChooseUs />
-   
-
-        <CompletedProjects />
-
-        <Industries />
 
         
-
+<WhyChooseUs />
+   
+      
         <Clients />
       </main>
     </>
