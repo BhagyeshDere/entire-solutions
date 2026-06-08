@@ -5,11 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Zap, Plug, Settings, Factory, Building2 } from "lucide-react";
 
 const industries = [
-  { icon: Zap, title: "Renewable Energy", desc: "Wind fixtures, battery racks & BESS skids.", img: "/images/industries/renewable1.jpg" },
-  { icon: Plug, title: "Electrical Power", desc: "Panel boxes, transformer structures & enclosures.", img: "/images/industries/electrical1.jpg" },
-  { icon: Settings, title: "Automotive", desc: "Precision assemblies & sheet metal parts.", img: "/images/industries/automotive1.jpg" },
-  { icon: Factory, title: "Heavy Industry", desc: "Machinery frames, skids & heavy structures.", img: "/images/industries/industrial1.jpg" },
-  { icon: Building2, title: "Infrastructure", desc: "Structural steel & support systems.", img: "/images/industries/construction1.jpg" },
+  { icon: Zap, title: "Renewable Energy", desc: "Wind fixtures, battery racks & BESS skids.", img: "/images/industries/renewable2.jpg" },
+  { icon: Plug, title: "Electrical Power", desc: "Panel boxes, transformer structures & enclosures.", img: "/images/industries/electrical2.jpg" },
+  { icon: Settings, title: "Automotive", desc: "Precision assemblies & sheet metal parts.", img: "/images/industries/automotive2.jpg" },
+  { icon: Factory, title: "Heavy Industry", desc: "Machinery frames, skids & heavy structures.", img: "/images/industries/industrial2.jpg" },
+  { icon: Building2, title: "Infrastructure", desc: "Structural steel & support systems.", img: "/images/industries/construction2.jpg" },
 ];
 
 export default function Industries() {
