@@ -8,9 +8,10 @@ const videos = [
   "/videos/v1.mp4",
   "/videos/v2.mp4",
   "/videos/v3.mp4",
+    "/videos/hero.mp4",
   "/videos/v4.mp4",
   "/videos/v5.mp4",
-  "/videos/hero.mp4",
+
 ];
 
 export default function Hero() {
