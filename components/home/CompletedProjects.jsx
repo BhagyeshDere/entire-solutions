@@ -14,58 +14,79 @@ const projects = [
 export default function CompletedProjects() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % projects.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  // Function to handle swipe completion
+  const handleDragEnd = (event, info) => {
+    const swipeThreshold = 50;
+    if (info.offset.x > swipeThreshold) {
+      setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    } else if (info.offset.x < -swipeThreshold) {
+      setCurrentIndex((prev) => (prev + 1) % projects.length);
+    }
+  };
 
   return (
-    <section id="projects" className="py-24 bg-slate-50 relative overflow-hidden">
-      <div className="max-w-[90rem] mx-auto px-6 md:px-16">
+    <section className="py-24 bg-neutral-50 text-neutral-900 font-serif overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
         
         {/* Header Section */}
-        <div className="flex justify-between items-end mb-12">
-          <div>
-            <span className="text-purple-600 font-bold tracking-[0.2em] uppercase text-sm">Showcase</span>
-            <h2 className="mt-4 text-5xl md:text-7xl font-black text-slate-900 tracking-tight">Completed Projects</h2>
-          </div>
-          
-          {/* Navigation Controls */}
-          <div className="flex gap-4">
-            <button onClick={prevSlide} className="w-12 h-12 rounded-full bg-slate-900 text-white hover:bg-purple-600 transition-colors">←</button>
-            <button onClick={nextSlide} className="w-12 h-12 rounded-full bg-slate-900 text-white hover:bg-purple-600 transition-colors">→</button>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="border-l-2 border-blue-900 pl-8">
+            <span className="text-blue-900 font-bold tracking-[0.3em] uppercase text-[10px]">Corporate Portfolio</span>
+            <h2 className="mt-2 text-5xl md:text-7xl font-bold tracking-tight text-neutral-950">
+              Completed Projects
+            </h2>
           </div>
         </div>
 
-        {/* Slider Container */}
-        <div className="relative h-[500px] w-full rounded-[2rem] overflow-hidden bg-slate-900">
+        {/* Swipeable Viewport */}
+        <div className="relative w-full aspect-[21/9] bg-neutral-200 overflow-hidden shadow-2xl cursor-grab active:cursor-grabbing">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={handleDragEnd}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
               className="absolute inset-0"
             >
               <Image
                 src={projects[currentIndex].image}
                 alt={projects[currentIndex].title}
                 fill
-                className="object-cover opacity-60"
+                className="object-cover"
+                draggable={false}
               />
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-10 flex flex-col justify-end">
-                <span className="text-purple-400 font-bold mb-2">0{currentIndex + 1}</span>
-                <h3 className="text-4xl md:text-6xl font-black text-white leading-tight mb-4 max-w-2xl">
-                  {projects[currentIndex].title}
-                </h3>
-                <p className="text-slate-300 max-w-lg text-lg">
-                  {projects[currentIndex].description}
-                </p>
-               
+              {/* Overlay with Gold/Navy Theme */}
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/20 to-transparent p-12 flex flex-col justify-end">
+                <div className="flex justify-between items-end">
+                    <div>
+                        <span className="text-[#C5A059] font-mono text-sm mb-4 block">0{currentIndex + 1} / 0{projects.length}</span>
+                        <h3 className="text-4xl md:text-5xl font-bold text-white mb-4 max-w-2xl">
+                          {projects[currentIndex].title}
+                        </h3>
+                        <p className="text-neutral-200 max-w-lg font-sans text-lg leading-relaxed">
+                          {projects[currentIndex].description}
+                        </p>
+                    </div>
+                    {/* Visual Progress Dots */}
+                    <div className="hidden md:flex gap-2">
+                        {projects.map((_, idx) => (
+                            <div key={idx} className={`w-3 h-3 rounded-full border border-white ${idx === currentIndex ? "bg-[#C5A059]" : "bg-transparent"}`} />
+                        ))}
+                    </div>
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
+        
+        <p className="mt-6 text-neutral-500 text-sm italic text-center md:text-left">
+            * Swipe left or right to navigate through projects.
+        </p>
       </div>
     </section>
   );

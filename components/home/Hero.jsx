@@ -1,30 +1,57 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const videos = [
+  "/videos/v1.mp4",
+  "/videos/v2.mp4",
+  "/videos/v3.mp4",
+  "/videos/v4.mp4",
+  "/videos/v5.mp4",
+  "/videos/hero.mp4",
+];
+
 export default function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % videos.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
+      {/* Stacked Video Container: Mapping through all videos to ensure a seamless crossfade */}
+      <div className="absolute inset-0 w-full h-full bg-black">
+        {videos.map((src, i) => (
+          <motion.video
+            key={src}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: i === index ? 1 : 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={src} type="video/mp4" />
+          </motion.video>
+        ))}
+      </div>
 
-      {/* Reduced Overlay Intensity (from 70% to 50%) */}
+      {/* Persistent Overlay (Ensures consistency during transition) */}
       <div className="absolute inset-0 bg-black/50" />
 
       {/* Glows */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-fuchsia-600/20 blur-[120px]" />
       <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-600/20 blur-[120px]" />
 
-      {/* Content with Framer Motion Animation */}
+      {/* Content */}
       <div className="relative z-10 max-w-7xl w-full mx-0 px-6 lg:px-16 xl:px-24">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -69,7 +96,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Centered Scroll Indicator */}
+      {/* Scroll Indicator */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -2,10 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -16,11 +25,17 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200">
-      <div className="max-w-[89rem] mx-auto px-6 h-20 flex items-center justify-between">
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out p-0">
+      <div 
+        className={`mx-auto flex items-center justify-between transition-all duration-500 ease-in-out ${
+          scrolled 
+            ? "max-w-[89rem] mt-3 mx-4 lg:mx-auto rounded-full bg-white/80 backdrop-blur-lg shadow-lg border border-neutral-200 px-8 h-16" 
+            : "w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200 px-6 h-20"
+        }`}
+      >
         
-        {/* LEFT: Logo Container (Size Increased) */}
-        <Link href="/" className="z-10 flex-shrink-0 w-40 md:w-48">
+        {/* LEFT: Logo - Added ml-4 md:ml-8 to push it right */}
+        <Link href="/" className="z-10 flex-shrink-0 w-32 md:w-40 ml-4 md:ml-8">
           <Image
             src="/logo.png"
             alt="Entire Solutions"
@@ -31,32 +46,32 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* CENTER: Perfectly Centered Navigation */}
-        <nav className="hidden lg:flex flex-1 justify-center items-center gap-10">
+        {/* CENTER: Navigation */}
+        <nav className="hidden lg:flex flex-1 justify-center items-center gap-8">
           {navLinks.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="font-bold text-[13px] uppercase tracking-[0.1em] text-neutral-900 hover:text-fuchsia-700 transition-colors"
+              className="font-bold text-[12px] uppercase tracking-[0.1em] text-neutral-900 hover:text-fuchsia-700 transition-colors"
             >
               {item.name}
             </Link>
           ))}
         </nav>
 
-        {/* RIGHT: Fixed width and adjusted padding for button text visibility */}
-        <div className="hidden lg:flex items-center gap-3 min-w-[200px] justify-end">
+        {/* RIGHT: Buttons */}
+        <div className="hidden lg:flex items-center gap-3">
           <Link
             href="/brochure.pdf"
             download
             target="_blank"
-            className="px-4 py-2 rounded-full border-2 border-fuchsia-600 text-fuchsia-700 text-[11px] font-bold hover:bg-fuchsia-600 hover:text-white transition-all uppercase tracking-wider whitespace-nowrap"
+            className="px-4 py-2 rounded-full border-2 border-fuchsia-600 text-fuchsia-700 text-[10px] font-bold hover:bg-fuchsia-600 hover:text-white transition-all uppercase tracking-wider whitespace-nowrap"
           >
             Brochure
           </Link>
           <Link
             href="/contact"
-            className="px-6 py-2 rounded-full bg-neutral-900 text-white text-[11px] font-bold hover:bg-fuchsia-700 transition-all shadow-md uppercase tracking-wider whitespace-nowrap"
+            className="px-6 py-2 rounded-full bg-neutral-900 text-white text-[10px] font-bold hover:bg-fuchsia-700 transition-all shadow-md uppercase tracking-wider whitespace-nowrap"
           >
             Get Quote
           </Link>

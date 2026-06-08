@@ -1,93 +1,72 @@
 "use client";
 
-import {
-  Factory,
-  ShieldCheck,
-  Wrench,
-  Award,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Factory, ShieldCheck, Wrench, Award } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section className="relative bg-neutral-50 overflow-hidden py-24">
-      {/* Background Soft Glows (Subtle opacity for light theme) */}
-      <div className="absolute top-20 left-0 w-80 h-80 bg-fuchsia-200/50 blur-[120px]" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-200/50 blur-[120px]" />
+    <section className="relative bg-[#F9F7FC] overflow-hidden py-24 font-serif">
+      {/* Background Orbs */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-fuchsia-100/50 rounded-full blur-[150px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <span className="uppercase tracking-[6px] text-fuchsia-600 text-sm font-semibold">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <span className="uppercase tracking-[0.5em] text-[#F72585] text-[12px] font-bold">
             About Company
           </span>
-          <h2
-            className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900"
-            style={{ fontFamily: "Times New Roman" }}
-          >
+          <h2 className="mt-6 text-5xl md:text-7xl font-bold text-neutral-900 tracking-tight">
             Engineering Excellence
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-blue-600">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#F72585] to-[#3A86FF]">
               Since 2020
             </span>
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side */}
-          <div>
-            <h3
-              className="text-3xl md:text-4xl text-neutral-900 font-bold mb-6"
-              style={{ fontFamily: "Times New Roman" }}
-            >
-              Entire Solutions
-            </h3>
-            <p
-              className="text-neutral-600 text-lg leading-9"
-              style={{ fontFamily: "Times New Roman" }}
-            >
-              Entire Solutions is a trusted fabrication and manufacturing
-              company delivering precision engineering services for
-              industrial and commercial sectors. We specialize in laser
-              cutting, bending, welding, powder coating, heavy fabrication,
-              and customized manufacturing solutions.
-            </p>
-            <p
-              className="mt-6 text-neutral-600 text-lg leading-9"
-              style={{ fontFamily: "Times New Roman" }}
-            >
-              With advanced machinery, skilled manpower, and a commitment
-              to quality, we provide reliable, durable, and cost-effective
-              solutions tailored to our clients' requirements while
-              maintaining the highest industry standards.
-            </p>
+          {/* Left Side: Content */}
+          <div className="space-y-8">
+            <h3 className="text-4xl text-neutral-950 font-bold">Entire Solutions</h3>
+            <div className="space-y-6 text-neutral-700 text-lg leading-relaxed">
+              <p>
+                Entire Solutions is a premier fabrication and manufacturing partner 
+                dedicated to precision engineering. We transform raw potential into 
+                durable reality through advanced technology and expertise.
+              </p>
+              <p>
+                From laser cutting to complex heavy fabrication, our commitment to 
+                quality ensures that every project meets the highest industry standards, 
+                tailored specifically to your unique commercial and industrial needs.
+              </p>
+            </div>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <span className="px-5 py-3 rounded-full bg-neutral-200/50 border border-neutral-300 text-neutral-800 font-medium">
-                Laser Cutting
-              </span>
-              <span className="px-5 py-3 rounded-full bg-neutral-200/50 border border-neutral-300 text-neutral-800 font-medium">
-                Fabrication
-              </span>
-              <span className="px-5 py-3 rounded-full bg-neutral-200/50 border border-neutral-300 text-neutral-800 font-medium">
-                Powder Coating
-              </span>
+            <div className="flex flex-wrap gap-3">
+              {["Laser Cutting", "Fabrication", "Powder Coating"].map((tag) => (
+                <span key={tag} className="px-6 py-2 rounded-sm border border-[#3A86FF]/20 bg-white text-[#3A86FF] font-medium text-sm">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Right Side Cards */}
-          <div className="grid sm:grid-cols-2 gap-6">
+          {/* Right Side: Advanced Cards */}
+          <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { icon: Factory, color: "text-fuchsia-600", border: "hover:border-fuchsia-500", title: "Industrial Expertise", desc: "Complete light and heavy fabrication solutions for industrial applications." },
-              { icon: ShieldCheck, color: "text-blue-600", border: "hover:border-blue-500", title: "Quality Focus", desc: "High-quality workmanship and strict quality control standards." },
-              { icon: Wrench, color: "text-purple-600", border: "hover:border-purple-500", title: "Modern Machinery", desc: "Advanced equipment for precision manufacturing and fabrication." },
-              { icon: Award, color: "text-cyan-600", border: "hover:border-cyan-500", title: "Trusted Partner", desc: "Delivering projects on time with reliability and customer satisfaction." },
+              { icon: Factory, color: "text-[#F72585]", title: "Industrial Expertise", desc: "Complete light and heavy fabrication solutions." },
+              { icon: ShieldCheck, color: "text-[#3A86FF]", title: "Quality Focus", desc: "Rigorous standards in every weld and cut." },
+              { icon: Wrench, color: "text-[#F72585]", title: "Modern Machinery", desc: "State-of-the-art precision equipment." },
+              { icon: Award, color: "text-[#3A86FF]", title: "Trusted Partner", desc: "Timely delivery with unmatched reliability." },
             ].map((item, idx) => (
-              <div key={idx} className={`bg-white backdrop-blur-lg border border-neutral-200 rounded-3xl p-8 transition ${item.border} shadow-sm`}>
-                <item.icon className={`${item.color} mb-4`} size={40} />
-                <h4 className="text-neutral-900 text-2xl mb-3 font-semibold" style={{ fontFamily: "Times New Roman" }}>
-                  {item.title}
-                </h4>
-                <p className="text-neutral-500">{item.desc}</p>
-              </div>
+              <motion.div
+                key={idx}
+                whileHover={{ y: -10 }}
+                className="group bg-white p-8 rounded-sm border border-neutral-200 hover:border-[#3A86FF] transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
+              >
+                <item.icon className={`${item.color} mb-6 transition-transform group-hover:scale-110`} size={32} />
+                <h4 className="text-xl font-bold mb-3 text-neutral-900">{item.title}</h4>
+                <p className="text-neutral-500 text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>

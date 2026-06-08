@@ -1,6 +1,7 @@
 import Hero from "@/components/home/Hero";
 
 import About from "@/components/home/About";
+import Stats from "@/components/home/Stats";
 import Facilities from "@/components/home/Facilities";
 
 //import KeyCapabilities from "@/components/home/KeyCapabilities";
@@ -9,9 +10,9 @@ import Services from "@/components/home/Services";
 
 
 import WhyChooseUs from "@/components/home/WhyChooseUs";
-//import CompletedProjects from "@/components/home/CompletedProjects";
 
-//import Industries from "@/components/home/Industries";
+
+import Industries from "@/components/home/Industries";
 
 
 
@@ -28,12 +29,16 @@ export default function Home() {
 <Facilities/>
 
         <Services />
-
+<Stats />
         
 <WhyChooseUs />
-   
+        <Industries />
       
         <Clients />
+
+        
+        
+   
       </main>
     </>
   );
