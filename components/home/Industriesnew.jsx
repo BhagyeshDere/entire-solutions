@@ -12,7 +12,7 @@ const industries = [
   { icon: Building2, title: "Infrastructure", desc: "Structural steel & support systems.", img: "/images/industries/construction2.jpg" },
 ];
 
-export default function Industries() {
+export default function Industriesnew() {
   const [active, setActive] = useState(0);
 
   return (

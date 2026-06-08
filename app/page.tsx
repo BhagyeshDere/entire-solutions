@@ -12,7 +12,7 @@ import Services from "@/components/home/Services";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 
-import Industries from "@/components/home/Industries";
+import Industriesnew from "@/components/home/Industriesnew";
 
 
 
@@ -32,11 +32,9 @@ export default function Home() {
 <Stats />
         
 <WhyChooseUs />
-        <Industries />
+        <Industriesnew />
       
         <Clients />
-
-        
         
    
       </main>
