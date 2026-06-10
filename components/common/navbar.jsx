@@ -20,6 +20,8 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Engineering", href: "/engineering" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
   ];
@@ -34,7 +36,7 @@ export default function Navbar() {
         }`}
       >
         
-        {/* LEFT: Logo - Added ml-4 md:ml-8 to push it right */}
+        {/* LEFT: Logo */}
         <Link href="/" className="z-10 flex-shrink-0 w-32 md:w-40 ml-4 md:ml-8">
           <Image
             src="/logo.png"
@@ -46,13 +48,13 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* CENTER: Navigation */}
-        <nav className="hidden lg:flex flex-1 justify-center items-center gap-8">
+        {/* CENTER: Navigation - Font size increased for better readability */}
+        <nav className="hidden lg:flex flex-1 justify-center items-center gap-7">
           {navLinks.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="font-bold text-[12px] uppercase tracking-[0.1em] text-neutral-900 hover:text-fuchsia-700 transition-colors"
+              className="font-bold text-[12px] uppercase tracking-[0.05em] text-neutral-900 hover:text-fuchsia-700 transition-colors"
             >
               {item.name}
             </Link>
@@ -65,13 +67,13 @@ export default function Navbar() {
             href="/brochure.pdf"
             download
             target="_blank"
-            className="px-4 py-2 rounded-full border-2 border-fuchsia-600 text-fuchsia-700 text-[10px] font-bold hover:bg-fuchsia-600 hover:text-white transition-all uppercase tracking-wider whitespace-nowrap"
+            className="px-4 py-2 rounded-full border-2 border-fuchsia-600 text-fuchsia-700 text-[11px] font-bold hover:bg-fuchsia-600 hover:text-white transition-all uppercase tracking-wider whitespace-nowrap"
           >
             Brochure
           </Link>
           <Link
             href="/contact"
-            className="px-6 py-2 rounded-full bg-neutral-900 text-white text-[10px] font-bold hover:bg-fuchsia-700 transition-all shadow-md uppercase tracking-wider whitespace-nowrap"
+            className="px-6 py-2 rounded-full bg-neutral-900 text-white text-[11px] font-bold hover:bg-fuchsia-700 transition-all shadow-md uppercase tracking-wider whitespace-nowrap"
           >
             Get Quote
           </Link>
@@ -90,17 +92,17 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col p-8">
+        <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col p-8 overflow-y-auto">
           <button onClick={() => setIsOpen(false)} className="self-end p-2 text-neutral-900">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
-          <div className="flex flex-col gap-8 mt-10">
+          <div className="flex flex-col gap-6 mt-10">
             {navLinks.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="text-3xl font-black text-neutral-900 border-b border-neutral-100 pb-4"
+                className="text-2xl font-bold text-neutral-900 border-b border-neutral-100 pb-4"
               >
                 {item.name}
               </Link>

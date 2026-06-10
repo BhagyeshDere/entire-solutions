@@ -6,25 +6,25 @@ import { Zap, Plug, Settings, Factory, Building2 } from "lucide-react";
 
 const industries = [
   { icon: Zap, title: "Renewable Energy", desc: "Wind fixtures, battery racks & BESS skids.", img: "/images/Industries/renewable2.jpg" },
-  { icon: Plug, title: "Electrical Power", desc: "Panel boxes, transformer structures & enclosures.", img: "/images/Industries/electrical2.jpg" },
-  { icon: Settings, title: "Automotive", desc: "Precision assemblies & sheet metal parts.", img: "/images/Industries/automotive2.jpg" },
+  { icon: Plug, title: "Electrical Power", desc: "Panel boxes, transformer structures & enclosures.", img: "/images/Industries/electrical1.jpg" },
+  { icon: Settings, title: "Automotive", desc: "Precision assemblies & sheet metal parts.", img: "/images/Industries/automotive2.jpeg" },
   { icon: Factory, title: "Heavy Industry", desc: "Machinery frames, skids & heavy structures.", img: "/images/Industries/industrial2.jpg" },
-  { icon: Building2, title: "Infrastructure", desc: "Structural steel & support systems.", img: "/images/Industries/construction2.jpg" },
+  { icon: Building2, title: "Infrastructure", desc: "Structural steel & support systems.", img: "/images/Industries/construction1.jpg" },
 ];
 
 export default function Industriesnew() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="py-20 bg-white text-neutral-900 overflow-hidden font-serif">
+    <section className="py-20 bg-white text-neutral-900 overflow-hidden font-body">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header Section */}
         <div className="mb-16">
-          <h2 className="text-[#F72585] font-bold tracking-[0.3em] uppercase text-[11px] mb-4">
+          <h2 className="text-[#F72585] font-bold tracking-[0.3em] uppercase text-[11px] mb-4 font-heading">
             Core Competencies
           </h2>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-950">
+          <p className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-950 font-heading">
             Industries We Serve
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function Industriesnew() {
                     <Icon className={`w-8 h-8 ${active === idx ? "text-[#3A86FF]" : "text-neutral-400"}`} strokeWidth={1.5} />
                   </div>
                   
-                  <h3 className={`font-bold transition-all duration-500 ${
+                  <h3 className={`font-bold transition-all duration-500 font-heading ${
                     active === idx 
                       ? "text-xl leading-tight mb-3 text-neutral-950" 
                       : "text-md [writing-mode:vertical-lr] rotate-180 h-32 text-neutral-600"
@@ -74,7 +74,7 @@ export default function Industriesnew() {
                     animate={{ height: active === idx ? "auto" : 0, opacity: active === idx ? 1 : 0 }}
                     className="overflow-hidden flex flex-col items-center"
                   >
-                    <p className="text-neutral-700 text-xs pb-3 max-w-[180px]">{item.desc}</p>
+                    <p className="text-neutral-700 text-xs pb-3 max-w-[180px] font-body">{item.desc}</p>
                     <div className="w-10 h-[2px] bg-gradient-to-r from-[#3A86FF] to-[#F72585]" />
                   </motion.div>
                 </div>

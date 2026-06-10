@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Globe } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#050816] text-white overflow-hidden border-t border-white/10">
+    <footer className="relative bg-[#050816] text-white overflow-hidden border-t border-white/10 font-body">
       {/* Decorative Glow Effects */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-purple-600/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-500/10 blur-[120px] pointer-events-none" />
@@ -31,7 +31,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-6 font-heading">Quick Links</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
               {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (
                 <li key={item}>
@@ -45,7 +45,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
+            <h3 className="text-lg font-semibold mb-6 font-heading">Services</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
               <li>Laser Cutting</li>
               <li>Sheet Metal Bending</li>
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* Contact Card */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Contact</h3>
+            <h3 className="text-lg font-semibold mb-6 font-heading">Contact</h3>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-sm space-y-3 text-gray-300">
               <p className="flex items-start gap-2"><MapPin size={18} className="text-fuchsia-500 shrink-0" /> Bhosari, Pune - 412105</p>
               <p className="flex items-center gap-2"><Phone size={18} className="text-fuchsia-500 shrink-0" /> +91 7020493239</p>
@@ -78,10 +78,18 @@ export default function Footer() {
           </p>
           
           <p className="text-gray-400">
-            Developed by <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-blue-400 font-bold">Qiro Tech Innovation Pvt. Ltd.</span>
+            Developed by{" "}
+            <a 
+              href="https://qirotec.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-blue-400 font-bold hover:underline"
+            >
+              Qiro Tech Innovation Pvt. Ltd.
+            </a>
           </p>
 
-          <p className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-blue-400 font-bold italic tracking-wide">
+          <p className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-blue-400 font-bold italic tracking-wide font-heading">
             Strong Builds Start With Sharp Cuts
           </p>
         </div>

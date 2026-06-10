@@ -13,7 +13,7 @@ export default function Services() {
   const row2Services = services.slice(3, 6);
 
   return (
-    <section id="services" className="py-24 bg-slate-50/75 text-slate-900 relative overflow-hidden font-serif">
+    <section id="services" className="py-24 bg-slate-50/75 text-slate-900 relative overflow-hidden font-body">
       
       {/* Structural Tech Background Mesh */}
       <div className="absolute inset-0 opacity-[0.22] pointer-events-none z-0">
@@ -38,10 +38,10 @@ export default function Services() {
           transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
         >
           <div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight uppercase text-slate-900 leading-none">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight uppercase text-slate-900 leading-none font-heading">
               Our Services
             </h2>
-            <p className="text-xs uppercase tracking-[0.25em] font-bold text-purple-600/80 mt-3 block">
+            <p className="text-xs uppercase tracking-[0.25em] font-bold text-purple-600/80 mt-3 block font-heading">
               Precision Systems & Custom Engineering
             </p>
           </div>
@@ -73,13 +73,12 @@ export default function Services() {
                     alt={service.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    /* Adjusted brightness for less darkness */
                     className="object-cover transition-all duration-700 brightness-[0.95] hover:brightness-[1.05] scale-105"
                   />
                   <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-                    <h3 className="text-2xl font-bold text-white tracking-wide">{service.title}</h3>
+                    <h3 className="text-2xl font-bold text-white tracking-wide font-heading">{service.title}</h3>
                     <div className={`grid transition-all duration-500 ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-3" : "grid-rows-[0fr] opacity-0"}`}>
-                      <p className="overflow-hidden text-sm md:text-base text-slate-100 leading-relaxed">{service.description}</p>
+                      <p className="overflow-hidden text-sm md:text-base text-slate-100 leading-relaxed font-body">{service.description}</p>
                     </div>
                   </div>
                 </div>
@@ -111,13 +110,12 @@ export default function Services() {
                     alt={service.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    /* Adjusted brightness for less darkness */
                     className="object-cover transition-all duration-700 brightness-[0.95] hover:brightness-[1.05] scale-105"
                   />
                   <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-                    <h3 className="text-2xl font-bold text-white tracking-wide">{service.title}</h3>
+                    <h3 className="text-2xl font-bold text-white tracking-wide font-heading">{service.title}</h3>
                     <div className={`grid transition-all duration-500 ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-3" : "grid-rows-[0fr] opacity-0"}`}>
-                      <p className="overflow-hidden text-sm md:text-base text-slate-100 leading-relaxed">{service.description}</p>
+                      <p className="overflow-hidden text-sm md:text-base text-slate-100 leading-relaxed font-body">{service.description}</p>
                     </div>
                   </div>
                 </div>

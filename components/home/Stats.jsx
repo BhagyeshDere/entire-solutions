@@ -1,59 +1,72 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Factory, ShieldCheck, Wrench, Award, TrendingUp, Users, PenTool, Settings } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { motion, useSpring, useTransform, useInView } from "framer-motion";
 
 const stats = [
-  { val: "15+", label: "Projects Completed", icon: Factory, hoverIcon: TrendingUp },
-  { val: "10+", label: "Happy Clients", icon: Users, hoverIcon: ShieldCheck },
-  { val: "20+", label: "Industrial Design", icon: PenTool, hoverIcon: Wrench },
-  { val: "20+", label: "Industrial Manufacturing", icon: Settings, hoverIcon: Award },
+  { val: 15, suffix: "+", label: "Years Experience", color: "bg-purple-500" },
+  { val: 1200, suffix: "+", label: "Projects Completed", color: "bg-blue-500" },
+  { val: 500, suffix: "+", label: "Happy Clients", color: "bg-yellow-400" },
+  { val: 24, suffix: "/7", label: "Support Service", color: "bg-green-500" },
 ];
 
-export default function Stats() {
-  return (
-    <section className="relative z-30 px-6 -mt-16 mb-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, i) => (
-          <StatCard key={i} stat={stat} />
-        ))}
-      </div>
-    </section>
-  );
+function Counter({ value }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const spring = useSpring(0, { duration: 2500, bounce: 0 });
+  const display = useTransform(spring, (current) => Math.round(current));
+
+  useEffect(() => {
+    if (isInView) {
+      spring.set(value);
+    }
+  }, [isInView, value, spring]);
+
+  return <motion.span ref={ref}>{display}</motion.span>;
 }
 
-function StatCard({ stat }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const Icon = isHovered ? stat.hoverIcon : stat.icon;
-
+export default function Clients() {
   return (
-    <motion.div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      whileHover={{ y: -12 }}
-      className="group relative bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col items-center justify-center text-center transition-all duration-500"
-    >
-      <div className="relative mb-6">
-        {/* Brand-themed Brush Stroke: Violet/Magenta gradient */}
-        <div 
-          className={`absolute inset-0 bg-gradient-to-tr from-[#a855f7]/20 to-[#ec4899]/20 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] transition-transform duration-500 ${isHovered ? 'scale-125 rotate-12' : 'scale-100'}`}
-        />
+    <section id="achievements" className="py-24 bg-slate-50 relative overflow-hidden border-t border-b border-neutral-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        <div className="relative p-4">
-          <Icon 
-            size={40} 
-            className={`transition-all duration-500 ${isHovered ? 'text-[#a855f7] scale-110' : 'text-[#ec4899]'}`} 
-          />
+        {/* Header Section */}
+        <div className="text-center mb-20">
+          <span className="text-[#6366f1] font-bold uppercase tracking-[0.3em] text-[11px] font-heading">
+            OUR ACHIEVEMENTS
+          </span>
+          <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-3 mb-6" />
+          <h2 className="text-4xl md:text-6xl font-bold text-neutral-900 leading-tight font-heading">
+            Engineering Excellence <br />
+            Backed by Numbers
+          </h2>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+          {stats.map((stat, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex flex-col items-center text-center"
+            >
+              <div className="relative mb-6">
+                <div className={`absolute -top-2 -right-2 w-8 h-8 rounded-lg opacity-80 ${stat.color}`} />
+                <h3 className="text-5xl md:text-6xl font-extrabold text-neutral-950 font-heading relative z-10">
+                  <Counter value={stat.val} />{stat.suffix}
+                </h3>
+              </div>
+              
+              <p className="text-neutral-600 font-medium text-sm md:text-base font-body tracking-wide">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
-
-      <h3 className="text-4xl font-bold text-neutral-900 mb-2 tracking-tight" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
-        {stat.val}
-      </h3>
-      <p className="text-neutral-500 uppercase tracking-[0.2em] text-[10px] font-bold" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
-        {stat.label}
-      </p>
-    </motion.div>
+    </section>
   );
 }

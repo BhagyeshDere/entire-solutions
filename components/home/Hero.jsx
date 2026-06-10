@@ -8,10 +8,9 @@ const videos = [
   "/videos/v1.mp4",
   "/videos/v2.mp4",
   "/videos/v3.mp4",
-    "/videos/hero.mp4",
+  "/videos/hero.mp4",
   "/videos/v4.mp4",
   "/videos/v5.mp4",
-
 ];
 
 export default function Hero() {
@@ -25,8 +24,8 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Stacked Video Container: Mapping through all videos to ensure a seamless crossfade */}
+    <section className="relative min-h-screen flex items-center overflow-hidden font-sans">
+      {/* Stacked Video Container */}
       <div className="absolute inset-0 w-full h-full bg-black">
         {videos.map((src, i) => (
           <motion.video
@@ -45,7 +44,7 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Persistent Overlay (Ensures consistency during transition) */}
+      {/* Persistent Overlay */}
       <div className="absolute inset-0 bg-black/50" />
 
       {/* Glows */}
@@ -60,9 +59,9 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-start text-left max-w-3xl"
         >
+          {/* Fixed heading: Added pb-2 and adjusted leading to prevent clipping of 'g' descenders */}
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white"
-            style={{ fontFamily: "Times New Roman" }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white tracking-tight font-heading pb-2"
           >
             Precision Fabrication &
             <span className="block mt-2 bg-gradient-to-r from-fuchsia-500 via-purple-400 to-blue-500 bg-clip-text text-transparent">
@@ -71,8 +70,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="mt-8 text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl"
-            style={{ fontFamily: "Times New Roman" }}
+            className="mt-8 text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl font-body"
           >
             Delivering high-quality laser cutting, bending, welding,
             powder coating, and custom fabrication solutions for
@@ -82,14 +80,14 @@ export default function Hero() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 rounded-xl bg-gradient-to-r from-fuchsia-600 to-blue-600 text-white font-semibold hover:scale-105 transition duration-300"
+              className="px-8 py-4 rounded-xl bg-gradient-to-r from-fuchsia-600 to-blue-600 text-white font-semibold hover:scale-105 transition duration-300 font-body"
             >
               Get Quote
             </Link>
 
             <Link
               href="/projects"
-              className="px-8 py-4 rounded-xl border border-white/30 backdrop-blur-md text-white hover:bg-white/10 transition duration-300"
+              className="px-8 py-4 rounded-xl border border-white/30 backdrop-blur-md text-white hover:bg-white/10 transition duration-300 font-body"
             >
               View Projects
             </Link>
@@ -107,7 +105,7 @@ export default function Hero() {
         <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white mt-2 rounded-full animate-bounce" />
         </div>
-        <span className="text-white/70 text-xs uppercase tracking-widest font-medium">
+        <span className="text-white/70 text-xs uppercase tracking-widest font-medium font-body">
           Scroll
         </span>
       </motion.div>

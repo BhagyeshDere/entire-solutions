@@ -36,7 +36,7 @@ export default function WhyChooseUs() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="why-us" className="relative py-24 overflow-hidden">
+    <section id="why-us" className="relative py-24 overflow-hidden font-body">
       {/* Background Image Layer */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed"
@@ -47,10 +47,10 @@ export default function WhyChooseUs() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="mb-20 text-center">
-          <span className="inline-block px-4 py-1 rounded-full border border-blue-500/50 text-blue-200 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">
+          <span className="inline-block px-4 py-1 rounded-full border border-blue-500/50 text-blue-200 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 font-heading">
             Why Choose Us
           </span>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-serif text-white">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight text-white font-heading">
             Precision Engineering. <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
               Unrivaled Quality.
@@ -77,7 +77,7 @@ export default function WhyChooseUs() {
               
               <div className={`w-12 h-1 mb-6 rounded-full transition-all duration-500 ${index === activeIndex ? "bg-gradient-to-r from-purple-500 to-blue-500 w-20" : "bg-white/20"}`} />
               
-              <h3 className="text-2xl font-semibold mb-4 font-serif text-white">
+              <h3 className="text-2xl font-semibold mb-4 text-white font-heading">
                 {item.title}
               </h3>
 
@@ -87,7 +87,7 @@ export default function WhyChooseUs() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="text-slate-300 leading-relaxed text-base font-serif max-w-[280px]"
+                    className="text-slate-300 leading-relaxed text-base max-w-[280px] font-body"
                   >
                     {item.description}
                   </motion.p>
