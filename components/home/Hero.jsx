@@ -57,21 +57,19 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-start text-left max-w-3xl"
+          className="flex flex-col items-start text-left max-w-full"
         >
-          {/* Fixed heading: Added pb-2 and adjusted leading to prevent clipping of 'g' descenders */}
-          <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white tracking-tight font-heading pb-2"
-          >
+          {/* FIX: Added 'inline-block' to the span to properly contain the text box.
+            Increased pb-8 to give the 'g' and other descenders plenty of room.
+          */}
+          <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-white tracking-tight font-heading pb-8 leading-tight">
             Precision Fabrication &
-            <span className="block mt-2 bg-gradient-to-r from-fuchsia-500 via-purple-400 to-blue-500 bg-clip-text text-transparent">
+            <span className="inline-block mt-2 bg-gradient-to-r from-fuchsia-500 via-purple-400 to-blue-500 bg-clip-text text-transparent whitespace-nowrap">
               Industrial Manufacturing
             </span>
           </h1>
 
-          <p
-            className="mt-8 text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl font-body"
-          >
+          <p className="mt-8 text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl font-body">
             Delivering high-quality laser cutting, bending, welding,
             powder coating, and custom fabrication solutions for
             industrial and commercial sectors.

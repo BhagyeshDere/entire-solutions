@@ -20,7 +20,7 @@ const services = [
   {
     id: "electrical-panels",
     title: "Electrical Panel Boxes",
-    image: "/images/services/electrical-panels.jpg",
+    image: "/images/services/electrical-panels1.png",
     description: "Custom-engineered electrical enclosures, junction boxes, and distribution panels.",
   },
   {
@@ -32,7 +32,7 @@ const services = [
   {
     id: "welding-assembly",
     title: "Welding & Assembly",
-    image: "/images/services/welding-assembly.jpeg",
+    image: "/images/services/welding-assembly.jpg",
     description: "Expert drilling, tapping, and professional-grade TIG/MIG production welding runs.",
   },
 ];
