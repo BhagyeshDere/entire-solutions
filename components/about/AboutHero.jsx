@@ -1,68 +1,86 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight, Zap, Target, ShieldCheck, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutHero() {
+  const features = [
+    { icon: Zap, label: "Precision Cutting" },
+    { icon: Target, label: "Custom Fabrication" },
+    { icon: ShieldCheck, label: "Quality Assured" },
+    { icon: Users, label: "Expert Team" },
+  ];
+
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-slate-950 pt-32 pb-20">
-      {/* Subtle Background gradients */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.15, scale: 1 }}
-          transition={{ duration: 2 }}
-          className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-pink-600 rounded-full blur-[150px]" 
-        />
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.15, scale: 1 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute top-[20%] -right-[10%] w-[600px] h-[600px] bg-cyan-600 rounded-full blur-[150px]" 
-        />
+    <section 
+      className="relative min-h-[70vh] flex items-center py-24 overflow-hidden font-body"
+      style={{
+        backgroundImage: "url('/images/about/hero.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="absolute inset-0 bg-[#0A0A0B]/65" />
+
+      {/* Background Blobs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 blur-[150px] rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-cyan-600/5 blur-[120px] rounded-full" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          
+          {/* Added pt-12 to shift the heading downward */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="pt-12"
+          >
+            <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight font-heading leading-tight">
+              Strong Builds, <br />
+              <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
+                Sharp Cuts.
+              </span>
+            </h1>
+          </motion.div>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 text-base md:text-lg text-slate-300 max-w-lg mx-auto font-body"
+          >
+            Providing high-precision light and heavy fabrication solutions since 2020. 
+            Industry-leading quality for industrial and commercial needs.
+          </motion.p>
+
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {features.map((item, i) => (
+              <div key={i} className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 hover:border-purple-500/50 transition-all">
+                <item.icon className="text-pink-400" size={20} />
+                <span className="text-[10px] font-semibold text-white uppercase tracking-widest font-heading">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="mt-12"
+          >
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-cyan-500 px-8 py-3 rounded-full font-bold text-sm text-white hover:scale-105 transition-transform font-heading shadow-lg"
+            >
+              Partner With Us
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
       </div>
-
-      <div className="max-w-6xl mx-auto px-6 text-center relative z-10 w-full">
-        {/* Pill-shaped badge */}
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm"
-        >
-          <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
-          <span className="uppercase tracking-[0.2em] text-pink-400 font-bold text-[10px]">
-            About Entire Solutions
-          </span>
-        </motion.div>
-
-        {/* H1 - Fixed 'g' cropping by adding pb-2 and inline-flex wrapping */}
-        <motion.h1 
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[1.2] pb-2"
-        >
-          <div className="inline-block">Precision </div>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 inline-block md:ml-4 pb-2">
-            Manufacturing
-          </span>
-        </motion.h1>
-
-        {/* Text */}
-        <motion.p 
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto px-2"
-        >
-          Delivering advanced fabrication, laser cutting, welding, bending, 
-          and engineering solutions for industrial and commercial sectors 
-          <span className="text-cyan-400 font-bold"> since 2020.</span>
-        </motion.p>
-      </div>
-
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pointer-events-none" />
     </section>
   );
 }
