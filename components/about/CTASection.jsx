@@ -1,59 +1,65 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight, Phone, Mail } from "lucide-react";
+import Link from "next/link";
 
 export default function CTASection() {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-[#fcfcfd]">
-      {/* Subtle Background Elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-purple-100/50 to-cyan-50/50 rounded-full blur-[120px] pointer-events-none" />
+    <section className="relative py-16 bg-[#FDFDFD] border-t border-slate-100">
+      {/* Subtle Background Glow - Tinted to match Logo */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-pink-50/50 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-50/50 rounded-full blur-[100px] pointer-events-none" />
 
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-4xl mx-auto px-6 text-center relative z-10"
-      >
-        
-        {/* Minimalist Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white/50 backdrop-blur-sm mb-8">
-          <span className="uppercase tracking-[0.3em] text-slate-500 text-[10px] font-bold font-heading">
-            Let's Build Together
+      <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          {/* Label */}
+          <span className="inline-block px-5 py-1.5 rounded-full border border-pink-100 bg-pink-50 text-pink-600 text-[10px] font-black uppercase tracking-[0.3em]">
+            Ready to start?
           </span>
-        </div>
 
-        {/* Impactful Typography */}
-        <h2 className="text-4xl md:text-7xl font-black text-slate-900 tracking-tighter mb-8 font-heading">
-          Ready To Start <br className="hidden md:block"/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500">
-            Your Next Project?
-          </span>
-        </h2>
+          {/* Heading */}
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
+            Let’s Build <br /> 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-cyan-500">
+              Something Strong.
+            </span>
+          </h2>
 
-        <p className="mt-6 text-slate-600 text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-body">
-          From fabrication and laser cutting to electrical panel manufacturing, 
-          Entire Solutions is ready to support your business requirements.
-        </p>
+          {/* Description */}
+          <p className="max-w-md mx-auto text-slate-500 text-lg">
+            Partner with Entire Solutions for precision engineering tailored to your requirements.
+          </p>
 
-        {/* Action Buttons */}
-        <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-          <Link
-            href="/contact"
-            className="px-8 py-4 rounded-full bg-slate-900 text-white font-bold hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-slate-900/10 font-body"
-          >
-            Contact Us
-          </Link>
+          {/* Buttons */}
+          <div className="flex justify-center pt-2">
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-600 to-blue-600 text-white font-bold hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-300"
+            >
+              Get Free Consultation
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
 
-          <Link
-            href="/portfolio"
-            className="px-8 py-4 rounded-full bg-white text-slate-900 font-bold border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all font-body"
-          >
-            View Our Work
-          </Link>
-        </div>
-      </motion.div>
+          {/* Contact Info */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 pt-8 border-t border-slate-100 mt-8">
+            <a href="tel:+917020493239" className="flex items-center gap-2 text-slate-500 hover:text-pink-600 transition-colors font-medium text-sm">
+              <Phone size={16} className="text-pink-500" />
+              +91 7020493239
+            </a>
+            <a href="mailto:entiresolutions20@gmail.com" className="flex items-center gap-2 text-slate-500 hover:text-cyan-600 transition-colors font-medium text-sm">
+              <Mail size={16} className="text-cyan-500" />
+              entiresolutions20@gmail.com
+            </a>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
