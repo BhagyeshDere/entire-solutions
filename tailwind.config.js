@@ -1,17 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
   theme: {
     extend: {
+      colors: {
+        // Defining your logo's specific colors
+        brand: {
+          pink: '#ec4899', // Matches your logo pink
+          cyan: '#22d3ee', // Matches your logo cyan
+        },
+      },
       fontFamily: {
-        heading: ['Montserrat', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        // Add your preferred professional font here (e.g., Inter)
+        sans: ['Inter', 'sans-serif'], 
+      },
+      backgroundImage: {
+        // A reusable gradient for buttons and headers
+        'brand-gradient': 'linear-gradient(to right, #ec4899, #22d3ee)',
       },
     },
   },
-  plugins: [],
 }

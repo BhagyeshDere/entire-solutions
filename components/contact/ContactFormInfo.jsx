@@ -1,85 +1,83 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Phone, Mail, MapPin, Building2, Send, User } from "lucide-react";
+
+const contactInfo = [
+  { icon: User, title: "Contact Person", value: "Sagar B Shete", sub: "Manager" },
+  { icon: Phone, title: "Phone", value: "+91 7020493239 / 9222089025", sub: "Available for inquiries" },
+  { icon: Mail, title: "Email", value: "entiresolutions20@gmail.com", sub: "Quick response guaranteed" },
+  { 
+    icon: MapPin, 
+    title: "Address", 
+    value: "Plot No. 03, Sr.No. 101, Wadmukhwadi Road, Tapkir Nagar, Khadi Machine Road, Bhosari - 412105", 
+    sub: "Near Aapulaki Hotel" 
+  },
+  { icon: Building2, title: "GST Number", value: "27AAIFE3965C1ZG", sub: "Registered Business" },
+];
 
 export default function ContactFormInfo() {
   return (
-    // Added -mt-20 to pull the section upward, creating the overlap effect
-    // Added relative and z-20 to ensure it stays on top of subsequent sections
-    <section className="bg-[#F8F9FC] py-24 px-6 relative overflow-hidden -mt-20 z-20">
-      
-      {/* Abstract Background Element */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-indigo-200 rounded-full blur-[120px] opacity-50" />
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto relative z-10"
-      >
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+    <section id="contact-form" className="relative py-16 md:py-24 bg-[#FAFAFA] overflow-hidden">
+      {/* Brand-Aligned Soft Glows - Optimized for mobile/desktop */}
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-pink-100/50 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-cyan-100/50 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Form (spanning 7) */}
-          <div className="lg:col-span-7 bg-white p-10 md:p-14 rounded-[2rem] border border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)]">
-            <div className="mb-10">
-              <span className="text-indigo-600 font-bold tracking-widest uppercase text-xs">Let's Connect</span>
-              <h2 className="text-5xl font-black text-slate-900 mt-3">Start a New Project</h2>
-            </div>
-            
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <input type="text" placeholder="Full Name" className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 focus:border-indigo-500 outline-none transition-all focus:shadow-lg focus:shadow-indigo-500/10" />
-                <input type="email" placeholder="Email Address" className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 focus:border-indigo-500 outline-none transition-all focus:shadow-lg focus:shadow-indigo-500/10" />
-              </div>
-              
-              <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 text-slate-500 focus:border-indigo-500 outline-none transition-all">
-                <option value="">Select Service Type</option>
-                <option value="wind-energy">Wind Energy Solutions</option>
-                <option value="fabrication">Industrial Fabrication</option>
-                <option value="electrical">Electrical Panels</option>
-              </select>
-
-              <textarea rows={4} placeholder="Tell us about your project requirements..." className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 focus:border-indigo-500 outline-none transition-all focus:shadow-lg focus:shadow-indigo-500/10" />
-              
-              <button className="group relative w-full overflow-hidden bg-slate-900 text-white py-6 rounded-2xl font-bold text-lg transition-all hover:bg-indigo-600">
-                <span className="relative z-10">Send Project Inquiry</span>
-              </button>
-            </form>
-          </div>
-
-          {/* Right Column: Contact Details (spanning 5) */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="bg-indigo-900 p-10 rounded-[2rem] text-white shadow-2xl relative overflow-hidden">
-              <h3 className="text-2xl font-bold mb-10">Office Details</h3>
-              
-              <div className="space-y-10">
-                {[
-                  { label: "Phone & Mobile", value: "7020493239 / 9222089025" },
-                  { label: "Email Address", value: "entiresolutions20@gmail.com" },
-                  { label: "Registered Office", value: "Plot No. 03, Sr.No. 101, Wadmukhwadi Road, Tapkir Nagar, Bhosari - 412105." }
-                ].map((item, i) => (
-                  <div key={i} className="group cursor-default">
-                    <p className="text-indigo-300 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">{item.label}</p>
-                    <p className="text-lg font-medium leading-relaxed group-hover:text-cyan-300 transition-colors">{item.value}</p>
+          {/* Contact Information */}
+          <div className="lg:col-span-5 space-y-4">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6">Contact Details</h2>
+            {contactInfo.map((item, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ x: 8 }}
+                className="group relative rounded-2xl md:rounded-[2rem] border border-slate-100 bg-white/80 backdrop-blur-sm p-4 md:p-5 shadow-sm hover:shadow-md transition-all"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-br from-pink-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow-lg shadow-pink-100">
+                    <item.icon className="text-white" size={20} />
                   </div>
-                ))}
-              </div>
-
-              <div className="mt-12 pt-8 border-t border-indigo-800">
-                  <p className="text-indigo-300 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">GST Identification</p>
-                  <p className="text-white font-mono text-xl tracking-wider">27AAIFE3965C1ZG</p>
-              </div>
-            </div>
-            
-            {/* Visual Callout */}
-            <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-lg text-center">
-                <p className="text-slate-600 font-medium">Have a specific question? <a href="#" className="text-indigo-600 underline font-bold">Check our FAQ</a></p>
-            </div>
+                  <div className="overflow-hidden">
+                    <p className="text-slate-400 text-[10px] md:text-[11px] font-bold uppercase tracking-widest">{item.title}</p>
+                    <h3 className="text-slate-900 font-bold text-sm md:text-base leading-tight mt-0.5">{item.value}</h3>
+                    <p className="text-slate-500 text-[10px] md:text-[11px] mt-0.5">{item.sub}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
+          {/* Contact Form */}
+          <div className="lg:col-span-7">
+            <div className="rounded-3xl border border-slate-100 bg-white p-6 md:p-10 shadow-xl shadow-slate-200/40">
+              <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-8">Send an Inquiry</h3>
+              <form className="space-y-5">
+                <div className="grid md:grid-cols-2 gap-5">
+                  <input type="text" placeholder="Your Name" className="w-full rounded-xl md:rounded-2xl bg-slate-50 border border-slate-200 px-5 py-4 outline-none focus:border-pink-500 transition" />
+                  <input type="text" placeholder="Company Name" className="w-full rounded-xl md:rounded-2xl bg-slate-50 border border-slate-200 px-5 py-4 outline-none focus:border-pink-500 transition" />
+                </div>
+                <div className="grid md:grid-cols-2 gap-5">
+                  <input type="email" placeholder="Email Address" className="w-full rounded-xl md:rounded-2xl bg-slate-50 border border-slate-200 px-5 py-4 outline-none focus:border-pink-500 transition" />
+                  <input type="tel" placeholder="Phone Number" className="w-full rounded-xl md:rounded-2xl bg-slate-50 border border-slate-200 px-5 py-4 outline-none focus:border-pink-500 transition" />
+                </div>
+                <select className="w-full rounded-xl md:rounded-2xl bg-slate-50 border border-slate-200 px-5 py-4 text-slate-600 outline-none focus:border-pink-500 transition">
+                  <option>Select Service</option>
+                  <option>Laser Cutting</option>
+                  <option>Heavy Fabrication</option>
+                  <option>Powder Coating</option>
+                  <option>Electrical Panel Manufacturing</option>
+                </select>
+                <textarea rows={4} placeholder="Tell us about your project..." className="w-full rounded-xl md:rounded-2xl bg-slate-50 border border-slate-200 px-5 py-4 outline-none focus:border-pink-500 transition resize-none" />
+                <button type="submit" className="w-full md:w-auto group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl md:rounded-2xl bg-gradient-to-r from-pink-600 to-cyan-500 text-white font-bold hover:shadow-lg hover:shadow-pink-200 transition-all">
+                  Send Inquiry <Send size={18} className="group-hover:translate-x-1 transition" />
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
