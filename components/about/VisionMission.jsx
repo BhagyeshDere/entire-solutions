@@ -4,20 +4,39 @@ import { motion } from "framer-motion";
 import { Eye, Target, ArrowRight } from "lucide-react";
 
 export default function VisionMission() {
+  // Brand color constants based on your logo
+  const brand = {
+    gradient: "from-[#8b5cf6] via-[#ec4899] to-[#06b6d4]",
+    purple: "#8b5cf6",
+    magenta: "#ec4899",
+    cyan: "#06b6d4",
+  };
+
   return (
-    <section className="relative py-24 overflow-hidden bg-[#0A0D14]">
-      {/* Brand-Aligned Dark Blue Glows */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-900/20 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-900/10 blur-[150px] rounded-full pointer-events-none" />
+    <section className="relative py-24 overflow-hidden bg-[#0B0F1A]">
+      {/* Background Grid */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, ${brand.cyan} 1px, transparent 1px),
+            linear-gradient(to bottom, ${brand.cyan} 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px",
+        }}
+      />
 
-      {/* Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <h1 className="text-[120px] md:text-[220px] font-black text-white/[0.02] uppercase whitespace-nowrap">
-          Vision Mission
-        </h1>
-      </div>
+      {/* Brand Glows */}
+      <div 
+        className="absolute top-0 left-0 w-[600px] h-[600px] blur-[150px] rounded-full pointer-events-none opacity-10" 
+        style={{ backgroundColor: brand.cyan }} 
+      />
+      <div 
+        className="absolute bottom-0 right-0 w-[600px] h-[600px] blur-[150px] rounded-full pointer-events-none opacity-10" 
+        style={{ backgroundColor: brand.purple }} 
+      />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -25,18 +44,21 @@ export default function VisionMission() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto text-center"
         >
-          <span className="inline-flex px-4 py-2 rounded-full border border-blue-800/50 bg-blue-950/30 text-blue-400 text-xs font-bold tracking-[0.3em] uppercase">
+          <span 
+            className="inline-flex px-4 py-2 rounded-full border text-xs font-bold tracking-[0.3em] uppercase"
+            style={{ borderColor: `${brand.cyan}30`, backgroundColor: `${brand.cyan}10`, color: brand.cyan }}
+          >
             Our Purpose
           </span>
 
-          <h2 className="mt-6 text-4xl md:text-6xl font-black text-white leading-tight">
+          <h2 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight">
             Driven By
-            <span className="block bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent">
+            <span className={`block bg-gradient-to-r ${brand.gradient} bg-clip-text text-transparent`}>
               Vision & Mission
             </span>
           </h2>
 
-          <p className="mt-6 text-slate-400 text-lg">
+          <p className="mt-6 text-slate-400 text-lg leading-relaxed">
             Precision engineering, innovation, and commitment to quality
             guide every project we deliver.
           </p>
@@ -44,31 +66,33 @@ export default function VisionMission() {
 
         {/* Cards */}
         <div className="relative mt-20 grid lg:grid-cols-2 gap-8">
-          
-          {/* Center Connector */}
+          {/* Connector */}
           <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="w-20 h-20 rounded-full bg-[#0A0D14] flex items-center justify-center shadow-lg border border-blue-800">
-              <ArrowRight className="text-pink-500" size={30} />
+            <div className="w-20 h-20 rounded-full bg-[#0B0F1A] flex items-center justify-center border border-white/10 shadow-2xl">
+              <ArrowRight style={{ color: brand.magenta }} size={28} />
             </div>
           </div>
 
-          {/* Vision Card */}
+          {/* Vision */}
           <motion.div
             whileHover={{ y: -10 }}
-            className="group relative overflow-hidden rounded-[32px] border border-white/5 bg-[#111621]/80 backdrop-blur-xl p-10 shadow-2xl transition-all"
+            className="group relative overflow-hidden rounded-[32px] border border-white/5 bg-white/[0.03] backdrop-blur-xl p-10 shadow-2xl transition-all duration-500"
           >
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-pink-600 to-pink-500 flex items-center justify-center mb-8 shadow-lg shadow-pink-900/20">
+              <div 
+                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-lg"
+                style={{ background: `linear-gradient(135deg, ${brand.purple}, ${brand.magenta})` }}
+              >
                 <Eye className="text-white" size={30} />
               </div>
 
-              <span className="text-pink-500 uppercase tracking-[0.3em] text-xs font-bold">
+              <span className="uppercase tracking-[0.3em] text-xs font-bold" style={{ color: brand.purple }}>
                 Vision
               </span>
 
-              <h3 className="mt-4 text-3xl font-black text-white">
+              <h3 className="mt-4 text-3xl font-bold tracking-tight text-white">
                 Building Tomorrow's
-                <span className="block text-pink-500">
+                <span className="block" style={{ color: brand.purple }}>
                   Manufacturing Excellence
                 </span>
               </h3>
@@ -82,23 +106,26 @@ export default function VisionMission() {
             </div>
           </motion.div>
 
-          {/* Mission Card */}
+          {/* Mission */}
           <motion.div
             whileHover={{ y: -10 }}
-            className="group relative overflow-hidden rounded-[32px] border border-white/5 bg-[#111621]/80 backdrop-blur-xl p-10 shadow-2xl transition-all"
+            className="group relative overflow-hidden rounded-[32px] border border-white/5 bg-white/[0.03] backdrop-blur-xl p-10 shadow-2xl transition-all duration-500"
           >
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-cyan-500 to-cyan-400 flex items-center justify-center mb-8 shadow-lg shadow-cyan-900/20">
+              <div 
+                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-lg"
+                style={{ background: `linear-gradient(135deg, ${brand.cyan}, #0ea5e9)` }}
+              >
                 <Target className="text-white" size={30} />
               </div>
 
-              <span className="text-cyan-400 uppercase tracking-[0.3em] text-xs font-bold">
+              <span className="uppercase tracking-[0.3em] text-xs font-bold" style={{ color: brand.cyan }}>
                 Mission
               </span>
 
-              <h3 className="mt-4 text-3xl font-black text-white">
+              <h3 className="mt-4 text-3xl font-bold tracking-tight text-white">
                 Delivering Precision
-                <span className="block text-cyan-400">
+                <span className="block" style={{ color: brand.cyan }}>
                   Through Innovation
                 </span>
               </h3>
@@ -124,13 +151,13 @@ export default function VisionMission() {
           ].map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.02 }}
-              className="text-center p-6 rounded-3xl bg-[#111621]/80 backdrop-blur-md border border-white/5 shadow-sm"
+              whileHover={{ scale: 1.03 }}
+              className="text-center p-6 rounded-3xl bg-white/[0.03] backdrop-blur-md border border-white/5 shadow-sm"
             >
-              <h4 className="text-3xl font-black bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent">
+              <h4 className={`text-3xl font-bold bg-gradient-to-r ${brand.gradient} bg-clip-text text-transparent`}>
                 {item.value}
               </h4>
-              <p className="text-slate-500 mt-2 text-sm uppercase tracking-wider font-bold">
+              <p className="text-slate-500 mt-2 text-sm uppercase tracking-wider font-semibold">
                 {item.label}
               </p>
             </motion.div>
