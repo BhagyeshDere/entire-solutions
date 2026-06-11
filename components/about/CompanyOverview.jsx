@@ -39,7 +39,7 @@ export default function CompanyOverview() {
             
             {/* Floating Stat Card */}
             <div className="absolute -bottom-8 -right-4 bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
-              <h3 className="text-5xl font-black bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent">5+</h3>
+              <h3 className="text-5xl font-black bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent font-heading">5+</h3>
               <p className="text-slate-600 font-heading tracking-widest text-sm uppercase font-bold">Years Experience</p>
             </div>
           </motion.div>
@@ -50,7 +50,7 @@ export default function CompanyOverview() {
               Company Overview
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight font-heading">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] font-heading">
               Precision Engineering. <br />
               <span className="bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent">
                 Strong Manufacturing.
@@ -61,15 +61,7 @@ export default function CompanyOverview() {
               Since 2020, Entire Solutions has redefined industrial fabrication. We blend advanced laser cutting, custom bending, and precision welding to deliver robust solutions tailored for modern infrastructure.
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 border-t border-slate-200 pt-8">
-              {[{v: "100+", l: "Projects"}, {v: "20+", l: "Clients"}, {v: "5+", l: "Industries"}].map((s, i) => (
-                <div key={i}>
-                  <div className="text-3xl font-black text-slate-900">{s.v}</div>
-                  <div className="text-slate-500 text-xs uppercase tracking-widest font-heading font-bold">{s.l}</div>
-                </div>
-              ))}
-            </div>
+          
           </div>
         </div>
 

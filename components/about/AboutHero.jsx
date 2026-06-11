@@ -14,7 +14,7 @@ export default function AboutHero() {
 
   return (
     <section 
-      className="relative min-h-[70vh] flex items-center py-24 overflow-hidden font-body"
+      className="relative min-h-[70vh] flex items-center py-24 overflow-hidden"
       style={{
         backgroundImage: "url('/images/about/hero.png')",
         backgroundSize: "cover",
@@ -30,13 +30,13 @@ export default function AboutHero() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           
-          {/* Added pt-12 to shift the heading downward */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="pt-12"
           >
-            <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight font-heading leading-tight">
+            {/* Applied font-heading for strong, modern typography */}
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight font-heading leading-[1.1]">
               Strong Builds, <br />
               <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
                 Sharp Cuts.
@@ -44,6 +44,7 @@ export default function AboutHero() {
             </h1>
           </motion.div>
 
+          {/* Applied font-body for clean, readable body text */}
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -58,7 +59,7 @@ export default function AboutHero() {
             {features.map((item, i) => (
               <div key={i} className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 hover:border-purple-500/50 transition-all">
                 <item.icon className="text-pink-400" size={20} />
-                <span className="text-[10px] font-semibold text-white uppercase tracking-widest font-heading">
+                <span className="text-[10px] font-bold text-white uppercase tracking-widest font-heading">
                   {item.label}
                 </span>
               </div>
