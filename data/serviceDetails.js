@@ -1,12 +1,40 @@
 const serviceDetails = [
   {
-    slug: "laser-cutting",
-    title: "Laser Cutting",
-    mainImage: "/images/sub-services/laser-cutting/main.jpg",
-    gallery: ["/images/sub-services/laser-cutting/1.jpg", "/images/sub-services/laser-cutting/2.jpg", "/images/sub-services/laser-cutting/3.jpg"],
-    description: "Our state-of-the-art fiber laser cutting systems provide unparalleled accuracy for complex geometries. We specialize in processing a wide range of materials with superior edge quality, eliminating the need for secondary finishing. Our optimized nesting software ensures maximum material utilization, reducing costs and lead times for high-volume production runs.",
-    features: ["High-Precision Fiber Laser", "Burr-Free Clean Edges", "Rapid Prototyping Capabilities", "Advanced Nesting for Material Savings"],
-  },
+  slug: "laser-cutting",
+  title: "Laser Cutting",
+  mainImage: "/images/sub-services/laser-cutting/lc_main.png",
+  gallery: [
+    "/images/sub-services/laser-cutting/lc_1.png",
+    "/images/sub-services/laser-cutting/lc_2.png",
+    "/images/sub-services/laser-cutting/lc_3.png"
+  ],
+  description: "Our state-of-the-art fiber laser cutting systems provide unparalleled accuracy for complex geometries. We specialize in processing a wide range of materials with superior edge quality, eliminating the need for secondary finishing. Our optimized nesting software ensures maximum material utilization, reducing costs and lead times for high-volume production runs.",
+  features: [
+    "High-Precision Fiber Laser",
+    "Burr-Free Clean Edges",
+    "Rapid Prototyping Capabilities",
+    "Advanced Nesting for Material Savings"
+  ],
+},
+
+{
+  slug: "electrical-panel-boxes",
+  title: "Electrical Panel Boxes",
+  mainImage: "/images/sub-services/electrical-panel-boxes/epb_main.png",
+  gallery: [
+    "/images/sub-services/electrical-panel-boxes/epb_1.png",
+    "/images/sub-services/electrical-panel-boxes/epb_2.png",
+    "/images/sub-services/electrical-panel-boxes/epb_3.png"
+  ],
+  description: "We design and manufacture robust, industrial-grade electrical panel boxes engineered for durability and safety. Our enclosures are built to protect critical components from environmental factors while ensuring easy access for maintenance and cable management, compliant with industrial standards.",
+  features: [
+    "Industrial-Grade Protection",
+    "Optimized Cable Management",
+    "Customizable Modular Designs",
+    "Corrosion and Weather Resistant"
+  ],
+},
+
   {
     slug: "cnc-bending",
     title: "CNC Bending",
@@ -55,14 +83,23 @@ const serviceDetails = [
     description: "Computer Numerical Control (CNC) integration allows us to execute complex CAD designs with absolute precision. Our CNC laser process is ideal for both custom one-off prototypes and sustained production, ensuring that every piece adheres strictly to your design specifications.",
     features: ["CAD-to-Part Direct Integration", "Absolute Dimensional Consistency", "High-Speed Dynamic Processing", "Automated Toolpath Efficiency"],
   },
-  {
-    slug: "brass-cutting",
-    title: "Brass Cutting",
-    mainImage: "/images/sub-services/brass/main.jpg",
-    gallery: ["/images/sub-services/brass/1.jpg", "/images/sub-services/brass/2.jpg", "/images/sub-services/brass/3.jpg"],
-    description: "Processing brass requires finesse to handle reflectivity and thermal conductivity. Our advanced laser systems are tuned specifically for non-ferrous metals, providing a smooth finish for decorative architectural elements, plumbing hardware, and precision electrical components.",
-    features: ["Reflective Material Optimized", "High-Resolution Detailing", "Corrosion-Resistant Integrity", "Smooth Decorative Finish"],
-  },
+ {
+  slug: "brass-cutting",
+  title: "Brass Cutting",
+  mainImage: "/images/sub-services/brass-cutting/bc_main.png",
+  gallery: [
+    "/images/sub-services/brass-cutting/bc_1.png",
+    "/images/sub-services/brass-cutting/bc_2.png",
+    "/images/sub-services/brass-cutting/bc_3.png"
+  ],
+  description: "Processing brass requires finesse to handle reflectivity and thermal conductivity. Our advanced laser systems are tuned specifically for non-ferrous metals, providing a smooth finish for decorative architectural elements, plumbing hardware, and precision electrical components.",
+  features: [
+    "Reflective Material Optimized",
+    "High-Resolution Detailing",
+    "Corrosion-Resistant Integrity",
+    "Smooth Decorative Finish"
+  ],
+},
   {
     slug: "pipe-laser-cutting",
     title: "Pipe Laser Cutting",
@@ -79,14 +116,37 @@ const serviceDetails = [
     description: "We manufacture high-performance filter plates using precision laser perforation. By controlling laser pulse duration, we create clean, consistent apertures that improve filtration flow rates while maintaining the structural rigidity of the stainless steel substrate.",
     features: ["Precision Micro-Perforation", "Optimized Flow-Rate Control", "High-Rigidity Substrate", "Chemical-Resistant Processing"],
   },
-  {
-    slug: "metal-fabrication",
-    title: "Metal Fabrication",
-    mainImage: "/images/sub-services/metal-fab/main.jpg",
-    gallery: ["/images/sub-services/metal-fab/1.jpg", "/images/sub-services/metal-fab/2.jpg", "/images/sub-services/metal-fab/3.jpg"],
-    description: "Our full-service fabrication shop acts as a one-stop-shop for your engineering needs. From initial concept and design optimization to cutting, bending, welding, and final assembly, we provide turnkey metal solutions for heavy industrial and commercial projects.",
-    features: ["Turnkey Manufacturing Process", "End-to-End Project Management", "Diverse Material Processing", "Large-Scale Assembly"],
-  },
+ {
+  slug: "metal-fabrication",
+  title: "Metal Fabrication",
+  mainImage: "/images/sub-services/metal-fabrication/m_fab_main.png",
+  gallery: [
+    "/images/sub-services/metal-fabrication/m_fab_1.png", 
+    "/images/sub-services/metal-fabrication/m_fab_2.png", 
+    "/images/sub-services/metal-fabrication/m_fab_3.png"
+  ],
+  description: "Our full-service fabrication shop acts as a one-stop-shop for your engineering needs. From initial concept and design optimization to cutting, bending, welding, and final assembly, we provide turnkey metal solutions for heavy industrial and commercial projects.",
+  features: ["Turnkey Manufacturing Process", "End-to-End Project Management", "Diverse Material Processing", "Large-Scale Assembly"],
+},
+
+{
+  slug: "powder-coatings",
+  title: "Powder Coatings",
+  mainImage: "/images/sub-services/powder-coatings/pc_main.png",
+  gallery: [
+    "/images/sub-services/powder-coatings/pc_1.png",
+    "/images/sub-services/powder-coatings/pc_2.png",
+    "/images/sub-services/powder-coatings/pc_3.png"
+  ],
+  description: "We provide high-quality powder coating services that offer a durable, long-lasting finish for industrial and commercial metal components. Our specialized process ensures superior resistance to corrosion, heat, and impact, providing both aesthetic appeal and enhanced product longevity.",
+  features: [
+    "Corrosion-Resistant Finish",
+    "Environmentally Friendly Process",
+    "Wide Range of Color & Texture Options",
+    "Uniform Coverage for Complex Geometries"
+  ],
+},
+
   {
     slug: "aluminum-laser-cutting",
     title: "Aluminum Laser Cutting",

@@ -18,16 +18,22 @@ export default function Navbar() {
 
   const services = [
     { title: "Laser Cutting", slug: "laser-cutting" },
+    { title: "Electrical Panel Boxes", slug: "electrical-panel-boxes" },
+{ title: "Brass Cutting", slug: "brass-cutting" },
+ { title: "Metal Fabrication", slug: "metal-fabrication" },
+  { title: "Powder Coatings", slug: "powder-coatings" },
+
     { title: "CNC Bending", slug: "cnc-bending" },
     { title: "MIG Welding", slug: "mig-welding" },
     { title: "Stamping / Pressing", slug: "stamping-pressing" },
     { title: "Stainless Steel Laser Cutting", slug: "stainless-steel-laser-cutting" },
     { title: "Metal Sheet Laser Cutting", slug: "metal-sheet-laser-cutting" },
     { title: "Cnc Laser Cutting", slug: "cnc-laser-cutting" },
-    { title: "Brass Cutting", slug: "brass-cutting" },
+    
     { title: "Pipe Laser Cutting", slug: "pipe-laser-cutting" },
     { title: "SS Filter Plate Cuttings", slug: "ss-filter-plate-cuttings" },
-    { title: "Metal Fabrication", slug: "metal-fabrication" },
+   
+  
     { title: "Aluminum Laser Cutting", slug: "aluminum-laser-cutting" },
     { title: "Metal Jali Laser Cutting", slug: "metal-jali-laser-cutting" },
     { title: "SS Jali Laser Cutting", slug: "ss-jali-laser-cutting" },
