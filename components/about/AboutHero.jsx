@@ -5,14 +5,6 @@ import { ArrowRight, Zap, Target, ShieldCheck, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutHero() {
-  // Brand color constants based on your logo
-  const brand = {
-    gradient: "from-[#8b5cf6] via-[#ec4899] to-[#06b6d4]",
-    purple: "#8b5cf6",
-    magenta: "#ec4899",
-    cyan: "#06b6d4",
-  };
-
   const features = [
     { icon: Zap, label: "Precision Cutting" },
     { icon: Target, label: "Custom Fabrication" },
@@ -21,26 +13,22 @@ export default function AboutHero() {
   ];
 
   return (
-    <section 
-      className="relative min-h-[70vh] flex items-center pt-24 pb-16 overflow-hidden"
-      style={{
-        backgroundImage: "url('/images/about/hero1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Improved Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0B]/80 via-[#0A0A0B]/60 to-[#0A0A0B]/90" />
-
-      {/* Decorative Accents using Brand Colors */}
+    // Reduced bottom padding from pb-24 to pb-16
+    <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden bg-slate-900">
+      {/* Background Image */}
       <div 
-        className="absolute top-0 right-0 w-[500px] h-[500px] blur-[150px] rounded-full pointer-events-none opacity-20" 
-        style={{ backgroundColor: brand.purple }} 
+        className="absolute inset-0 z-0"
+        style={{ 
+          backgroundImage: "url('/images/about/hero1.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
       />
-      <div 
-        className="absolute bottom-0 left-0 w-[300px] h-[300px] blur-[120px] rounded-full pointer-events-none opacity-20" 
-        style={{ backgroundColor: brand.cyan }} 
-      />
+      <div className="absolute inset-0 z-0 bg-slate-900/60" />
+      
+      {/* Brand-Aligned Soft Accents */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full z-0" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-600/20 blur-[120px] rounded-full z-0" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -48,11 +36,10 @@ export default function AboutHero() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="pt-12"
           >
-            <h1 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] drop-shadow-lg">
+            <h1 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
               Strong Builds, <br />
-              <span className={`bg-gradient-to-r ${brand.gradient} bg-clip-text text-transparent`}>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400">
                 Sharp Cuts.
               </span>
             </h1>
@@ -62,20 +49,20 @@ export default function AboutHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-base md:text-lg text-slate-200 max-w-lg mx-auto font-medium drop-shadow-md"
+            className="mt-6 md:mt-8 text-base md:text-lg text-slate-200 max-w-lg mx-auto font-medium"
           >
             Providing high-precision light and heavy fabrication solutions since 2020. 
-            Industry-leading quality for industrial and commercial needs.
+            Industry-leading quality for your industrial and commercial projects.
           </motion.p>
 
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="mt-10 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
             {features.map((item, i) => (
               <div 
                 key={i} 
-                className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-colors"
+                className="flex flex-col items-center gap-3 p-4 md:p-5 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-pink-500/50 transition-all"
               >
-                <item.icon style={{ color: brand.magenta }} size={24} />
-                <span className="text-[10px] font-bold text-white uppercase tracking-widest">
+                <item.icon className="text-pink-400" size={24} />
+                <span className="text-[10px] font-black text-white uppercase tracking-widest">
                   {item.label}
                 </span>
               </div>
@@ -86,11 +73,11 @@ export default function AboutHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-12"
+            className="mt-10 md:mt-12"
           >
             <Link 
               href="/contact" 
-              className={`inline-flex items-center gap-2 bg-gradient-to-r ${brand.gradient} px-8 py-4 rounded-full font-bold text-sm text-white hover:scale-105 transition-transform shadow-[0_0_20px_rgba(236,72,153,0.3)]`}
+              className="inline-flex items-center gap-2 bg-white px-8 py-5 rounded-2xl font-bold text-sm text-slate-900 hover:bg-pink-500 hover:text-white transition-all shadow-xl"
             >
               Partner With Us
               <ArrowRight size={16} />
