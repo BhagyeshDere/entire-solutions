@@ -78,8 +78,12 @@ export default function ServicePage({ params }) {
             </div>
           </div>
 
+          {/* Updated Enquiry Button with query parameters */}
           <Link
-            href="/contact"
+            href={{
+              pathname: '/contact',
+              query: { service: service.title },
+            }}
             className="inline-flex items-center justify-center px-10 py-5 w-full md:w-max rounded-2xl bg-slate-900 text-white font-bold transition-all hover:bg-slate-800"
           >
             Enquiry Now

@@ -15,28 +15,30 @@ export default function GalleryPage() {
       : galleryData.filter((item) => item.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-20 px-6">
+    <div className="min-h-screen bg-slate-50 pb-20 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <span className="text-fuchsia-700 font-bold tracking-[0.2em] uppercase text-xs">Our Work</span>
-          <h1 className="text-4xl md:text-6xl font-extrabold mt-4 text-slate-900">
-            Industrial Gallery
+        {/* Header Section with added top margin to move it downward */}
+        <div className="text-center mb-16 mt-20 md:mt-24">
+          <span className="text-fuchsia-700 font-bold tracking-[0.2em] uppercase text-[10px]">
+            Precision Engineering
+          </span>
+          <h1 className="text-4xl md:text-5xl font-extrabold mt-3 text-slate-900 tracking-tight">
+            Our Industrial Portfolio
           </h1>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-fuchsia-600 to-blue-600 mx-auto mt-6 rounded-full" />
+          <div className="w-16 h-1 bg-fuchsia-600 mx-auto mt-6 rounded-full" />
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 mb-16">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2.5 rounded-lg font-bold text-[10px] uppercase tracking-widest transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all duration-300 border ${
                 activeCategory === category
-                  ? "bg-slate-900 text-white shadow-lg"
-                  : "bg-white text-slate-600 hover:bg-fuchsia-50 hover:text-fuchsia-700 border border-slate-200"
+                  ? "bg-slate-900 text-white border-slate-900 shadow-xl"
+                  : "bg-white text-slate-500 border-slate-200 hover:border-fuchsia-300 hover:text-fuchsia-700"
               }`}
             >
               {category}
@@ -44,35 +46,40 @@ export default function GalleryPage() {
           ))}
         </div>
 
-        {/* Grid */}
+        {/* Grid: Responsive 1 / 2 / 4 layout */}
         <motion.div 
           layout
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {filteredImages.map((item) => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
                 key={item.id}
-                className="group relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-100 p-2"
+                className="group relative bg-white p-2 rounded-2xl shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500"
               >
-                <div className="overflow-hidden rounded-xl">
+                {/* Image Container */}
+                <div className="relative overflow-hidden rounded-xl h-56">
                   <Image
                     src={item.image}
-                    width={500}
-                    height={400}
+                    width={400}
+                    height={300}
                     alt={item.category}
-                    className="w-full h-72 object-cover group-hover:scale-105 transition duration-500 ease-in-out"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
+                  {/* Decorative Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
-                {/* Subtle Overlay */}
-                <div className="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur-md p-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-[10px] font-bold text-fuchsia-700 uppercase tracking-widest">{item.category}</p>
+                {/* Info Badge */}
+                <div className="absolute top-5 left-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="bg-white/90 backdrop-blur-md px-3 py-1 rounded-md text-[9px] font-black text-slate-900 uppercase tracking-widest shadow-lg">
+                      {item.category}
+                    </span>
                 </div>
               </motion.div>
             ))}

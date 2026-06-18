@@ -21,8 +21,9 @@ export default function EngineeringPage({ params }) {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-32 pb-28 px-5">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+    <div className="min-h-screen bg-slate-50 pt-24 md:pt-32 pb-20 md:pb-28 px-4 md:px-5">
+      {/* Container: Stacked on mobile, 2-column on large screens */}
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
 
         {/* Left Column: Gallery */}
         <div className="space-y-6">
@@ -31,7 +32,8 @@ export default function EngineeringPage({ params }) {
               key={activeImage}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="relative h-[550px] w-full rounded-[2rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] border border-slate-200"
+              // Added responsive height classes
+              className="relative h-[300px] sm:h-[400px] lg:h-[550px] w-full rounded-[2rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] border border-slate-200"
             >
               <Image
                 src={activeImage}
@@ -44,13 +46,13 @@ export default function EngineeringPage({ params }) {
             </motion.div>
           </AnimatePresence>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3 md:gap-4">
             {[engineering.mainImage, ...(engineering.gallery || []).slice(0, 2)].map(
               (img, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveImage(img)}
-                  className={`h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
+                  className={`h-20 md:h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
                     activeImage === img
                       ? "border-pink-500 ring-4 ring-pink-500/20"
                       : "border-slate-200 hover:border-blue-400"
@@ -70,34 +72,35 @@ export default function EngineeringPage({ params }) {
         </div>
 
         {/* Right Column: Content */}
-        <div className="flex flex-col pt-4">
+        <div className="flex flex-col pt-0 md:pt-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <span className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm">
+            <span className="text-blue-600 font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
               Engineering Excellence
             </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold mt-4 mb-8 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 leading-[1.1]">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold mt-4 mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 leading-[1.1]">
               {engineering.title}
             </h1>
           </motion.div>
 
-          {/* Improved Paragraph: Removed box, added line height and spacing */}
-          <div className="text-lg md:text-xl text-slate-600 leading-relaxed mb-12 border-l-4 border-pink-500 pl-8">
+          <div className="text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed mb-8 md:mb-12 border-l-4 border-pink-500 pl-6 md:pl-8">
             <p className="max-w-2xl">{engineering.description}</p>
           </div>
 
-          {/* Enquiry Button */}
-          <Link
-            href="/contact"
-            className="group relative inline-flex items-center justify-center px-10 py-5 w-full md:w-max rounded-2xl bg-slate-900 text-white font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-pink-500/30"
-          >
-            Enquiry Now
-            <span className="ml-2 transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
+         <Link
+  href={{
+    pathname: '/contact',
+    query: { service: engineering.title },
+  }}
+  className="group relative inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 w-full md:w-max rounded-2xl bg-slate-900 text-white font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-pink-500/30"
+>
+  Enquiry Now
+  <span className="ml-2 transition-transform group-hover:translate-x-1">
+    →
+  </span>
+</Link>
         </div>
       </div>
     </div>
