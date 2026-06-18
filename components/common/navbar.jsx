@@ -19,21 +19,17 @@ export default function Navbar() {
   const services = [
     { title: "Laser Cutting", slug: "laser-cutting" },
     { title: "Electrical Panel Boxes", slug: "electrical-panel-boxes" },
-{ title: "Brass Cutting", slug: "brass-cutting" },
- { title: "Metal Fabrication", slug: "metal-fabrication" },
-  { title: "Powder Coatings", slug: "powder-coatings" },
-
+    { title: "Brass Cutting", slug: "brass-cutting" },
+    { title: "Metal Fabrication", slug: "metal-fabrication" },
+    { title: "Powder Coatings", slug: "powder-coatings" },
     { title: "CNC Bending", slug: "cnc-bending" },
     { title: "MIG Welding", slug: "mig-welding" },
     { title: "Stamping / Pressing", slug: "stamping-pressing" },
     { title: "Stainless Steel Laser Cutting", slug: "stainless-steel-laser-cutting" },
     { title: "Metal Sheet Laser Cutting", slug: "metal-sheet-laser-cutting" },
     { title: "Cnc Laser Cutting", slug: "cnc-laser-cutting" },
-    
     { title: "Pipe Laser Cutting", slug: "pipe-laser-cutting" },
     { title: "SS Filter Plate Cuttings", slug: "ss-filter-plate-cuttings" },
-   
-  
     { title: "Aluminum Laser Cutting", slug: "aluminum-laser-cutting" },
     { title: "Metal Jali Laser Cutting", slug: "metal-jali-laser-cutting" },
     { title: "SS Jali Laser Cutting", slug: "ss-jali-laser-cutting" },
@@ -51,7 +47,6 @@ export default function Navbar() {
     { name: "Services", href: "/services", subLinks: services },
     { name: "Engineering", href: "/engineering", subLinks: engineeringItems },
     { name: "Gallery", href: "/gallery" },
-   
     { name: "Contact", href: "/contact" },
   ];
 
@@ -90,9 +85,10 @@ export default function Navbar() {
               </Link>
               {item.subLinks && (
                 <div className="absolute top-full left-0 w-72 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <div className="bg-white border border-neutral-100 shadow-xl rounded-xl p-3 grid gap-1">
+                  {/* Improved height: reduced padding and removed grid gap for a compact look */}
+                  <div className="bg-white border border-neutral-100 shadow-xl rounded-xl py-2 flex flex-col max-h-[75vh] overflow-y-auto">
                     {item.subLinks.map((sub) => (
-                      <Link key={sub.slug} href={`${item.href}/${sub.slug}`} className="text-[13px] font-semibold text-neutral-700 hover:text-fuchsia-700 hover:bg-fuchsia-50 px-4 py-2.5 rounded-lg transition-all">
+                      <Link key={sub.slug} href={`${item.href}/${sub.slug}`} className="text-[12px] font-semibold text-neutral-700 hover:text-fuchsia-700 hover:bg-fuchsia-50 px-6 py-1.5 transition-all">
                         {sub.title}
                       </Link>
                     ))}
@@ -114,35 +110,29 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer remains untouched */}
       {isOpen && (
         <div className="lg:hidden fixed inset-0 z-[100] bg-white p-8 overflow-y-auto">
-          <button onClick={() => setIsOpen(false)} className="absolute top-8 right-8 text-neutral-900"><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg></button>
-          
-          <div className="flex flex-col gap-6 mt-10">
-            {navLinks.map((item) => (
-              <div key={item.name} className="border-b border-neutral-100 pb-4">
-                <div className="flex justify-between items-center" onClick={() => item.subLinks && toggleSubMenu(item.name)}>
-                  <Link 
-                    href={item.subLinks ? "#" : item.href} 
-                    className="text-2xl font-bold text-neutral-900"
-                    onClick={(e) => { if (item.subLinks) e.preventDefault(); else setIsOpen(false); }}
-                  >
-                    {item.name}
-                  </Link>
-                  {item.subLinks && <span className="text-2xl font-bold text-fuchsia-700 cursor-pointer">{isSubMenuOpen(item.name) ? '−' : '+'}</span>}
-                </div>
-                
-                {item.subLinks && isSubMenuOpen(item.name) && (
-                  <div className="flex flex-col gap-2 mt-4 pl-4 border-l-2 border-fuchsia-200">
-                    {item.subLinks.map((sub) => (
-                      <Link key={sub.slug} href={`${item.href}/${sub.slug}`} className="text-lg font-semibold text-neutral-700 py-2" onClick={() => setIsOpen(false)}>{sub.title}</Link>
-                    ))}
+            <button onClick={() => setIsOpen(false)} className="absolute top-8 right-8 text-neutral-900"><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg></button>
+            <div className="flex flex-col gap-6 mt-10">
+              {navLinks.map((item) => (
+                <div key={item.name} className="border-b border-neutral-100 pb-4">
+                  <div className="flex justify-between items-center" onClick={() => item.subLinks && toggleSubMenu(item.name)}>
+                    <Link href={item.subLinks ? "#" : item.href} className="text-2xl font-bold text-neutral-900" onClick={(e) => { if (item.subLinks) e.preventDefault(); else setIsOpen(false); }}>
+                      {item.name}
+                    </Link>
+                    {item.subLinks && <span className="text-2xl font-bold text-fuchsia-700 cursor-pointer">{isSubMenuOpen(item.name) ? '−' : '+'}</span>}
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
+                  {item.subLinks && isSubMenuOpen(item.name) && (
+                    <div className="flex flex-col gap-2 mt-4 pl-4 border-l-2 border-fuchsia-200">
+                      {item.subLinks.map((sub) => (
+                        <Link key={sub.slug} href={`${item.href}/${sub.slug}`} className="text-lg font-semibold text-neutral-700 py-2" onClick={() => setIsOpen(false)}>{sub.title}</Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
         </div>
       )}
     </header>
