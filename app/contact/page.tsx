@@ -1,20 +1,38 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState, Suspense, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, Suspense, useEffect, FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
-import { Phone, Building2, Send, Briefcase, Wrench } from "lucide-react";
+import { Phone, Building2, Send, Briefcase, Wrench, CheckCircle2, XCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
-// The form logic is now strictly synchronized with the URL
+// --- CUSTOM NOTIFICATION COMPONENT ---
+function Notification({ message, type, onClose }: { message: string, type: 'success' | 'error', onClose: () => void }) {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 4000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 50 }}
+      className={`fixed top-24 right-6 z-[9999] flex items-center gap-4 p-4 rounded-2xl shadow-2xl border ${type === 'success' ? 'bg-white border-fuchsia-100' : 'bg-white border-red-100'}`}
+    >
+      {type === 'success' ? <CheckCircle2 className="text-fuchsia-600" /> : <XCircle className="text-red-500" />}
+      <p className="text-sm font-bold text-slate-900">{message}</p>
+    </motion.div>
+  );
+}
+
 function ContactForm() {
   const searchParams = useSearchParams();
+  const [notification, setNotification] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
 
-  // Get values from URL
   const serviceFromUrl = searchParams.get("service") || "";
   const engineeringFromUrl = searchParams.get("engineering") || "";
 
-  // State
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
@@ -24,135 +42,60 @@ function ContactForm() {
   const [engineeringValue, setEngineeringValue] = useState(engineeringFromUrl);
   const [loading, setLoading] = useState(false);
 
-  // Update Service field whenever URL changes
   useEffect(() => {
     setServiceValue(serviceFromUrl);
-  }, [serviceFromUrl]);
-
-  // Update Engineering field whenever URL changes
-  useEffect(() => {
     setEngineeringValue(engineeringFromUrl);
-  }, [engineeringFromUrl]);
+  }, [serviceFromUrl, engineeringFromUrl]);
 
-  const sendEmail = async (e) => {
+  const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       await emailjs.send(
-        "service_x6e1xqi",     // Service ID
-        "template_m94gv0s",   // Replace with your template ID
-        {
-          name,
-          company,
-          email,
-          phone,
-          engineering: engineeringValue,
-          service: serviceValue,
-          message,
-        },
-        "i_oehQNlJQ5NQShub"     // Replace with your public key
+        "service_x6e1xqi",
+        "template_m94gv0s",
+        { name, company, email, phone, engineering: engineeringValue, service: serviceValue, message },
+        "i_oehQNlJQ5NQShub"
       );
 
-      alert("Inquiry sent successfully!");
-
-      setName("");
-      setCompany("");
-      setEmail("");
-      setPhone("");
-      setMessage("");
-
-      if (!serviceFromUrl) setServiceValue("");
-      if (!engineeringFromUrl) setEngineeringValue("");
+      setNotification({ message: "Inquiry sent successfully!", type: 'success' });
+      setName(""); setCompany(""); setEmail(""); setPhone(""); setMessage("");
     } catch (error) {
-      console.log(error);
-      alert("Failed to send inquiry.");
+      setNotification({ message: "Failed to send. Please try again.", type: 'error' });
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
-    <form className="space-y-5" onSubmit={sendEmail}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Your Name"
-          className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500"
-        />
-
-        <input
-          type="text"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          placeholder="Company Name"
-          className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email Address"
-          className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500"
-        />
-
-        <input
-          type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="Phone Number"
-          className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="relative">
-          <Briefcase className="absolute left-4 top-4 text-slate-400" size={18} />
-          <input
-            type="text"
-            value={engineeringValue}
-            onChange={(e) => setEngineeringValue(e.target.value)}
-            placeholder="Engineering Field"
-            className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-purple-500"
-          />
+    <>
+      {notification && <Notification message={notification.message} type={notification.type} onClose={() => setNotification(null)} />}
+      <form className="space-y-5" onSubmit={sendEmail}>
+        {/* ... (Keep your existing inputs exactly as they were) ... */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+           <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+           <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company Name" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
         </div>
-
-        <div className="relative">
-          <Wrench className="absolute left-4 top-4 text-slate-400" size={18} />
-          <input
-            type="text"
-            value={serviceValue}
-            onChange={(e) => setServiceValue(e.target.value)}
-            placeholder="Required Service"
-            className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-cyan-500"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+           <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
         </div>
-      </div>
-
-      <textarea
-        rows={4}
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Describe Your Requirements"
-        className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500"
-      />
-
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full px-10 py-4 rounded-2xl bg-slate-900 text-white font-bold hover:bg-pink-600 transition-all flex items-center justify-center gap-3"
-      >
-        {loading ? "Sending..." : "Send Inquiry"}
-        <Send size={16} />
-      </button>
-    </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+           <div className="relative"><Briefcase className="absolute left-4 top-4 text-slate-400" size={18} /><input type="text" value={engineeringValue} onChange={(e) => setEngineeringValue(e.target.value)} placeholder="Engineering Field" className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-purple-500" /></div>
+           <div className="relative"><Wrench className="absolute left-4 top-4 text-slate-400" size={18} /><input type="text" value={serviceValue} onChange={(e) => setEngineeringValue(e.target.value)} placeholder="Required Service" className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-cyan-500" /></div>
+        </div>
+        <textarea rows={4} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe Your Requirements" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+        <button type="submit" disabled={loading} className="w-full px-10 py-4 rounded-2xl bg-slate-900 text-white font-bold hover:bg-fuchsia-600 transition-all flex items-center justify-center gap-3">
+          {loading ? "Sending..." : "Send Inquiry"}
+          <Send size={16} />
+        </button>
+      </form>
+    </>
   );
 }
+
+// ... Keep your ContactPage component exactly as is.
 
 export default function ContactPage() {
   const cardVariants = {

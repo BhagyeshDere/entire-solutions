@@ -84,10 +84,10 @@ export default function Hero() {
             </Link>
 
             <Link
-              href="/projects"
+              href="/gallery"
               className="px-8 py-4 rounded-xl border border-white/30 backdrop-blur-md text-white hover:bg-white/10 transition duration-300 font-body"
             >
-              View Projects
+              View Gallery
             </Link>
           </div>
         </motion.div>

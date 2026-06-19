@@ -85,7 +85,6 @@ export default function Navbar() {
               </Link>
               {item.subLinks && (
                 <div className="absolute top-full left-0 w-72 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  {/* Improved height: reduced padding and removed grid gap for a compact look */}
                   <div className="bg-white border border-neutral-100 shadow-xl rounded-xl py-2 flex flex-col max-h-[75vh] overflow-y-auto">
                     {item.subLinks.map((sub) => (
                       <Link key={sub.slug} href={`${item.href}/${sub.slug}`} className="text-[12px] font-semibold text-neutral-700 hover:text-fuchsia-700 hover:bg-fuchsia-50 px-6 py-1.5 transition-all">
@@ -101,7 +100,15 @@ export default function Navbar() {
 
         {/* Action Buttons */}
         <div className="hidden lg:flex items-center gap-3">
-          <Link href="/brochure.pdf" className="px-4 py-2 rounded-full border-2 border-fuchsia-600 text-fuchsia-700 text-[11px] font-bold hover:bg-fuchsia-600 hover:text-white transition-all uppercase tracking-wider">Brochure</Link>
+          <a 
+            href="images/Entire_Solutions_Final_Company_Profile.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            download="Entire_Solutions_Brochure.pdf"
+            className="px-4 py-2 rounded-full border-2 border-fuchsia-600 text-fuchsia-700 text-[11px] font-bold hover:bg-fuchsia-600 hover:text-white transition-all uppercase tracking-wider"
+          >
+            Brochure
+          </a>
           <Link href="/contact" className="px-6 py-2 rounded-full bg-neutral-900 text-white text-[11px] font-bold hover:bg-fuchsia-700 transition-all shadow-md uppercase tracking-wider">Get Quote</Link>
         </div>
 
