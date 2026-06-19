@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6 font-heading">Quick Links</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
-              {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (
+              {['Home', 'About', 'Services', 'Gallery', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`} className="hover:text-fuchsia-400 transition-colors">
                     {item}
@@ -55,15 +55,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Card */}
+          {/* Contact Card - Updated with provided details */}
           <div>
             <h3 className="text-lg font-semibold mb-6 font-heading">Contact</h3>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-sm space-y-3 text-gray-300">
-              <p className="flex items-start gap-2"><MapPin size={18} className="text-fuchsia-500 shrink-0" /> Bhosari, Pune - 412105</p>
+              <p className="flex items-start gap-2">
+                <MapPin size={18} className="text-fuchsia-500 shrink-0 mt-0.5" /> 
+                Plot No. 03, Sr.No. 101, Wadmukhwadi Road, Tapkir Nagar, Khadi Machine Road, Bhosari, Pune - 412105.
+              </p>
               <p className="flex items-center gap-2"><Phone size={18} className="text-fuchsia-500 shrink-0" /> +91 7020493239</p>
               <p className="flex items-center gap-2"><Phone size={18} className="text-fuchsia-500 shrink-0" /> +91 9222089025</p>
               <p className="flex items-center gap-2"><Mail size={18} className="text-fuchsia-500 shrink-0" /> entiresolutions20@gmail.com</p>
-              <p className="flex items-center gap-2"><Globe size={18} className="text-fuchsia-500 shrink-0" /> entiresolutions.co.in</p>
             </div>
           </div>
         </div>

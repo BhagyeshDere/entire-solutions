@@ -26,15 +26,22 @@ export default function ServicePage({ params }) {
               key={activeImage}
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }}
-              className="relative h-[500px] w-full rounded-[2rem] overflow-hidden bg-white border border-slate-200 flex items-center justify-center"
+              className="relative h-[500px] w-full rounded-[2rem] overflow-hidden bg-white border border-slate-200 flex items-center justify-center cursor-zoom-in"
             >
-              <Image 
-                src={activeImage} 
-                alt={service.title} 
-                fill 
-                className="object-contain p-4" 
-                priority 
-              />
+              {/* Added motion.div to wrapper for zoom animation on hover */}
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="relative w-full h-full"
+              >
+                <Image 
+                  src={activeImage} 
+                  alt={service.title} 
+                  fill 
+                  className="object-contain p-4" 
+                  priority 
+                />
+              </motion.div>
             </motion.div>
           </AnimatePresence>
 
@@ -78,10 +85,9 @@ export default function ServicePage({ params }) {
             </div>
           </div>
 
-          {/* Updated Enquiry Button with query parameters */}
           <Link
             href={{
-              pathname: '/contact',
+              pathname: "/contact",
               query: { service: service.title },
             }}
             className="inline-flex items-center justify-center px-10 py-5 w-full md:w-max rounded-2xl bg-slate-900 text-white font-bold transition-all hover:bg-slate-800"
