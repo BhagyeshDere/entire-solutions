@@ -73,21 +73,22 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex flex-1 justify-center items-center gap-7">
+        <nav className="hidden lg:flex flex-1 justify-center items-center gap-6 xl:gap-8">
           {navLinks.map((item) => (
             <div key={item.name} className="relative group">
               <Link 
                 href={item.subLinks ? "#" : item.href} 
                 onClick={(e) => { if (item.subLinks) e.preventDefault(); }}
-                className="font-bold text-[12px] uppercase tracking-[0.05em] text-neutral-900 hover:text-fuchsia-700 transition-colors py-4 cursor-pointer"
+                className="font-bold text-[14px] uppercase text-neutral-900 hover:text-fuchsia-700 transition-colors py-4 cursor-pointer whitespace-nowrap"
               >
                 {item.name}
               </Link>
               {item.subLinks && (
                 <div className="absolute top-full left-0 w-72 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <div className="bg-white border border-neutral-100 shadow-xl rounded-xl py-2 flex flex-col max-h-[75vh] overflow-y-auto">
+                  {/* Removed max-height and overflow-y to allow full list expansion */}
+                  <div className="bg-white border border-neutral-100 shadow-xl rounded-xl py-3 flex flex-col">
                     {item.subLinks.map((sub) => (
-                      <Link key={sub.slug} href={`${item.href}/${sub.slug}`} className="text-[12px] font-semibold text-neutral-700 hover:text-fuchsia-700 hover:bg-fuchsia-50 px-6 py-1.5 transition-all">
+                      <Link key={sub.slug} href={`${item.href}/${sub.slug}`} className="text-[14px] font-medium text-neutral-700 hover:text-fuchsia-700 hover:bg-fuchsia-50 px-6 py-2.5 transition-all">
                         {sub.title}
                       </Link>
                     ))}
@@ -117,7 +118,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer remains untouched */}
+      {/* Mobile Drawer */}
       {isOpen && (
         <div className="lg:hidden fixed inset-0 z-[100] bg-white p-8 overflow-y-auto">
             <button onClick={() => setIsOpen(false)} className="absolute top-8 right-8 text-neutral-900"><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg></button>

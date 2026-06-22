@@ -152,25 +152,14 @@ export default function ContactPage() {
  {/* 3. MAP SECTION */}
 {/* 3. MAP SECTION */}
 <div className="max-w-7xl mx-auto px-6 pt-0 pb-20 md:pb-24">
-  <div className="relative w-full h-[300px] md:h-[500px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white group cursor-pointer bg-slate-200">
+  <div className="relative w-full h-[350px] md:h-[500px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
     
-    {/* Wrap the map in an anchor tag to ensure it opens the exact location on click */}
-    <a 
-      href="https://www.google.com/maps/search/?api=1&query=Entire+Solutions+Wadmukhwadi+Pune" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="absolute inset-0 z-10 w-full h-full"
-    >
-      {/* Invisible overlay to capture the click */}
-      <span className="sr-only">Open Entire Solutions in Google Maps</span>
-    </a>
-
-    {/* Real Interactive Google Map (disabled pointer events so the <a> tag handles clicks) */}
+    {/* Google Maps Embed - Use the official iframe code from Google Maps share feature */}
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.897453007077!2d73.856178!3d18.6487655!2m3!1f0!2f0!3m0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c75a40b904d9%3A0x6b2e1765c024aa86!2sEntire%20Solutions!5e0!3m2!1sen!2sin!4v1717000000000"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.8845607736637!2d73.85617837593282!3d18.64876556812836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7af5b5d1947%3A0x63351ec946e39275!2sEntire%20Solutions!5e0!3m2!1sen!2sin!4v1716388402778!5m2!1sen!2sin"
       width="100%"
       height="100%"
-      style={{ border: 0, pointerEvents: 'none' }}
+      style={{ border: 0 }}
       allowFullScreen
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"
@@ -178,16 +167,29 @@ export default function ContactPage() {
       title="Entire Solutions Map"
     />
 
-    {/* Address Card (Pointer events allowed to keep it visually interactive) */}
-    <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 bg-white/95 backdrop-blur p-6 rounded-[1.5rem] shadow-2xl max-w-sm border border-slate-100 z-20">
+    {/* Address Card */}
+    <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 bg-white/95 backdrop-blur-md p-6 rounded-[2rem] shadow-2xl max-w-sm border border-slate-100 z-10">
       <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
         <Building2 size={18} className="text-pink-600" /> 
         Entire Solutions
       </h4>
-      <p className="text-sm text-slate-600 leading-relaxed">
+      <p className="text-sm text-slate-700 leading-relaxed mb-6">
         Sr. No. 101, Tapkir Nagar, Plot. No. 03, Khadi Machine Road, 
         Wadmukhwadi, Pune - 412105.
       </p>
+
+      {/* Action Buttons */}
+      <div className="flex flex-col gap-3">
+       
+        <a 
+          href="https://www.google.com/maps/place/?q=place_id:ChIJIZNUdyjHwjsRsibpf6Ckq8k" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-full text-center text-sm font-semibold text-slate-600 hover:text-pink-600 transition-colors py-2"
+        >
+          Open in Maps →
+        </a>
+      </div>
     </div>
   </div>
 </div>
