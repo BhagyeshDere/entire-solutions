@@ -9,6 +9,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isEngineeringOpen, setIsEngineeringOpen] = useState(false);
+  const [isElectricalOpen, setIsElectricalOpen] = useState(false); // New state
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -41,11 +42,18 @@ export default function Navbar() {
     { title: "Mass Production", slug: "mass-production" }
   ];
 
+  const electricalItems = [
+    { title: "Mechanical", slug: "mechanical" },
+    { title: "Electric", slug: "electric" },
+    { title: "Electronic", slug: "electronic" }
+  ];
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services", subLinks: services },
     { name: "Engineering", href: "/engineering", subLinks: engineeringItems },
+    { name: "Electrical Services", href: "/electrical-services", subLinks: electricalItems }, // Added
     { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ];
@@ -53,11 +61,13 @@ export default function Navbar() {
   const toggleSubMenu = (name) => {
     if (name === "Services") setIsServicesOpen(!isServicesOpen);
     if (name === "Engineering") setIsEngineeringOpen(!isEngineeringOpen);
+    if (name === "Electrical Services") setIsElectricalOpen(!isElectricalOpen); // Added
   };
 
   const isSubMenuOpen = (name) => {
     if (name === "Services") return isServicesOpen;
     if (name === "Engineering") return isEngineeringOpen;
+    if (name === "Electrical Services") return isElectricalOpen; // Added
     return false;
   };
 
@@ -104,17 +114,13 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer - Left Slide-in */}
+      {/* Mobile Drawer */}
       {isOpen && (
         <>
-          {/* Backdrop */}
           <div className="lg:hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
-          {/* Drawer */}
           <div className="lg:hidden fixed top-0 left-0 h-full w-[85%] max-w-sm z-[101] bg-white shadow-2xl p-8 overflow-y-auto transition-transform duration-300">
             <div className="flex justify-between items-center mb-8">
-              <Link href="/" onClick={() => setIsOpen(false)}>
-                <Image src="/logo.png" alt="Entire Solutions" width={120} height={40} />
-              </Link>
+              <Link href="/" onClick={() => setIsOpen(false)}><Image src="/logo.png" alt="Entire Solutions" width={120} height={40} /></Link>
               <button onClick={() => setIsOpen(false)} className="text-neutral-900"><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg></button>
             </div>
             
