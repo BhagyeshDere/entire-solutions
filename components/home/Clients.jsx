@@ -14,10 +14,11 @@ export default function Clients() {
         
         {/* Header Section */}
         <div className="text-center mb-20">
-          <span className="text-purple-600 font-bold uppercase tracking-[0.3em] text-[11px] font-heading">
+          {/* Improved Font Styling */}
+          <span className="inline-block text-purple-700 font-extrabold uppercase tracking-[0.4em] text-[12px] font-heading bg-purple-50 px-4 py-1 rounded-full shadow-sm">
             Global Industry Partners
           </span>
-          <h2 className="mt-6 text-5xl md:text-7xl font-bold text-neutral-900 leading-tight font-heading">
+          <h2 className="mt-8 text-5xl md:text-7xl font-bold text-neutral-900 leading-tight font-heading">
             Strategic <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-500">Networks</span>
           </h2>
         </div>

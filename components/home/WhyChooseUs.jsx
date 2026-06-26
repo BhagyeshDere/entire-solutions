@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Zap, Construction, Building2, TrendingUp, Users } from "lucide-react";
 
 const reasons = [
@@ -33,8 +32,6 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   return (
     <section id="why-us" className="relative py-24 overflow-hidden font-body">
       {/* Background Image Layer */}
@@ -61,39 +58,26 @@ export default function WhyChooseUs() {
         {/* Dynamic Grid: Centered Layout */}
         <div className="flex flex-wrap justify-center gap-6">
           {reasons.map((item, index) => (
-            <motion.div
+            <div
               key={index}
-              onClick={() => setActiveIndex(index === activeIndex ? null : index)}
-              className={`cursor-pointer group relative p-8 rounded-3xl border transition-all duration-500 w-full md:w-[45%] lg:w-[30%] flex flex-col items-center text-center ${
-                index === activeIndex 
-                  ? "bg-[#0B0F1A]/90 border-blue-500 shadow-[0_20px_50px_-15px_rgba(59,130,246,0.3)]" 
-                  : "bg-[#0B0F1A]/50 border-white/10 hover:bg-[#0B0F1A]/70 hover:border-white/30"
-              }`}
+              className="group relative p-8 rounded-3xl border border-white/10 bg-[#0B0F1A]/50 hover:bg-[#0B0F1A]/70 hover:border-white/30 transition-all duration-500 w-full md:w-[45%] lg:w-[30%] flex flex-col items-center text-center"
             >
               {/* Professional Lucide Icon Container */}
               <div className="text-blue-400 mb-6 p-4 rounded-full bg-white/5 border border-white/10 group-hover:border-blue-500/50 group-hover:text-white transition-all duration-300">
                 {item.icon}
               </div>
               
-              <div className={`w-12 h-1 mb-6 rounded-full transition-all duration-500 ${index === activeIndex ? "bg-gradient-to-r from-purple-500 to-blue-500 w-20" : "bg-white/20"}`} />
+              <div className="w-12 h-1 mb-6 rounded-full bg-white/20 transition-all duration-500 group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-blue-500 group-hover:w-20" />
               
               <h3 className="text-2xl font-semibold mb-4 text-white font-heading">
                 {item.title}
               </h3>
 
-              <AnimatePresence mode="wait">
-                {(index === activeIndex) && (
-                  <motion.p
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="text-slate-300 leading-relaxed text-base max-w-[280px] font-body"
-                  >
-                    {item.description}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              {/* Description is now permanently visible */}
+              <p className="text-slate-300 leading-relaxed text-base max-w-[280px] font-body">
+                {item.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>

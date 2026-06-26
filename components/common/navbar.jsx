@@ -9,7 +9,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isEngineeringOpen, setIsEngineeringOpen] = useState(false);
-  const [isElectricalOpen, setIsElectricalOpen] = useState(false); // New state
+  const [isElectricalOpen, setIsElectricalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -32,8 +32,7 @@ export default function Navbar() {
     { title: "Pipe Laser Cutting", slug: "pipe-laser-cutting" },
     { title: "SS Filter Plate Cuttings", slug: "ss-filter-plate-cuttings" },
     { title: "Aluminum Laser Cutting", slug: "aluminum-laser-cutting" },
-    { title: "Metal Jali Laser Cutting", slug: "metal-jali-laser-cutting" },
-    { title: "SS Jali Laser Cutting", slug: "ss-jali-laser-cutting" },
+    { title: "MS/SS Jali Laser Cutting", slug: "ss-jali-laser-cutting" },
   ];
 
   const engineeringItems = [
@@ -49,11 +48,11 @@ export default function Navbar() {
   ];
 
   const navLinks = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/", isExternal: true }, // Marked as external to force refresh
     { name: "About", href: "/about" },
     { name: "Services", href: "/services", subLinks: services },
     { name: "Engineering", href: "/engineering", subLinks: engineeringItems },
-    { name: "Electrical Services", href: "/electrical-services", subLinks: electricalItems }, // Added
+    { name: "Electrical", href: "/electrical-services", subLinks: electricalItems },
     { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ];
@@ -61,13 +60,13 @@ export default function Navbar() {
   const toggleSubMenu = (name) => {
     if (name === "Services") setIsServicesOpen(!isServicesOpen);
     if (name === "Engineering") setIsEngineeringOpen(!isEngineeringOpen);
-    if (name === "Electrical Services") setIsElectricalOpen(!isElectricalOpen); // Added
+    if (name === "Electrical") setIsElectricalOpen(!isElectricalOpen);
   };
 
   const isSubMenuOpen = (name) => {
     if (name === "Services") return isServicesOpen;
     if (name === "Engineering") return isEngineeringOpen;
-    if (name === "Electrical Services") return isElectricalOpen; // Added
+    if (name === "Electrical") return isElectricalOpen;
     return false;
   };
 
@@ -78,17 +77,24 @@ export default function Navbar() {
                  : "w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200 px-6 h-20"
       }`}>
         
-        <Link href="/" className="z-10 flex-shrink-0 w-32 md:w-40 ml-4">
+        {/* Logo with force refresh */}
+        <a href="/" className="z-10 flex-shrink-0 w-32 md:w-40 ml-4">
           <Image src="/logo.png" alt="Entire Solutions" width={180} height={60} priority className="object-contain w-full h-auto" />
-        </Link>
+        </a>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex flex-1 justify-center items-center gap-6 xl:gap-8">
           {navLinks.map((item) => (
             <div key={item.name} className="relative group">
-              <Link href={item.subLinks ? "#" : item.href} onClick={(e) => { if (item.subLinks) e.preventDefault(); }} className="font-bold text-[14px] uppercase text-neutral-900 hover:text-fuchsia-700 transition-colors py-4 cursor-pointer whitespace-nowrap">
-                {item.name}
-              </Link>
+              {item.isExternal ? (
+                <a href={item.href} className="font-bold text-[14px] uppercase text-neutral-900 hover:text-fuchsia-700 transition-colors py-4 cursor-pointer whitespace-nowrap">
+                  {item.name}
+                </a>
+              ) : (
+                <Link href={item.subLinks ? "#" : item.href} onClick={(e) => { if (item.subLinks) e.preventDefault(); }} className="font-bold text-[14px] uppercase text-neutral-900 hover:text-fuchsia-700 transition-colors py-4 cursor-pointer whitespace-nowrap">
+                  {item.name}
+                </Link>
+              )}
               {item.subLinks && (
                 <div className="absolute top-full left-0 w-72 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="bg-white border border-neutral-100 shadow-xl rounded-xl py-3 flex flex-col">
@@ -120,7 +126,7 @@ export default function Navbar() {
           <div className="lg:hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
           <div className="lg:hidden fixed top-0 left-0 h-full w-[85%] max-w-sm z-[101] bg-white shadow-2xl p-8 overflow-y-auto transition-transform duration-300">
             <div className="flex justify-between items-center mb-8">
-              <Link href="/" onClick={() => setIsOpen(false)}><Image src="/logo.png" alt="Entire Solutions" width={120} height={40} /></Link>
+              <a href="/" onClick={() => setIsOpen(false)}><Image src="/logo.png" alt="Entire Solutions" width={120} height={40} /></a>
               <button onClick={() => setIsOpen(false)} className="text-neutral-900"><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg></button>
             </div>
             
@@ -128,9 +134,13 @@ export default function Navbar() {
               {navLinks.map((item) => (
                 <div key={item.name} className="border-b border-neutral-100 pb-4">
                   <div className="flex justify-between items-center" onClick={() => item.subLinks && toggleSubMenu(item.name)}>
-                    <Link href={item.subLinks ? "#" : item.href} className="text-xl font-bold text-neutral-900" onClick={(e) => { if (item.subLinks) e.preventDefault(); else setIsOpen(false); }}>
-                      {item.name}
-                    </Link>
+                    {item.isExternal ? (
+                      <a href={item.href} className="text-xl font-bold text-neutral-900">{item.name}</a>
+                    ) : (
+                      <Link href={item.subLinks ? "#" : item.href} className="text-xl font-bold text-neutral-900" onClick={(e) => { if (item.subLinks) e.preventDefault(); else setIsOpen(false); }}>
+                        {item.name}
+                      </Link>
+                    )}
                     {item.subLinks && <span className="text-2xl font-bold text-fuchsia-700 cursor-pointer">{isSubMenuOpen(item.name) ? '−' : '+'}</span>}
                   </div>
                   {item.subLinks && isSubMenuOpen(item.name) && (

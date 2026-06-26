@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Globe } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -48,14 +48,14 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 font-heading">Services</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
               <li>Laser Cutting</li>
-              <li>Sheet Metal Bending</li>
-              <li>Heavy Fabrication</li>
-              <li>Powder Coating</li>
               <li>Electrical Panel Boxes</li>
+              <li>Brass & Metal Fabrication</li>
+              <li>Powder Coatings</li>
+              <li>CNC Bending & Welding</li>
             </ul>
           </div>
 
-          {/* Contact Card - Updated with provided details */}
+          {/* Contact Card */}
           <div>
             <h3 className="text-lg font-semibold mb-6 font-heading">Contact</h3>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-sm space-y-3 text-gray-300">
@@ -65,8 +65,14 @@ export default function Footer() {
               </p>
               <p className="flex items-center gap-2"><Phone size={18} className="text-fuchsia-500 shrink-0" /> +91 7020493239</p>
               <p className="flex items-center gap-2"><Phone size={18} className="text-fuchsia-500 shrink-0" /> +91 9222089025</p>
-              <p className="flex items-center gap-2"><Mail size={18} className="text-fuchsia-500 shrink-0" /> marketing@entiresolutions.co.in<br></br>
-contact@entiresolutions.co.in</p>
+              <div className="flex items-start gap-2 pt-1">
+                <Mail size={18} className="text-fuchsia-500 shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <span>contact@entiresolutions.co.in</span>
+                  <span>marketing@entiresolutions.co.in</span>
+                  <span>entiresolutions20@gmail.com</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -166,7 +166,7 @@ const serviceDetails = [
   },
   {
     slug: "ss-jali-laser-cutting",
-    title: "SS Jali Laser Cutting",
+    title: "MS/SS Jali Laser Cutting",
     mainImage: "/images/sub-services/ss-jali-laser-cutting/ss_main.png",
     gallery: [
       "/images/sub-services/ss-jali-laser-cutting/ss_1.png",

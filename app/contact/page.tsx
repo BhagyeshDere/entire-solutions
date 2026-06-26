@@ -128,12 +128,17 @@ export default function ContactPage() {
                 <p><strong className="text-slate-900 block">Address:</strong> Plot No. 03, Sr.No. 101, Wadmukhwadi Road, Bhosari - 412105.</p>
               </div>
             </motion.div>
+            
             <motion.div variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="p-6 md:p-8 rounded-[2rem] bg-slate-900 text-white shadow-xl">
               <div className="flex items-center gap-3 mb-6 text-purple-400"><Phone size={24} /> <h3 className="font-bold text-lg md:text-xl">Reach & Compliance</h3></div>
               <div className="space-y-4 text-sm text-slate-300">
                 <p><strong className="text-white block">Phones:</strong> 7020493239 / 9222089025</p>
-                <p><strong className="text-white block">Emails:</strong> marketing@entiresolutions.co.in<br></br>
-contact@entiresolutions.co.in</p>
+                <div className="space-y-1">
+                  <strong className="text-white block">Emails:</strong>
+                  <span className="block">contact@entiresolutions.co.in</span>
+                  <span className="block">marketing@entiresolutions.co.in</span>
+                  <span className="block">entiresolutions20@gmail.com</span>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -146,9 +151,6 @@ contact@entiresolutions.co.in</p>
           </div>
         </div>
       </section>
-
-
-      
       
  {/* 3. MAP SECTION */}
 {/* 3. MAP SECTION */}

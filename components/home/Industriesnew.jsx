@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Zap, Plug, Settings, Factory, Building2 } from "lucide-react";
 
 const industries = [
@@ -38,33 +38,26 @@ export default function Industriesnew() {
                 key={idx}
                 onClick={() => setActive(idx)}
                 animate={{ flex: active === idx ? 2 : 1 }}
-                className={`relative overflow-hidden rounded-md cursor-pointer border transition-all duration-500 p-6 flex flex-col items-center justify-center ${
-                  active === idx 
-                    ? "border-[#3A86FF] shadow-lg" 
-                    : "bg-neutral-50 hover:bg-neutral-100 border-neutral-200"
-                }`}
+                className="relative overflow-hidden rounded-md cursor-pointer border border-neutral-200 p-6 flex flex-col items-center justify-center transition-all duration-500"
               >
-                <AnimatePresence>
-                  {active === idx && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }} 
-                      exit={{ opacity: 0 }}
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${item.img})` }}
-                    />
-                  )}
-                </AnimatePresence>
+                {/* Image is now always visible */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105" 
+                  style={{ backgroundImage: `url(${item.img})` }}
+                />
+                
+                {/* Dark overlay for readability */}
+                <div className={`absolute inset-0 bg-black/40 transition-opacity duration-500 ${active === idx ? "opacity-40" : "opacity-60"}`} />
 
-                <div className="relative z-10 flex flex-col items-center text-center bg-white/90 backdrop-blur-sm p-4 rounded-sm">
+                <div className="relative z-10 flex flex-col items-center text-center p-4">
                   <div className={`mb-4 transition-all duration-500 ${active === idx ? "scale-110" : "scale-100"}`}>
-                    <Icon className={`w-8 h-8 ${active === idx ? "text-[#3A86FF]" : "text-neutral-400"}`} strokeWidth={1.5} />
+                    <Icon className={`w-8 h-8 ${active === idx ? "text-white" : "text-white/80"}`} strokeWidth={1.5} />
                   </div>
                   
                   <h3 className={`font-bold transition-all duration-500 font-heading ${
                     active === idx 
-                      ? "text-xl leading-tight mb-3 text-neutral-950" 
-                      : "text-md [writing-mode:vertical-lr] rotate-180 h-32 text-neutral-600"
+                      ? "text-xl leading-tight mb-3 text-white" 
+                      : "text-md [writing-mode:vertical-lr] rotate-180 h-32 text-white/90"
                   }`}>
                     {item.title}
                   </h3>
@@ -74,7 +67,7 @@ export default function Industriesnew() {
                     animate={{ height: active === idx ? "auto" : 0, opacity: active === idx ? 1 : 0 }}
                     className="overflow-hidden flex flex-col items-center"
                   >
-                    <p className="text-neutral-700 text-xs pb-3 max-w-[180px] font-body">{item.desc}</p>
+                    <p className="text-white text-xs pb-3 max-w-[180px] font-body font-medium">{item.desc}</p>
                     <div className="w-10 h-[2px] bg-gradient-to-r from-[#3A86FF] to-[#F72585]" />
                   </motion.div>
                 </div>

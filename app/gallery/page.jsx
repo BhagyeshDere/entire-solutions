@@ -49,7 +49,7 @@ export default function GalleryPage() {
         {/* Grid: Optimized for mobile and desktop */}
         <motion.div 
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {filteredImages.map((item) => (
@@ -60,22 +60,22 @@ export default function GalleryPage() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
                 key={item.id}
-                className="group relative bg-white p-3 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-500"
+                className="group relative bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-500"
               >
-                {/* Image Container: Height optimized for mobile */}
-                <div className="relative overflow-hidden rounded-xl h-48 md:h-60 bg-slate-50 flex items-center justify-center">
+                {/* Image Container: Increased height for better visibility */}
+                <div className="relative overflow-hidden rounded-xl h-56 md:h-72 bg-slate-50 flex items-center justify-center">
                   <Image
                     src={item.image}
-                    width={400}
-                    height={400}
+                    width={600}
+                    height={600}
                     alt={item.category}
-                    className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
                 {/* Info Badge */}
-                <div className="absolute top-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute top-8 left-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-bold text-slate-900 uppercase tracking-widest shadow-sm border border-slate-100">
                       {item.category}
                     </span>

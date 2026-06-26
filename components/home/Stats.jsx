@@ -4,9 +4,9 @@ import React, { useEffect, useRef } from "react";
 import { motion, useSpring, useTransform, useInView } from "framer-motion";
 
 const stats = [
-  { val: 15, suffix: "+", label: "Years Experience", color: "bg-purple-500" },
-  { val: 1200, suffix: "+", label: "Projects Completed", color: "bg-blue-500" },
-  { val: 500, suffix: "+", label: "Happy Clients", color: "bg-yellow-400" },
+  { val: 6, suffix: "+", label: "Years Experience", color: "bg-purple-500" },
+  { val: 200, suffix: "+", label: "Projects Completed", color: "bg-blue-500" },
+  { val: 60, suffix: "+", label: "Happy Clients", color: "bg-yellow-400" },
   { val: 24, suffix: "/7", label: "Support Service", color: "bg-green-500" },
 ];
 
