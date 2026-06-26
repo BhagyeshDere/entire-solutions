@@ -132,7 +132,7 @@ export default function ContactPage() {
               <div className="flex items-center gap-3 mb-6 text-purple-400"><Phone size={24} /> <h3 className="font-bold text-lg md:text-xl">Reach & Compliance</h3></div>
               <div className="space-y-4 text-sm text-slate-300">
                 <p><strong className="text-white block">Phones:</strong> 7020493239 / 9222089025</p>
-                <p><strong className="text-white block">Email:</strong> marketing@entiresolutions.co.in<br></br>
+                <p><strong className="text-white block">Emails:</strong> marketing@entiresolutions.co.in<br></br>
 contact@entiresolutions.co.in</p>
               </div>
             </motion.div>

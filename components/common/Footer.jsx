@@ -65,7 +65,8 @@ export default function Footer() {
               </p>
               <p className="flex items-center gap-2"><Phone size={18} className="text-fuchsia-500 shrink-0" /> +91 7020493239</p>
               <p className="flex items-center gap-2"><Phone size={18} className="text-fuchsia-500 shrink-0" /> +91 9222089025</p>
-              <p className="flex items-center gap-2"><Mail size={18} className="text-fuchsia-500 shrink-0" /> entiresolutions20@gmail.com</p>
+              <p className="flex items-center gap-2"><Mail size={18} className="text-fuchsia-500 shrink-0" /> marketing@entiresolutions.co.in<br></br>
+contact@entiresolutions.co.in</p>
             </div>
           </div>
         </div>
