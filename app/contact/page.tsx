@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, Suspense, useEffect, FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
-import { Phone, Building2, Send, Briefcase, Wrench, CheckCircle2, XCircle } from "lucide-react";
+import { Phone, Building2, Send, Briefcase, Wrench, CheckCircle2, XCircle, User, Mail, MessageSquare } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 // --- CUSTOM NOTIFICATION COMPONENT ---
@@ -30,22 +30,14 @@ function ContactForm() {
   const searchParams = useSearchParams();
   const [notification, setNotification] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
 
-  const serviceFromUrl = searchParams.get("service") || "";
-  const engineeringFromUrl = searchParams.get("engineering") || "";
-
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [serviceValue, setServiceValue] = useState(serviceFromUrl);
-  const [engineeringValue, setEngineeringValue] = useState(engineeringFromUrl);
+  const [engineeringValue, setEngineeringValue] = useState(searchParams.get("engineering") || "");
+  const [serviceValue, setServiceValue] = useState(searchParams.get("service") || "");
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setServiceValue(serviceFromUrl);
-    setEngineeringValue(engineeringFromUrl);
-  }, [serviceFromUrl, engineeringFromUrl]);
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,7 +52,7 @@ function ContactForm() {
       );
 
       setNotification({ message: "Inquiry sent successfully!", type: 'success' });
-      setName(""); setCompany(""); setEmail(""); setPhone(""); setMessage("");
+      setName(""); setCompany(""); setEmail(""); setPhone(""); setMessage(""); setEngineeringValue(""); setServiceValue("");
     } catch (error) {
       setNotification({ message: "Failed to send. Please try again.", type: 'error' });
     } finally {
@@ -72,20 +64,19 @@ function ContactForm() {
     <>
       {notification && <Notification message={notification.message} type={notification.type} onClose={() => setNotification(null)} />}
       <form className="space-y-5" onSubmit={sendEmail}>
-        {/* ... (Keep your existing inputs exactly as they were) ... */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-           <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
-           <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company Name" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+           <input required type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+           <input required type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company Name" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
-           <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+           <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+           <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-           <div className="relative"><Briefcase className="absolute left-4 top-4 text-slate-400" size={18} /><input type="text" value={engineeringValue} onChange={(e) => setEngineeringValue(e.target.value)} placeholder="Engineering Field" className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-purple-500" /></div>
-           <div className="relative"><Wrench className="absolute left-4 top-4 text-slate-400" size={18} /><input type="text" value={serviceValue} onChange={(e) => setEngineeringValue(e.target.value)} placeholder="Required Service" className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-cyan-500" /></div>
+            <div className="relative"><Briefcase className="absolute left-4 top-4 text-slate-400" size={18} /><input required type="text" value={engineeringValue} onChange={(e) => setEngineeringValue(e.target.value)} placeholder="Engineering Field" className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-purple-500" /></div>
+            <div className="relative"><Wrench className="absolute left-4 top-4 text-slate-400" size={18} /><input required type="text" value={serviceValue} onChange={(e) => setServiceValue(e.target.value)} placeholder="Required Service" className="w-full rounded-2xl bg-slate-50 border border-slate-200 pl-12 pr-6 py-4 outline-none focus:border-cyan-500" /></div>
         </div>
-        <textarea rows={4} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe Your Requirements" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
+        <textarea required rows={4} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe Your Requirements" className="w-full rounded-2xl bg-slate-50 border border-slate-200 px-6 py-4 outline-none focus:border-pink-500" />
         <button type="submit" disabled={loading} className="w-full px-10 py-4 rounded-2xl bg-slate-900 text-white font-bold hover:bg-fuchsia-600 transition-all flex items-center justify-center gap-3">
           {loading ? "Sending..." : "Send Inquiry"}
           <Send size={16} />
@@ -94,8 +85,6 @@ function ContactForm() {
     </>
   );
 }
-
-// ... Keep your ContactPage component exactly as is.
 
 export default function ContactPage() {
   const cardVariants = {
@@ -151,51 +140,20 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      
- {/* 3. MAP SECTION */}
-{/* 3. MAP SECTION */}
-<div className="max-w-7xl mx-auto px-6 pt-0 pb-20 md:pb-24">
-  <div className="relative w-full h-[350px] md:h-[500px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
-    
-    {/* Google Maps Embed - Use the official iframe code from Google Maps share feature */}
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.8845607736637!2d73.85617837593282!3d18.64876556812836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7af5b5d1947%3A0x63351ec946e39275!2sEntire%20Solutions!5e0!3m2!1sen!2sin!4v1716388402778!5m2!1sen!2sin"
-      width="100%"
-      height="100%"
-      style={{ border: 0 }}
-      allowFullScreen
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      className="absolute inset-0 w-full h-full"
-      title="Entire Solutions Map"
-    />
 
-    {/* Address Card */}
-    <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 bg-white/95 backdrop-blur-md p-6 rounded-[2rem] shadow-2xl max-w-sm border border-slate-100 z-10">
-      <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-        <Building2 size={18} className="text-pink-600" /> 
-        Entire Solutions
-      </h4>
-      <p className="text-sm text-slate-700 leading-relaxed mb-6">
-        Sr. No. 101, Tapkir Nagar, Plot. No. 03, Khadi Machine Road, 
-        Wadmukhwadi, Pune - 412105.
-      </p>
-
-      {/* Action Buttons */}
-      <div className="flex flex-col gap-3">
-       
-        <a 
-          href="https://www.google.com/maps/place/?q=place_id:ChIJIZNUdyjHwjsRsibpf6Ckq8k" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="w-full text-center text-sm font-semibold text-slate-600 hover:text-pink-600 transition-colors py-2"
-        >
-          Open in Maps →
-        </a>
+      <div className="max-w-7xl mx-auto px-6 pt-0 pb-20 md:pb-24">
+        <div className="relative w-full h-[350px] md:h-[500px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.8845607736637!2d73.85617837593282!3d18.64876556812836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7af5b5d1947%3A0x63351ec946e39275!2sEntire%20Solutions!5e0!3m2!1sen!2sin!4v1716388402778!5m2!1sen!2sin"
+            width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="absolute inset-0 w-full h-full" title="Entire Solutions Map"
+          />
+          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 bg-white/95 backdrop-blur-md p-6 rounded-[2rem] shadow-2xl max-w-sm border border-slate-100 z-10">
+            <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2"><Building2 size={18} className="text-pink-600" /> Entire Solutions</h4>
+            <p className="text-sm text-slate-700 leading-relaxed mb-6">Sr. No. 101, Tapkir Nagar, Plot. No. 03, Khadi Machine Road, Wadmukhwadi, Pune - 412105.</p>
+            <a href="https://www.google.com/maps/place/?q=place_id:ChIJIZNUdyjHwjsRsibpf6Ckq8k" target="_blank" rel="noopener noreferrer" className="w-full text-center text-sm font-semibold text-slate-600 hover:text-pink-600 transition-colors py-2">Open in Maps →</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
     </main>
   );
 }

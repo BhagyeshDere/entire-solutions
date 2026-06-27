@@ -21,7 +21,7 @@ const galleryData = [
 
   // Stamping / Pressing
   { id: 13, category: "Stamping / Pressing", image: "/images/sub-services/stamping-pressing/sp_main.png" },
-  { id: 14, category: "Stamping / Pressing", image: "/images/sub-services/stamping-pressing/sp_1.png" },
+  
   { id: 15, category: "Stamping / Pressing", image: "/images/sub-services/stamping-pressing/sp_2.png" },
 
   // Stainless Steel Laser Cutting
@@ -50,7 +50,7 @@ const galleryData = [
   { id: 30, category: "Pipe Laser Cutting", image: "/images/sub-services/pipe-laser-cutting/pl_2.png" },
 
   // SS Filter Plate Cuttings
-  { id: 31, category: "SS Filter Plate Cuttings", image: "/images/sub-services/ss-filter-plate-cuttings/ss_main.png" },
+  
   { id: 32, category: "SS Filter Plate Cuttings", image: "/images/sub-services/ss-filter-plate-cuttings/ss_1.png" },
   { id: 33, category: "SS Filter Plate Cuttings", image: "/images/sub-services/ss-filter-plate-cuttings/ss_2.png" },
 
@@ -67,17 +67,13 @@ const galleryData = [
   // Aluminum Laser Cutting
   { id: 40, category: "Aluminum Laser Cutting", image: "/images/sub-services/aluminum-laser-cutting/al_main.png" },
   { id: 41, category: "Aluminum Laser Cutting", image: "/images/sub-services/aluminum-laser-cutting/al_1.png" },
-  { id: 42, category: "Aluminum Laser Cutting", image: "/images/sub-services/aluminum-laser-cutting/al_2.png" },
+  { id: 42, category: "Aluminum Laser Cutting", image: "/images/sub-services/aluminum-laser-cutting/al2.png" },
 
-  // Metal Jali Laser Cutting
-  { id: 43, category: "Metal Jali Laser Cutting", image: "/images/sub-services/metal-jali-laser-cutting/mj_main.png" },
-  { id: 44, category: "Metal Jali Laser Cutting", image: "/images/sub-services/metal-jali-laser-cutting/mj_1.png" },
-  { id: 45, category: "Metal Jali Laser Cutting", image: "/images/sub-services/metal-jali-laser-cutting/mj_2.png" },
+  
 
   // SS Jali Laser Cutting
-  { id: 46, category: "SS Jali Laser Cutting", image: "/images/sub-services/ss-jali-laser-cutting/ss_main.png" },
   { id: 47, category: "SS Jali Laser Cutting", image: "/images/sub-services/ss-jali-laser-cutting/ss_1.png" },
-  { id: 48, category: "SS Jali Laser Cutting", image: "/images/sub-services/ss-jali-laser-cutting/ss_2.png" }
+
 ];
 
 export default galleryData;

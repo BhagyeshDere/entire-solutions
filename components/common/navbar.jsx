@@ -38,7 +38,8 @@ export default function Navbar() {
   const engineeringItems = [
     { title: "R & D", slug: "r-and-d" },
     { title: "Prototyping", slug: "prototyping" },
-    { title: "Mass Production", slug: "mass-production" }
+    { title: "Mass Production", slug: "mass-production" },
+    { title: "Designing & Drawing", slug: "designing-and-drawing" }
   ];
 
   const electricalItems = [

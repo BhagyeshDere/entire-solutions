@@ -148,22 +148,12 @@ const serviceDetails = [
     mainImage: "/images/sub-services/aluminum-laser-cutting/al_main.png",
     gallery: [
       "/images/sub-services/aluminum-laser-cutting/al_1.png",
-      "/images/sub-services/aluminum-laser-cutting/al_2.png"
+      "/images/sub-services/aluminum-laser-cutting/al2.png"
     ],
     description: "Aluminum is lightweight and thermally conductive. We use specialized laser power settings to cut aluminum without dross or burrs. This makes it an ideal process for aerospace parts, heat sinks, and high-strength automotive frames where weight reduction is critical.",
     features: ["Dross-Free Aluminum Cutting", "Heat-Sink Performance Optimization", "Weight-to-Strength Efficiency", "High-Grade Alloy Versatility"],
   },
-  {
-    slug: "metal-jali-laser-cutting",
-    title: "Metal Jali Laser Cutting",
-    mainImage: "/images/sub-services/metal-jali-laser-cutting/mj_main.png",
-    gallery: [
-      "/images/sub-services/metal-jali-laser-cutting/mj_1.png",
-      "/images/sub-services/metal-jali-laser-cutting/mj_2.png"
-    ],
-    description: "We elevate architectural design with intricate laser-cut jali patterns. Our precision lasers translate complex digital art into metallic reality, ensuring perfect symmetry and fine detail on panels used for interior partitions, facades, and luxury decor.",
-    features: ["Complex Geometric Symmetry", "High-Detail Architectural Art", "Custom Pattern Capability", "Premium Interior/Exterior Grade"],
-  },
+
   {
     slug: "ss-jali-laser-cutting",
     title: "MS/SS Jali Laser Cutting",
