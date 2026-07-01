@@ -14,56 +14,56 @@ const serviceDetails = [
       {
         title: "MS Laser Cutting",
         mainImage: "/images/sub-services/metal-sheet-laser-cutting/ms_main.png",
-        gallery: ["/images/sub-services/metal-sheet-laser-cutting/ms_main.png", "/images/sub-services/metal-sheet-laser-cutting/ms_1.png", "/images/sub-services/metal-sheet-laser-cutting/ms_2.png"],
+        gallery: [ "/images/sub-services/metal-sheet-laser-cutting/ms_1.png", "/images/sub-services/metal-sheet-laser-cutting/ms_2.png"],
         description: "High-quality Mild Steel (MS) laser cutting for industrial fabrication, machinery components, and customized engineering products with smooth edge quality.",
         features: ["Structural Integrity", "Clean Edges", "High Repeatability", "Custom Fabrication"]
       },
       {
         title: "SS Laser Cutting",
         mainImage: "/images/sub-services/stainless-steel-laser-cutting/ss_main.png",
-        gallery: ["/images/sub-services/stainless-steel-laser-cutting/ss_main.png", "/images/sub-services/stainless-steel-laser-cutting/ss_1.png", "/images/sub-services/stainless-steel-laser-cutting/ss_2.png"],
+        gallery: [ "/images/sub-services/stainless-steel-laser-cutting/ss_1.png", "/images/sub-services/stainless-steel-laser-cutting/ss_2.png"],
         description: "Precision Stainless Steel laser cutting for food processing, architectural components, and heavy engineering applications with a superior surface finish.",
         features: ["Burr-free Cutting", "Corrosion Resistant", "High Precision", "Superior Finish"]
       },
       {
         title: "Brass Laser Cutting",
         mainImage: "/images/sub-services/brass-cutting/bc_main.png",
-        gallery: ["/images/sub-services/brass-cutting/bc_main.png", "/images/sub-services/brass-cutting/bc_1.png", "/images/sub-services/brass-cutting/bc_2.png"],
+        gallery: [ "/images/sub-services/brass-cutting/bc_1.png", "/images/sub-services/brass-cutting/bc_2.png"],
         description: "Specialized Brass Laser Cutting for electrical components, decorative products, and precision engineering parts requiring tight tolerances.",
         features: ["Excellent Edge", "Tight Tolerances", "Precision Parts", "Industrial Fittings"]
       },
       {
         title: "Copper Laser Cutting",
         mainImage: "/images/sub-services/cnc-laser-cutting/cl_main.png",
-        gallery: ["/images/sub-services/cnc-laser-cutting/cl_main.png", "/images/sub-services/cnc-laser-cutting/cl_1.png", "/images/sub-services/cnc-laser-cutting/cl_2.png"],
+        gallery: [ "/images/sub-services/cnc-laser-cutting/cl_1.png", "/images/sub-services/cnc-laser-cutting/cl_2.png"],
         description: "Precision copper laser cutting for electrical busbars and industrial connectors, providing clean cuts with minimal heat-affected zones.",
         features: ["High Conductivity", "Clean Cutting", "Minimal Distortion", "Electrical Grade"]
       },
       {
         title: "Aluminium Laser Cutting",
         mainImage: "/images/sub-services/aluminum-laser-cutting/al_main.png",
-        gallery: ["/images/sub-services/aluminum-laser-cutting/al_main.png", "/images/sub-services/aluminum-laser-cutting/al_1.png", "/images/sub-services/aluminum-laser-cutting/al_2.png"],
+        gallery: ["/images/sub-services/aluminum-laser-cutting/al_1.png", "/images/sub-services/aluminum-laser-cutting/al_2.png"],
         description: "Accurate Aluminium cutting for lightweight industrial components, machine covers, and custom fabricated assemblies.",
         features: ["Lightweight Support", "Consistent Quality", "Excellent Finish", "Custom Assembly"]
       },
       {
         title: "Metal Sheet Laser Cutting",
         mainImage: "/images/sub-services/metal-sheet-laser-cutting/ms_main.png",
-        gallery: ["/images/sub-services/metal-sheet-laser-cutting/ms_main.png", "/images/sub-services/metal-sheet-laser-cutting/ms_1.png", "/images/sub-services/metal-sheet-laser-cutting/ms_2.png"],
+        gallery: ["/images/sub-services/metal-sheet-laser-cutting/ms_1.png", "/images/sub-services/metal-sheet-laser-cutting/ms_2.png"],
         description: "Comprehensive industrial sheet fabrication for electrical panels, machine structures, and OEM manufacturing projects.",
         features: ["High Efficiency", "Precision Fabrication", "Repeatable Quality", "Industrial Strength"]
       },
       {
         title: "SS Jali Laser Cutting",
         mainImage: "/images/sub-services/ss-jali-laser-cutting/ss_main.png",
-        gallery: ["/images/sub-services/ss-jali-laser-cutting/ss_main.png", "/images/sub-services/ss-jali-laser-cutting/ss_1.png", "/images/sub-services/ss-jali-laser-cutting/ss_2.png"],
+        gallery: [ "/images/sub-services/ss-jali-laser-cutting/ss_1.png", "/images/sub-services/ss-jali-laser-cutting/ss_2.png"],
         description: "Decorative and industrial Stainless Steel Jali for architectural facades, interior partitions, and ventilation panels.",
         features: ["Architectural Grade", "Intricate Design", "Durable Finish", "Weather Resistant"]
       },
       {
         title: "Metal Jali Laser Cutting",
         mainImage: "/images/sub-services/metal-jali-laser-cutting/mj_main.png",
-        gallery: ["/images/sub-services/metal-jali-laser-cutting/mj_main.png", "/images/sub-services/metal-jali-laser-cutting/mj_1.png", "/images/sub-services/metal-jali-laser-cutting/mj_2.png"],
+        gallery: ["/images/sub-services/metal-jali-laser-cutting/mj_1.png", "/images/sub-services/metal-jali-laser-cutting/mj_2.png"],
         description: "Customized Metal Jali panels combining strength and modern aesthetics for commercial and residential engineering projects.",
         features: ["Modern Aesthetics", "Custom Patterns", "High Durability", "Versatile Application"]
       }
@@ -74,7 +74,7 @@ const serviceDetails = [
     title: "CNC Pipe Laser Cutting",
     mainImage: "/images/sub-services/pipe-laser-cutting/pl_main.png",
     gallery: [
-      "/images/sub-services/pipe-laser-cutting/pl_main.png",
+     
       "/images/sub-services/pipe-laser-cutting/pl_1.png",
       "/images/sub-services/pipe-laser-cutting/pl_2.png"
     ],
@@ -86,7 +86,7 @@ const serviceDetails = [
     title: "CNC Bending",
     mainImage: "/images/sub-services/cnc-bending/cnc_main.png",
     gallery: [
-      "/images/sub-services/cnc-bending/cnc_main.png",
+   
       "/images/sub-services/cnc-bending/cnc_1.png",
       "/images/sub-services/cnc-bending/cnc_2.png"
     ],
@@ -98,7 +98,7 @@ const serviceDetails = [
     title: "Electric Panel Boxes",
     mainImage: "/images/sub-services/electrical-panel-boxes/epb_main.png",
     gallery: [
-      "/images/sub-services/electrical-panel-boxes/epb_main.png",
+     
       "/images/sub-services/electrical-panel-boxes/epb_1.png",
       "/images/sub-services/electrical-panel-boxes/epb_2.png"
     ],
@@ -238,7 +238,7 @@ const serviceDetails = [
     title: "Stamping & Pressing",
     mainImage: "/images/sub-services/stamping-pressing/sp_main.png",
     gallery: [
-      "/images/sub-services/stamping-pressing/sp_main.png",
+     
       "/images/sub-services/stamping-pressing/sp_1.png",
       "/images/sub-services/stamping-pressing/sp_2.png"
     ],
@@ -250,7 +250,7 @@ const serviceDetails = [
     title: "Powder Coating",
     mainImage: "/images/sub-services/powder-coatings/pc_main.png",
     gallery: [
-      "/images/sub-services/powder-coatings/pc_main.png",
+     
       "/images/sub-services/powder-coatings/pc_1.png",
       "/images/sub-services/powder-coatings/pc_2.png"
     ],
@@ -262,7 +262,7 @@ const serviceDetails = [
     title: "Spray Painting",
     mainImage: "/images/sub-services/powder-coatings/pc_main.png", // Note: Ensure you have specific spray painting files if needed
     gallery: [
-      "/images/sub-services/powder-coatings/pc_main.png",
+    
       "/images/sub-services/powder-coatings/pc_1.png",
       "/images/sub-services/powder-coatings/pc_2.png"
     ],
