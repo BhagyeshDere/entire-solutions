@@ -18,21 +18,16 @@ export default function Navbar() {
   }, []);
 
   const services = [
-    { title: "Laser Cutting", slug: "laser-cutting" },
-    { title: "Electrical Panel Boxes", slug: "electrical-panel-boxes" },
-    { title: "Brass Cutting", slug: "brass-cutting" },
-    { title: "Metal Fabrication", slug: "metal-fabrication" },
-    { title: "Powder Coatings", slug: "powder-coatings" },
+    { title: "CNC Laser Cutting", slug: "cnc-laser-cutting" },
+    { title: "CNC Pipe Laser Cutting", slug: "cnc-pipe-laser-cutting" },
     { title: "CNC Bending", slug: "cnc-bending" },
-    { title: "MIG Welding", slug: "mig-welding" },
+    { title: "Electric Panel Boxes", slug: "electric-panel-boxes" },
+    { title: "MS & SS Fabrication", slug: "ms-ss-fabrication" },
+    { title: "Light / Heavy Fabrication", slug: "light-heavy-fabrication" },
+    { title: "MIG / TIG / ARC Welding", slug: "mig-tig-arc-welding" },
     { title: "Stamping / Pressing", slug: "stamping-pressing" },
-    { title: "Stainless Steel Laser Cutting", slug: "stainless-steel-laser-cutting" },
-    { title: "Metal Sheet Laser Cutting", slug: "metal-sheet-laser-cutting" },
-    { title: "Cnc Laser Cutting", slug: "cnc-laser-cutting" },
-    { title: "Pipe Laser Cutting", slug: "pipe-laser-cutting" },
-    { title: "SS Filter Plate Cuttings", slug: "ss-filter-plate-cuttings" },
-    { title: "Aluminum Laser Cutting", slug: "aluminum-laser-cutting" },
-    { title: "MS/SS Jali Laser Cutting", slug: "ss-jali-laser-cutting" },
+    { title: "Powder Coating", slug: "powder-coating" },
+    { title: "Spray Painting", slug: "spray-painting" },
   ];
 
   const engineeringItems = [
@@ -49,7 +44,7 @@ export default function Navbar() {
   ];
 
   const navLinks = [
-    { name: "Home", href: "/", isExternal: true }, // Marked as external to force refresh
+    { name: "Home", href: "/", isExternal: true }, 
     { name: "About", href: "/about" },
     { name: "Services", href: "/services", subLinks: services },
     { name: "Engineering", href: "/engineering", subLinks: engineeringItems },
@@ -78,12 +73,10 @@ export default function Navbar() {
                  : "w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200 px-6 h-20"
       }`}>
         
-        {/* Logo with force refresh */}
         <a href="/" className="z-10 flex-shrink-0 w-32 md:w-40 ml-4">
           <Image src="/logo.png" alt="Entire Solutions" width={180} height={60} priority className="object-contain w-full h-auto" />
         </a>
 
-        {/* Desktop Nav */}
         <nav className="hidden lg:flex flex-1 justify-center items-center gap-6 xl:gap-8">
           {navLinks.map((item) => (
             <div key={item.name} className="relative group">
@@ -121,7 +114,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
       {isOpen && (
         <>
           <div className="lg:hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />

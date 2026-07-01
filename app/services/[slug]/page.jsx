@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use } from "react"; 
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import serviceDetails from "@/data/serviceDetails";
 
 export default function ServicePage({ params }) {
@@ -13,89 +13,88 @@ export default function ServicePage({ params }) {
 
   if (!service) return notFound();
 
-  const [activeImage, setActiveImage] = useState(service.mainImage);
+  const isParentService = service.sections && service.sections.length > 0;
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-32 pb-28 px-5">
+    <div className="min-h-screen bg-slate-50 pt-32 pb-24 px-5">
       <div className="max-w-7xl mx-auto">
         
-        {/* MOBILE & DESKTOP HEADER: Always at the top */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
-          <span className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm">Industrial Precision</span>
-          <h1 className="text-5xl md:text-7xl font-extrabold mt-4 text-slate-900 leading-[1.1]">
+        {/* Main Service Title - Now always visible */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          className="mb-16"
+        >
+          <span className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm">Industrial Services</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold mt-4 text-slate-900 leading-tight">
             {service.title}
           </h1>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          
-          {/* Left Column: Industrial Gallery */}
-          <div className="space-y-6">
-            <AnimatePresence mode="wait">
-              <motion.div 
-                key={activeImage}
-                initial={{ opacity: 0 }} 
-                animate={{ opacity: 1 }}
-                className="relative h-[400px] md:h-[500px] w-full rounded-[2rem] overflow-hidden bg-white border border-slate-200 flex items-center justify-center"
-              >
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5 }} className="relative w-full h-full">
-                  <Image 
-                    src={activeImage} 
-                    alt={service.title} 
-                    fill 
-                    className="object-contain p-4" 
-                    priority 
-                  />
-                </motion.div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="grid grid-cols-3 gap-4">
-              {[service.mainImage, ...(service.gallery || []).slice(0, 2)].map((img, idx) => (
-                <button 
-                  key={idx} 
-                  onClick={() => setActiveImage(img)}
-                  className={`h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 bg-white ${
-                    activeImage === img ? 'border-pink-500' : 'border-slate-200 hover:border-blue-400'
-                  }`}
-                >
-                  <Image src={img} width={300} height={200} alt="Thumbnail" className="w-full h-full object-contain" />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column: Information Content */}
-          <div className="flex flex-col">
-            <div className="text-lg text-slate-600 mb-10 leading-relaxed bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-              {service.description}
-            </div>
-
-            <div className="mb-10">
-              <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6">Capabilities</h3>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {service.features.map((feature, i) => (
-                  <div key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl border border-slate-100">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-br from-pink-500 to-purple-600" />
-                    <span className="font-semibold text-slate-700">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Link
-              href={{
-                pathname: "/contact",
-                query: { service: service.title },
-              }}
-              className="inline-flex items-center justify-center px-10 py-5 w-full md:w-max rounded-2xl bg-slate-900 text-white font-bold transition-all hover:bg-slate-800"
-            >
-              Enquiry Now
-              <span className="ml-2">→</span>
-            </Link>
-          </div>
+        {/* Content Area */}
+        <div className="space-y-20">
+          {isParentService ? (
+            service.sections.map((section, idx) => <SectionCard key={idx} section={section} />)
+          ) : (
+            <SectionCard section={service} isStandalone />
+          )}
         </div>
       </div>
     </div>
+  );
+}
+
+/* Section Card Component */
+function SectionCard({ section, isStandalone }) {
+  const [image, setImage] = useState(section.mainImage || section.gallery?.[0]);
+  const features = section.features || [];
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }} 
+      whileInView={{ opacity: 1, y: 0 }} 
+      viewport={{ once: true }} 
+      className="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden"
+    >
+      <div className="grid lg:grid-cols-2 gap-10 p-8">
+        {/* Image Area */}
+        <div>
+          <div className="relative h-[320px] md:h-[420px] rounded-3xl overflow-hidden bg-slate-50">
+            <Image src={image} alt={section.title} fill className="object-contain p-8" />
+          </div>
+          <div className="grid grid-cols-3 gap-4 mt-5">
+            {[section.mainImage, ...(section.gallery || [])].slice(0, 3).map((img, i) => (
+              <button key={i} onClick={() => setImage(img)} className={`h-24 rounded-xl overflow-hidden border-2 bg-white ${image === img ? "border-pink-500" : "border-slate-200"}`}>
+                <Image src={img} alt="Thumb" width={250} height={150} className="w-full h-full object-contain" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Content Area */}
+        <div className="flex flex-col justify-center">
+          <span className="uppercase tracking-[0.2em] text-pink-600 font-bold text-sm">
+            {isStandalone ? "Overview" : "Service Detail"}
+          </span>
+          <h2 className="text-4xl font-extrabold text-slate-900 mt-2 mb-6">{section.title}</h2>
+          <p className="text-slate-600 leading-8 text-lg mb-8">{section.description}</p>
+          
+          {features.length > 0 && (
+            <div className="grid grid-cols-2 gap-3 mb-8">
+              {features.map((f, i) => (
+                <div key={i} className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-pink-500"></div>
+                  <span className="text-sm font-semibold text-slate-700">{f}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          <Link href={`/contact?service=${section.title}`} className="inline-flex items-center justify-center w-full md:w-max px-10 py-4 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all">
+            Enquiry Now →
+          </Link>
+        </div>
+      </div>
+    </motion.div>
   );
 }

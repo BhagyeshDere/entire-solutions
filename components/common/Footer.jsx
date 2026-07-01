@@ -3,6 +3,20 @@ import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
+  // Full list of 10 services derived from image_fc7515.png
+  const serviceList = [
+    { name: "CNC Laser Cutting", slug: "cnc-laser-cutting" },
+    { name: "CNC Pipe Laser Cutting", slug: "cnc-pipe-laser-cutting" },
+    { name: "CNC Bending", slug: "cnc-bending" },
+    { name: "Electric Panel Boxes", slug: "electric-panel-boxes" },
+    { name: "MS & SS Fabrication", slug: "ms-ss-fabrication" },
+    { name: "Light / Heavy Fabrication", slug: "light-heavy-fabrication" },
+    { name: "MIG / TIG / ARC Welding", slug: "mig-tig-arc-welding" },
+    { name: "Stamping / Pressing", slug: "stamping-pressing" },
+    { name: "Powder Coating", slug: "powder-coating" },
+    { name: "Spray Painting", slug: "spray-painting" },
+  ];
+
   return (
     <footer className="relative bg-[#050816] text-white overflow-hidden border-t border-white/10 font-body">
       {/* Decorative Glow Effects */}
@@ -33,7 +47,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6 font-heading">Quick Links</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
-              {['Home', 'About', 'Services', 'Gallery', 'Contact'].map((item) => (
+              {['Home', 'About', 'Gallery', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`} className="hover:text-fuchsia-400 transition-colors">
                     {item}
@@ -43,15 +57,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services - Updated to include all 10 items from image_fc7515.png */}
           <div>
             <h3 className="text-lg font-semibold mb-6 font-heading">Services</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
-              <li>Laser Cutting</li>
-              <li>Electrical Panel Boxes</li>
-              <li>Brass & Metal Fabrication</li>
-              <li>Powder Coatings</li>
-              <li>CNC Bending & Welding</li>
+              {serviceList.map((service) => (
+                <li key={service.slug}>
+                  <Link href={`/services/${service.slug}`} className="hover:text-fuchsia-400 transition-colors">
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
